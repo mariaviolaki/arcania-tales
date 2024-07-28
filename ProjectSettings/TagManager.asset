@@ -50,3 +50,6 @@ TagManager:
   - name: Terrain Top
     uniqueID: 1334191847
     locked: 0
+  - name: Collisions
+    uniqueID: 1791490851
+    locked: 0
