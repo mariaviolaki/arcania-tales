@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-	[SerializeField] float walkSpeed = 600f;
+	[SerializeField] float walkSpeed = 5f;
 
 	Rigidbody2D cRigidbody;
 	Vector2 moveInput;
+
+	public Action<Vector2> OnMoveInput;
 
 	void Awake()
 	{
@@ -23,11 +24,12 @@ public class PlayerMovement : MonoBehaviour
 	void OnMove(InputValue value)
 	{
 		moveInput = value.Get<Vector2>();
+		OnMoveInput?.Invoke(moveInput);
 	}
 
 	void Walk()
 	{
-		Vector2 playerVelocity = moveInput * Time.deltaTime * walkSpeed;
+		Vector2 playerVelocity = moveInput * walkSpeed;
 		cRigidbody.velocity = playerVelocity;
 	}
 }
