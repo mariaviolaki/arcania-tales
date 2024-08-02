@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 	}
 
 	void Update()
-    {
+    { 
 		Walk();
 	}
 
