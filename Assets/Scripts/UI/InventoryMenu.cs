@@ -7,21 +7,24 @@ public class InventoryMenu : MonoBehaviour
 {
 	[SerializeField] GameObject inventory;
 	[SerializeField] GameObject inventoryButton;
+	[SerializeField] GameObject closeArea;
 
 	void Start()
 	{
-		inventory.SetActive(false);
+		CloseInventory();
 	}
 
 	public void OpenInventory()
 	{
-		inventoryButton.SetActive(false);
 		inventory.SetActive(true);
+		inventoryButton.SetActive(false);
+		closeArea.SetActive(true);
 	}
 
 	public void CloseInventory()
 	{
-		inventoryButton.SetActive(true);
 		inventory.SetActive(false);
+		inventoryButton.SetActive(true);
+		closeArea.SetActive(false);
 	}
 }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class CharacterAnimator : MonoBehaviour
@@ -17,22 +16,22 @@ public class CharacterAnimator : MonoBehaviour
 	[Tooltip("All the custom sliced sprite sheets for this body part")]
 	[SerializeField] Skins[] skins;
 
+	InputHandler inputHandler;
 	SpriteRenderer spriteRenderer;
 	Animator animator;
-	PlayerMovement playerMovement;
 	int skinNum;
 
 	void Awake()
 	{
+		inputHandler = GetComponentInParent<InputHandler>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		animator = GetComponent<Animator>();
-		playerMovement = transform.parent.GetComponent<PlayerMovement>();
 		skinNum = GetSkinNumber();
 	}
 
 	void Start()
 	{
-		playerMovement.OnMoveInput += SelectAnimation;
+		inputHandler.OnMoveInput += SelectAnimation;
 		SetStartAnimation();
 	}
 

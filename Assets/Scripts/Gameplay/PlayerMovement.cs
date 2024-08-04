@@ -1,19 +1,23 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
 	[SerializeField] float walkSpeed = 5f;
 
+	InputHandler inputHandler;
 	Rigidbody2D cRigidbody;
 	Vector2 moveInput;
 
-	public Action<Vector2> OnMoveInput;
-
 	void Awake()
 	{
+		inputHandler = GetComponent<InputHandler>();
 		cRigidbody = GetComponent<Rigidbody2D>();
+	}
+
+	void Start()
+	{
+		inputHandler.OnMoveInput += SetPlayerVelocity;
 	}
 
 	void Update()
@@ -21,10 +25,9 @@ public class PlayerMovement : MonoBehaviour
 		Walk();
 	}
 
-	void OnMove(InputValue value)
+	void SetPlayerVelocity(Vector2 moveInput)
 	{
-		moveInput = value.Get<Vector2>();
-		OnMoveInput?.Invoke(moveInput);
+		this.moveInput = moveInput;
 	}
 
 	void Walk()

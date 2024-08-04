@@ -1533,10 +1533,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5620685539009081610}
-  - component: {fileID: 963240837865769288}
-  - component: {fileID: 942918273949584485}
+  - component: {fileID: 5178967136913054590}
+  - component: {fileID: 3166358555609468986}
+  - component: {fileID: 5341911609994894699}
   - component: {fileID: 6858256368065761456}
-  - component: {fileID: 2877808633430079819}
+  - component: {fileID: 3722972886672456165}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -1563,7 +1564,7 @@ Transform:
   - {fileID: 8480936004769427652}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &963240837865769288
+--- !u!50 &5178967136913054590
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -1590,8 +1591,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &942918273949584485
-BoxCollider2D:
+--- !u!70 &3166358555609468986
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1622,19 +1623,21 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.1}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1, y: 2}
-    newSize: {x: 1, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.1}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.00000016894617, y: 0.08277693}
+  m_Size: {x: 0.4282267, y: 0.14678575}
+  m_Direction: 1
+--- !u!114 &5341911609994894699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8796861960184604835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f1493b7bfcfba41b46467a7fee9a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6858256368065761456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1648,7 +1651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 5
---- !u!114 &2877808633430079819
+--- !u!114 &3722972886672456165
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1657,24 +1660,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8796861960184604835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Script: {fileID: 11500000, guid: 29060db6c7e34cb48abcc0875e5552c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 510d64a6305dd9740b190b3f4b4c8e4b, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
