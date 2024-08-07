@@ -1,22 +1,16 @@
-using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-	[SerializeField] float walkSpeed = 5f;
-
-	InputHandler inputHandler;
+	[SerializeField] InputHandlerSO inputHandler;
+	[SerializeField] GameSettingsSO gameSettings;
+	
 	Rigidbody2D cRigidbody;
 	Vector2 moveInput;
 
 	void Awake()
 	{
-		inputHandler = GetComponent<InputHandler>();
 		cRigidbody = GetComponent<Rigidbody2D>();
-	}
-
-	void Start()
-	{
 		inputHandler.OnMoveInput += SetPlayerVelocity;
 	}
 
@@ -32,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
 	void Walk()
 	{
-		Vector2 playerVelocity = moveInput * walkSpeed;
+		Vector2 playerVelocity = moveInput * gameSettings.WalkSpeed;
 		cRigidbody.velocity = playerVelocity;
 	}
 }

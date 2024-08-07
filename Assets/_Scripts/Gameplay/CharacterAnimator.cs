@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterAnimator : MonoBehaviour
@@ -11,26 +8,22 @@ public class CharacterAnimator : MonoBehaviour
 		public Sprite[] sprites;
 	}
 
+	[SerializeField] InputHandlerSO inputHandler;
 	[Tooltip("A single customizable part of a character")]
-	[SerializeField] BodyPart bodyPart = BodyPart.None;
+	[SerializeField] GameEnums.BodyPart bodyPart = GameEnums.BodyPart.None;
 	[Tooltip("All the custom sliced sprite sheets for this body part")]
 	[SerializeField] Skins[] skins;
 
-	InputHandler inputHandler;
 	SpriteRenderer spriteRenderer;
 	Animator animator;
 	int skinNum;
 
 	void Awake()
 	{
-		inputHandler = GetComponentInParent<InputHandler>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		animator = GetComponent<Animator>();
 		skinNum = GetSkinNumber();
-	}
 
-	void Start()
-	{
 		inputHandler.OnMoveInput += SelectAnimation;
 		SetStartAnimation();
 	}
@@ -42,14 +35,14 @@ public class CharacterAnimator : MonoBehaviour
 
 	void SetStartAnimation()
 	{
-		animator.SetFloat(nameof(LastMoveDirection.LastHorizontal), 0);
-		animator.SetFloat(nameof(LastMoveDirection.LastVertical), -1);
+		animator.SetFloat(nameof(GameEnums.LastMoveDirection.LastHorizontal), 0);
+		animator.SetFloat(nameof(GameEnums.LastMoveDirection.LastVertical), -1);
 	}
 
 	// Change the current sprite set by the animator based on the selected skin
 	void ApplySkin()
 	{
-		if (bodyPart == BodyPart.None || spriteRenderer.sprite == null) return;
+		if (bodyPart == GameEnums.BodyPart.None || spriteRenderer.sprite == null) return;
 
 		string spriteName = spriteRenderer.sprite.name;
 		int skinFrame = int.Parse(spriteName.Split("_")[1]);
@@ -70,13 +63,13 @@ public class CharacterAnimator : MonoBehaviour
 
 	void SelectAnimation(Vector2 moveInput)
 	{
-		animator.SetFloat(nameof(MoveDirection.Horizontal), moveInput.x);
-		animator.SetFloat(nameof(MoveDirection.Vertical), moveInput.y);
+		animator.SetFloat(nameof(GameEnums.MoveDirection.Horizontal), moveInput.x);
+		animator.SetFloat(nameof(GameEnums.MoveDirection.Vertical), moveInput.y);
 
 		if (moveInput.x != 0 || moveInput.y != 0)
 		{
-			animator.SetFloat(nameof(LastMoveDirection.LastHorizontal), moveInput.x);
-			animator.SetFloat(nameof(LastMoveDirection.LastVertical), moveInput.y);
+			animator.SetFloat(nameof(GameEnums.LastMoveDirection.LastHorizontal), moveInput.x);
+			animator.SetFloat(nameof(GameEnums.LastMoveDirection.LastVertical), moveInput.y);
 		}
 	}
 }

@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453949d52e6b67c44a7e38eb7a0a6733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputHandler: {fileID: 11400000, guid: 8aeabbe195686594cb7deabf3e39ae14, type: 2}
   bodyPart: 2
   skins:
   - sprites:
@@ -708,6 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453949d52e6b67c44a7e38eb7a0a6733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputHandler: {fileID: 11400000, guid: 8aeabbe195686594cb7deabf3e39ae14, type: 2}
   bodyPart: 3
   skins:
   - sprites:
@@ -1180,6 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453949d52e6b67c44a7e38eb7a0a6733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputHandler: {fileID: 11400000, guid: 8aeabbe195686594cb7deabf3e39ae14, type: 2}
   bodyPart: 4
   skins:
   - sprites:
@@ -1470,6 +1473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453949d52e6b67c44a7e38eb7a0a6733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputHandler: {fileID: 11400000, guid: 8aeabbe195686594cb7deabf3e39ae14, type: 2}
   bodyPart: 1
   skins:
   - sprites:
@@ -1535,9 +1539,6 @@ GameObject:
   - component: {fileID: 5620685539009081610}
   - component: {fileID: 5178967136913054590}
   - component: {fileID: 3166358555609468986}
-  - component: {fileID: 5341911609994894699}
-  - component: {fileID: 6858256368065761456}
-  - component: {fileID: 3722972886672456165}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -1626,40 +1627,3 @@ CapsuleCollider2D:
   m_Offset: {x: -0.00000016894617, y: 0.08277693}
   m_Size: {x: 0.4282267, y: 0.14678575}
   m_Direction: 1
---- !u!114 &5341911609994894699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8796861960184604835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f1493b7bfcfba41b46467a7fee9a37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6858256368065761456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8796861960184604835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2aa8b29a7826424c9c243d6f77e5951, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 5
---- !u!114 &3722972886672456165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8796861960184604835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29060db6c7e34cb48abcc0875e5552c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
