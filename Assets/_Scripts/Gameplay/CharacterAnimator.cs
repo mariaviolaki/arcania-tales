@@ -24,7 +24,7 @@ public class CharacterAnimator : MonoBehaviour
 		animator = GetComponent<Animator>();
 		skinNum = GetSkinNumber();
 
-		inputHandler.OnMoveInput += SelectAnimation;
+		inputHandler.OnGameMoveInput += SelectAnimation;
 		SetStartAnimation();
 	}
 

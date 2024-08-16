@@ -3,15 +3,9 @@ using UnityEngine.UI;
 
 public class InventoryUI : SlotContainerUI
 {
-	[SerializeField] GameObject closeArea;
-
-	UIManager uiManager;
-
-	public void InitListeners(UIManager uiManager)
+	void Awake()
 	{
-		this.uiManager = uiManager;
-
-		closeArea.GetComponent<Button>().onClick.AddListener(() => uiManager.SetInventoryOpen(false));
+		InitSlotListeners();	
 	}
 
 	public void SetOpen(bool isOpen)

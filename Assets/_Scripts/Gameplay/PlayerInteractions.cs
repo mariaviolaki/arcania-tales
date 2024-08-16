@@ -7,7 +7,7 @@ public class PlayerInteractions : MonoBehaviour
 	
 	void Awake()
 	{
-		inputHandler.OnInteractInput += ProcessInteractions;
+		inputHandler.OnGameSelectInput += ProcessInteractions;
 	}
 
 	void ProcessInteractions(RaycastHit2D[] targets)

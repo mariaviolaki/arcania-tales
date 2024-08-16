@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 	void Awake()
 	{
 		cRigidbody = GetComponent<Rigidbody2D>();
-		inputHandler.OnMoveInput += SetPlayerVelocity;
+		inputHandler.OnGameMoveInput += SetPlayerVelocity;
 	}
 
 	void Update()

@@ -1,17 +1,17 @@
 public class InventoryItem
 {
-	Collectable item;
+	CollectableSO item;
 	int quantity;
 	int slot;
 
-	public InventoryItem(Collectable item, int quantity, int slot)
+	public InventoryItem(CollectableSO item, int quantity, int slot)
 	{
 		this.item = item;
 		this.quantity = quantity;
 		this.slot = slot;
 	}
 
-	public Collectable Item
+	public CollectableSO Item
 	{
 		get { return item; }
 		set { item = value; }

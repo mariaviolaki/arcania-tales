@@ -17,7 +17,7 @@ public class Collectable : MonoBehaviour, IInteractable
 	{
 		if (inventoryManager == null) return;
 
-		bool isCollected = inventoryManager.AddCollectable(this);
+		bool isCollected = inventoryManager.AddCollectable(data);
 		if (isCollected)
 		{
 			Destroy(gameObject);

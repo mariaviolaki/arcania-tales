@@ -7,17 +7,17 @@ public class InventoryManager : MonoBehaviour
 {
 	[SerializeField] GameSettingsSO gameSettings;
 
-	public Action<InventoryItem, InventoryItem> OnAddCollectableToInventory;
+	public Action<InventoryItem, InventoryItem> OnUpdateInventoryUI;
 	List<InventoryItem> items;
 
 	void Awake()
 	{
 		int maxCapacity = gameSettings.ToolSlots + gameSettings.InventorySlots;
-		items = new List<InventoryItem>(Enumerable.Repeat((InventoryItem) null, maxCapacity));
+		items = new List<InventoryItem>(Enumerable.Repeat((InventoryItem)null, maxCapacity));
 	}
 
 	// Automatically add a collectable to the inventory without choosing its slot
-	public bool AddCollectable(Collectable collectable, int quantity = 1)
+	public bool AddCollectable(CollectableSO collectable, int quantity = 1)
 	{
 		int firstAvailableSlot = int.MaxValue;
 
@@ -33,90 +33,92 @@ public class InventoryManager : MonoBehaviour
 			// Attempt to stack the item in the first available slot
 			else if (inventoryItem != null)
 			{
-				bool isSameItemSlot = inventoryItem.Item.Data.Name == collectable.Data.Name;
+				bool isSameItemSlot = inventoryItem.Item.Name == collectable.Name;
 				bool isFreeSpaceSlot = inventoryItem.Quantity < gameSettings.MaxSlotQuantity;
 
 				if (isSameItemSlot && isFreeSpaceSlot)
 				{
-					return StackCollectable(collectable, quantity, i);
+					return StackCollectable(new InventoryItem(collectable, quantity, -1), i);
 				}
 			}
 		}
 
-		return AddNewCollectable(collectable, quantity, firstAvailableSlot);
+		return AddNewCollectable(new InventoryItem(collectable, quantity, -1), firstAvailableSlot);
 	}
 
 	// Manually rearrange the inventory by forcing an item into a specific slot
-	public bool AddCollectableToSlot(Collectable collectable, int slot, int quantity)
+	public bool AddItemToSlot(InventoryItem inventoryItem, int slot)
 	{
+		int maxCapacity = gameSettings.ToolSlots + gameSettings.InventorySlots;
+		if (inventoryItem == null || inventoryItem.Quantity <= 0 || slot < 0 || slot >= maxCapacity) return false;
+
 		if (items[slot] == null)
 		{
-			return AddNewCollectable(collectable, quantity, slot);
+			return AddNewCollectable(inventoryItem, slot);
 		}
-		else if (items[slot].Item.Data.Name == collectable.Data.Name)
+		else if (items[slot].Item.Name == inventoryItem.Item.Name)
 		{
-			return StackCollectable(collectable, quantity, slot);
+			return StackCollectable(inventoryItem, slot);
 		}
 		else
 		{
-			return SwapCollectables(collectable, quantity, slot);
+			return SwapCollectables(inventoryItem, slot);
 		}
 	}
 
-	bool AddNewCollectable(Collectable collectable, int quantity, int slot)
+	public bool RemoveItemFromSlot(int slot)
 	{
-		if (quantity <= 0)
-		{
-			OnAddCollectableToInventory?.Invoke(null, new InventoryItem(collectable, quantity, -1));
-			return false;
-		}
+		if (slot < 0 || items[slot] == null) return false;
 
-		// Ensure that the new item will not exceed the max slot quantity
-		int slotQuantity = Mathf.Min(quantity, gameSettings.MaxSlotQuantity);
+		InventoryItem remainingItem = new InventoryItem(items[slot].Item, items[slot].Quantity, slot);
+		items[slot] = null;
 
-		InventoryItem newItem = new InventoryItem(collectable, slotQuantity, slot);
-		InventoryItem remainingItem = new InventoryItem(collectable, quantity - slotQuantity, -1);
-		items[slot] = newItem;
-
-		OnAddCollectableToInventory?.Invoke(newItem, remainingItem);
+		OnUpdateInventoryUI?.Invoke(null, remainingItem);
 		return true;
 	}
 
-	bool StackCollectable(Collectable collectable, int quantity, int slot)
+	bool AddNewCollectable(InventoryItem inventoryItem, int slot)
+	{
+		// Ensure that the new item will not exceed the max slot quantity
+		int slotQuantity = Mathf.Min(inventoryItem.Quantity, gameSettings.MaxSlotQuantity);
+		int remainingQuantity = inventoryItem.Quantity - slotQuantity;
+
+		InventoryItem newItem = new InventoryItem(inventoryItem.Item, slotQuantity, slot);
+		InventoryItem remainingItem = new InventoryItem(inventoryItem.Item, remainingQuantity, inventoryItem.Slot);
+		items[slot] = newItem;
+
+		OnUpdateInventoryUI?.Invoke(newItem, remainingItem);
+		return true;
+	}
+
+	bool StackCollectable(InventoryItem inventoryItem, int slot)
 	{
 		// Check if this slot is already full
-		InventoryItem inventoryItem = items[slot];
-		int slotQuantity = Mathf.Min(quantity, gameSettings.MaxSlotQuantity - inventoryItem.Quantity);
-		if (slotQuantity <= 0)
-		{
-			OnAddCollectableToInventory?.Invoke(null, new InventoryItem(collectable, quantity, -1));
-			return false;
-		}
+		InventoryItem existingItem = items[slot];
+		int slotQuantity = Mathf.Min(inventoryItem.Quantity, gameSettings.MaxSlotQuantity - existingItem.Quantity);
+		if (slotQuantity <= 0) return false;
 
 		// TODO test if inventoryItem is permanently changed as expected
-		inventoryItem.Quantity += slotQuantity;
-		InventoryItem remainingItem = new InventoryItem(collectable, quantity - slotQuantity, -1);
+		existingItem.Quantity += slotQuantity;
+		int remainingQuantity = inventoryItem.Quantity - slotQuantity;
+		InventoryItem remainingItem = new InventoryItem(inventoryItem.Item, remainingQuantity, inventoryItem.Slot);
 
-		OnAddCollectableToInventory?.Invoke(inventoryItem, remainingItem);
+		OnUpdateInventoryUI?.Invoke(existingItem, remainingItem);
 		return true;
 	}
 
-	bool SwapCollectables(Collectable collectable, int quantity, int slot)
+	bool SwapCollectables(InventoryItem inventoryItem, int slot)
 	{
-		if (quantity <= 0 || quantity > gameSettings.MaxSlotQuantity)
-		{
-			OnAddCollectableToInventory?.Invoke(null, new InventoryItem(collectable, quantity, -1));
-			return false;
-		}
+		if (inventoryItem.Quantity > gameSettings.MaxSlotQuantity) return false;
 
 		InventoryItem existingItem = items[slot];
-		existingItem.Slot = -1;
+		existingItem.Slot = inventoryItem.Slot;
 
 		// TODO test if the two separate items show as expected
-		InventoryItem newItem = new InventoryItem(collectable, quantity, slot);
+		InventoryItem newItem = new InventoryItem(inventoryItem.Item, inventoryItem.Quantity, slot);
 		items[slot] = newItem;
 
-		OnAddCollectableToInventory?.Invoke(newItem, existingItem);
+		OnUpdateInventoryUI?.Invoke(newItem, existingItem);
 		return true;
 	}
 }

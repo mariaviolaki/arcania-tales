@@ -18,4 +18,4 @@ MonoBehaviour:
   magnetDistance: 0.1
   toolSlots: 10
   inventorySlots: 30
-  maxSlotQuantity: 99
+  maxSlotQuantity: 2
