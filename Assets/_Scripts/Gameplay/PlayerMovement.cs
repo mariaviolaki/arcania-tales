@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	[SerializeField] InputHandlerSO inputHandler;
-	[SerializeField] GameSettingsSO gameSettings;
+	[SerializeField] GameplaySettingsSO gameplaySettings;
 	
 	Rigidbody2D cRigidbody;
 	Vector2 moveInput;
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
 	void Walk()
 	{
-		Vector2 playerVelocity = moveInput * gameSettings.WalkSpeed;
+		Vector2 playerVelocity = moveInput * gameplaySettings.WalkSpeed;
 		cRigidbody.velocity = playerVelocity;
 	}
 }

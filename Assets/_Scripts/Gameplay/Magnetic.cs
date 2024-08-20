@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Magnetic : MonoBehaviour
 {
-	[SerializeField] GameSettingsSO gameSettings;
+	[SerializeField] GameplaySettingsSO gameplaySettings;
 	Transform targetPlayer;
 
 	void OnTriggerEnter2D(Collider2D collision)
@@ -16,9 +16,9 @@ public class Magnetic : MonoBehaviour
 
 	IEnumerator FollowPlayer()
 	{
-		while (Vector2.Distance(transform.root.position, targetPlayer.position) > gameSettings.MagnetDistance)
+		while (Vector2.Distance(transform.root.position, targetPlayer.position) > gameplaySettings.MagnetDistance)
 		{
-			float moveSpeed = gameSettings.MagnetForce * Time.deltaTime;
+			float moveSpeed = gameplaySettings.MagnetForce * Time.deltaTime;
 			transform.root.position = Vector2.MoveTowards(transform.root.position, targetPlayer.position, moveSpeed);
 
 			yield return new WaitForEndOfFrame();

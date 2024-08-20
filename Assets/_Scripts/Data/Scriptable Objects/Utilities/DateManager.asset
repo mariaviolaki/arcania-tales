@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dfcc4b93246a5a4789fa4ea60012bba, type: 3}
-  m_Name: Pumpkin
+  m_Script: {fileID: 11500000, guid: 5414e6a33e65448449feeedbb5bc8c75, type: 3}
+  m_Name: DateManager
   m_EditorClassIdentifier: 
-  itemName: Pumpkin
-  description: Can be scary if carved.
-  image: {fileID: 21300000, guid: a3774e5f4d9ae8e43965e71bf33f16e8, type: 3}
+  settings: {fileID: 11400000, guid: 55ff6309d66a20e488aae9c0073306de, type: 2}

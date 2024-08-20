@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910a4fd100e6a8247914d6b99c2bd05c, type: 3}
+  m_Name: DateSettings
+  m_EditorClassIdentifier: 
+  gameSecondsPerSecond: 60
+  secondsPerMinute: 60
+  minutesPerHour: 60
+  hoursPerDay: 24
+  daysPerWeek: 7
+  daysPerSeason: 28
+  startYear: 1
+  startSeason: 1
+  startDay: 1
+  startHour: 10
+  startMinute: 0

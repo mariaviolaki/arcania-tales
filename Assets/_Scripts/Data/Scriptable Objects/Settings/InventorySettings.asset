@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 686a4b8766fabf243bdc908b6d7ba9f5, type: 3}
-  m_Name: GameSettings
+  m_Script: {fileID: 11500000, guid: eba592d786a3d1a4ca0092a1d3eba34c, type: 3}
+  m_Name: InventorySettings
   m_EditorClassIdentifier: 
-  walkSpeed: 5
-  interactDistance: 2
-  magnetForce: 5
-  magnetDistance: 0.1
   toolSlots: 10
   inventorySlots: 30
-  maxSlotQuantity: 2
+  maxSlotQuantity: 99

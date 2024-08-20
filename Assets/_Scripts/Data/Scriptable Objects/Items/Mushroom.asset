@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Mushroom
   description: May or may not poison you.
   image: {fileID: 21300000, guid: 326c2d9c38fa6c9449df1462f728d2b6, type: 3}
+  respawnHours: 1

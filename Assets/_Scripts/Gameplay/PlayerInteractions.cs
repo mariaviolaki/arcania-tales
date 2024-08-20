@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerInteractions : MonoBehaviour
 {
-	[SerializeField] GameSettingsSO gameSettings;
+	[SerializeField] GameplaySettingsSO gameplaySettings;
 	[SerializeField] InputHandlerSO inputHandler;
 	
 	void Awake()
@@ -19,8 +19,8 @@ public class PlayerInteractions : MonoBehaviour
 			if (interactable == null) continue;
 
 			// This object is too far away
-			float distanceFromObject = Vector2.Distance(transform.position, target.transform.root.position);
-			if (distanceFromObject > gameSettings.InteractDistance) continue;
+			float distanceFromObject = Vector2.Distance(transform.position, target.transform.position);
+			if (distanceFromObject > gameplaySettings.InteractDistance) continue;
 
 			interactable.Interact(transform);
 		}

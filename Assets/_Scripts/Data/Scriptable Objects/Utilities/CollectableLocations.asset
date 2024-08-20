@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f63fd669d98d64190d1aa1bd76e27b, type: 3}
+  m_Name: CollectableLocations
+  m_EditorClassIdentifier: 
+  collectables:
+  - item: {fileID: 11400000, guid: 0fb676d92a0f938439a1941a402ce751, type: 2}
+    locations:
+    - {x: 1, y: 2}
+    - {x: 3, y: 4}
+    - {x: 6, y: 4}
+  - item: {fileID: 11400000, guid: c32e894baa7962d46aed4d436840618c, type: 2}
+    locations:
+    - {x: 1, y: -2}
+    - {x: 5, y: -2}

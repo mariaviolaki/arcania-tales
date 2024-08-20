@@ -9,13 +9,13 @@ public class InventorySlot : MonoBehaviour
 	[SerializeField] GameObject imageContainer;
 	[SerializeField] GameObject textContainer;
 
-	public Action<CollectableSO, int, int, Vector2> OnSelectSlot;
+	public Action<ItemSO, int, int, Vector2> OnSelectSlot;
 
 	SlotContainerUI rootContainer;
 	Image itemImage;
 	TMP_Text quantityText;
 
-	CollectableSO collectable;
+	ItemSO item;
 	int quantity;
 
 	void Awake()
@@ -27,12 +27,12 @@ public class InventorySlot : MonoBehaviour
 		InitListeners();
 	}
 
-	public void Fill(CollectableSO collectable, int quantity)
+	public void Fill(ItemSO item, int quantity)
 	{
-		this.collectable = collectable;
+		this.item = item;
 		this.quantity = quantity;
 
-		itemImage.sprite = collectable.Image;
+		itemImage.sprite = item.Image;
 		quantityText.text = quantity.ToString();
 
 		imageContainer.SetActive(true);
@@ -41,7 +41,7 @@ public class InventorySlot : MonoBehaviour
 
 	public void Empty()
 	{
-		this.collectable = null;
+		this.item = null;
 		this.quantity = 0;
 
 		itemImage.sprite = null;
@@ -54,7 +54,7 @@ public class InventorySlot : MonoBehaviour
 	void SelectSlot(PointerEventData eventData)
 	{
 		int slot = transform.GetSiblingIndex();
-		OnSelectSlot?.Invoke(collectable, quantity, slot, eventData.position);
+		OnSelectSlot?.Invoke(item, quantity, slot, eventData.position);
 	}
 
 	void InitListeners()

@@ -5,23 +5,23 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-	[SerializeField] GameSettingsSO gameSettings;
+	[SerializeField] InventorySettingsSO inventorySettings;
 
 	public Action<InventoryItem, InventoryItem> OnUpdateInventoryUI;
 	List<InventoryItem> items;
 
 	void Awake()
 	{
-		int maxCapacity = gameSettings.ToolSlots + gameSettings.InventorySlots;
+		int maxCapacity = inventorySettings.ToolSlots + inventorySettings.InventorySlots;
 		items = new List<InventoryItem>(Enumerable.Repeat((InventoryItem)null, maxCapacity));
 	}
 
-	// Automatically add a collectable to the inventory without choosing its slot
-	public bool AddCollectable(CollectableSO collectable, int quantity = 1)
+	// Automatically add an item to the inventory without choosing its slot
+	public bool AddItem(ItemSO item, int quantity = 1)
 	{
 		int firstAvailableSlot = int.MaxValue;
 
-		for (int i = 0; i < gameSettings.ToolSlots + gameSettings.InventorySlots; i++)
+		for (int i = 0; i < inventorySettings.ToolSlots + inventorySettings.InventorySlots; i++)
 		{
 			InventoryItem inventoryItem = items[i];
 
@@ -33,36 +33,36 @@ public class InventoryManager : MonoBehaviour
 			// Attempt to stack the item in the first available slot
 			else if (inventoryItem != null)
 			{
-				bool isSameItemSlot = inventoryItem.Item.Name == collectable.Name;
-				bool isFreeSpaceSlot = inventoryItem.Quantity < gameSettings.MaxSlotQuantity;
+				bool isSameItemSlot = inventoryItem.Item.Name == item.Name;
+				bool isFreeSpaceSlot = inventoryItem.Quantity < inventorySettings.MaxSlotQuantity;
 
 				if (isSameItemSlot && isFreeSpaceSlot)
 				{
-					return StackCollectable(new InventoryItem(collectable, quantity, -1), i);
+					return StackItem(new InventoryItem(item, quantity, -1), i);
 				}
 			}
 		}
 
-		return AddNewCollectable(new InventoryItem(collectable, quantity, -1), firstAvailableSlot);
+		return AddNewItem(new InventoryItem(item, quantity, -1), firstAvailableSlot);
 	}
 
 	// Manually rearrange the inventory by forcing an item into a specific slot
 	public bool AddItemToSlot(InventoryItem inventoryItem, int slot)
 	{
-		int maxCapacity = gameSettings.ToolSlots + gameSettings.InventorySlots;
+		int maxCapacity = inventorySettings.ToolSlots + inventorySettings.InventorySlots;
 		if (inventoryItem == null || inventoryItem.Quantity <= 0 || slot < 0 || slot >= maxCapacity) return false;
 
 		if (items[slot] == null)
 		{
-			return AddNewCollectable(inventoryItem, slot);
+			return AddNewItem(inventoryItem, slot);
 		}
 		else if (items[slot].Item.Name == inventoryItem.Item.Name)
 		{
-			return StackCollectable(inventoryItem, slot);
+			return StackItem(inventoryItem, slot);
 		}
 		else
 		{
-			return SwapCollectables(inventoryItem, slot);
+			return SwapItems(inventoryItem, slot);
 		}
 	}
 
@@ -77,10 +77,10 @@ public class InventoryManager : MonoBehaviour
 		return true;
 	}
 
-	bool AddNewCollectable(InventoryItem inventoryItem, int slot)
+	bool AddNewItem(InventoryItem inventoryItem, int slot)
 	{
 		// Ensure that the new item will not exceed the max slot quantity
-		int slotQuantity = Mathf.Min(inventoryItem.Quantity, gameSettings.MaxSlotQuantity);
+		int slotQuantity = Mathf.Min(inventoryItem.Quantity, inventorySettings.MaxSlotQuantity);
 		int remainingQuantity = inventoryItem.Quantity - slotQuantity;
 
 		InventoryItem newItem = new InventoryItem(inventoryItem.Item, slotQuantity, slot);
@@ -91,11 +91,11 @@ public class InventoryManager : MonoBehaviour
 		return true;
 	}
 
-	bool StackCollectable(InventoryItem inventoryItem, int slot)
+	bool StackItem(InventoryItem inventoryItem, int slot)
 	{
 		// Check if this slot is already full
 		InventoryItem existingItem = items[slot];
-		int slotQuantity = Mathf.Min(inventoryItem.Quantity, gameSettings.MaxSlotQuantity - existingItem.Quantity);
+		int slotQuantity = Mathf.Min(inventoryItem.Quantity, inventorySettings.MaxSlotQuantity - existingItem.Quantity);
 		if (slotQuantity <= 0) return false;
 
 		// TODO test if inventoryItem is permanently changed as expected
@@ -107,9 +107,9 @@ public class InventoryManager : MonoBehaviour
 		return true;
 	}
 
-	bool SwapCollectables(InventoryItem inventoryItem, int slot)
+	bool SwapItems(InventoryItem inventoryItem, int slot)
 	{
-		if (inventoryItem.Quantity > gameSettings.MaxSlotQuantity) return false;
+		if (inventoryItem.Quantity > inventorySettings.MaxSlotQuantity) return false;
 
 		InventoryItem existingItem = items[slot];
 		existingItem.Slot = inventoryItem.Slot;

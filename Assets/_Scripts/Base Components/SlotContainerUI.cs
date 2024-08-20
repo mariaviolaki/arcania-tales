@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SlotContainerUI : MonoBehaviour
 {
-	[SerializeField] GameSettingsSO gameSettings;
+	[SerializeField] InventorySettingsSO inventorySettings;
 	[SerializeField] List<InventorySlot> slots;
 
 	public Action<int, Vector2> OnSelectFullSlot;
@@ -33,11 +33,11 @@ public class SlotContainerUI : MonoBehaviour
 		slots[childSlot].Empty();
 	}
 
-	void AccessSlot(CollectableSO collectable, int quantity, int slotIndex, Vector2 position)
+	void AccessSlot(ItemSO item, int quantity, int slotIndex, Vector2 position)
 	{
-		if (collectable != null && quantity > 0)
+		if (item != null && quantity > 0)
 		{
-			SelectFullSlot(collectable, quantity, slotIndex, position);
+			SelectFullSlot(item, quantity, slotIndex, position);
 		}
 		else
 		{
@@ -45,7 +45,7 @@ public class SlotContainerUI : MonoBehaviour
 		}
 	}
 
-	void SelectFullSlot(CollectableSO collectable, int quantity, int slot, Vector2 position)
+	void SelectFullSlot(ItemSO item, int quantity, int slot, Vector2 position)
 	{
 		OnSelectFullSlot?.Invoke(GetInventoryManagerSlot(slot), position);
 	}
@@ -65,13 +65,13 @@ public class SlotContainerUI : MonoBehaviour
 	{
 		if (GetType() == typeof(ToolbarUI)) return slot;
 
-		return slot - gameSettings.ToolSlots;
+		return slot - inventorySettings.ToolSlots;
 	}
 
 	int GetInventoryManagerSlot(int slot)
 	{
 		if (GetType() == typeof(ToolbarUI)) return slot;
 
-		return slot + gameSettings.ToolSlots;
+		return slot + inventorySettings.ToolSlots;
 	}
 }

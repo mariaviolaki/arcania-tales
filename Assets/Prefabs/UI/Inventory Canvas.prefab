@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f2c9dab3f52e54bb9d113de8524c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSettings: {fileID: 11400000, guid: 574083dbfbd13c24780ee89c30d3ba0d, type: 2}
+  settings: {fileID: 11400000, guid: d538411092537424aa861b298f994ccb, type: 2}
   slots:
   - {fileID: 5646435532054121528}
   - {fileID: 8892298392414782276}
@@ -147,7 +147,6 @@ MonoBehaviour:
   - {fileID: 4531219170051830429}
   - {fileID: 2074847700540334820}
   - {fileID: 39899608795748057}
-  closeArea: {fileID: 0}
 --- !u!1 &8191102785607998903
 GameObject:
   m_ObjectHideFlags: 0
