@@ -8,7 +8,6 @@ public class CharacterAnimator : MonoBehaviour
 		public Sprite[] sprites;
 	}
 
-	[SerializeField] InputHandlerSO inputHandler;
 	[Tooltip("A single customizable part of a character")]
 	[SerializeField] GameEnums.BodyPart bodyPart = GameEnums.BodyPart.None;
 	[Tooltip("All the custom sliced sprite sheets for this body part")]
@@ -16,21 +15,38 @@ public class CharacterAnimator : MonoBehaviour
 
 	SpriteRenderer spriteRenderer;
 	Animator animator;
+	PlayerMovement playerMovement;
+	AIMovement aiMovement;
 	int skinNum;
 
 	void Awake()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		animator = GetComponent<Animator>();
+		playerMovement = transform.parent.GetComponent<PlayerMovement>();
+		aiMovement = transform.parent.GetComponent<AIMovement>();
+
 		skinNum = GetSkinNumber();
 
-		inputHandler.OnGameMoveInput += SelectAnimation;
+		InitMovementListeners();
 		SetStartAnimation();
 	}
 
 	void LateUpdate()
 	{
 		ApplySkin();
+	}
+
+	void InitMovementListeners()
+	{
+		if (playerMovement != null)
+		{
+			playerMovement.OnMovePlayer += SelectAnimation;
+		}
+		else if (aiMovement != null)
+		{
+			aiMovement.OnMoveAI += SelectAnimation;
+		}
 	}
 
 	void SetStartAnimation()

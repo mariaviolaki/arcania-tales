@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,10 +9,12 @@ public class PlayerMovement : MonoBehaviour
 	Rigidbody2D cRigidbody;
 	Vector2 moveInput;
 
+	public Action<Vector2> OnMovePlayer;
+
 	void Awake()
 	{
 		cRigidbody = GetComponent<Rigidbody2D>();
-		inputHandler.OnGameMoveInput += SetPlayerVelocity;
+		inputHandler.OnGameMoveInput += SaveMoveInput;
 	}
 
 	void Update()
@@ -19,14 +22,15 @@ public class PlayerMovement : MonoBehaviour
 		Walk();
 	}
 
-	void SetPlayerVelocity(Vector2 moveInput)
+	void SaveMoveInput(Vector2 moveInput)
 	{
 		this.moveInput = moveInput;
+		OnMovePlayer?.Invoke(moveInput);
 	}
 
 	void Walk()
 	{
-		Vector2 playerVelocity = moveInput * gameplaySettings.WalkSpeed;
+		Vector2 playerVelocity = moveInput * gameplaySettings.PlayerWalkSpeed;
 		cRigidbody.velocity = playerVelocity;
 	}
 }

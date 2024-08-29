@@ -11,13 +11,13 @@ TagManager:
   - 
   - Water
   - UI
-  - Base Terrain
+  - Terrain
   - Player
-  - Magnetic
-  - Collectible
-  - Environment Obstacle
-  - Player Base
-  - 
+  - NPC
+  - Player Body
+  - NPC Body
+  - Obstacle
+  - Collectable
   - 
   - 
   - 
