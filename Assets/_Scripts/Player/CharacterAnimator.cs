@@ -9,7 +9,7 @@ public class CharacterAnimator : MonoBehaviour
 	}
 
 	[Tooltip("A single customizable part of a character")]
-	[SerializeField] GameEnums.BodyPart bodyPart = GameEnums.BodyPart.None;
+	[SerializeField] GameEnums.BodyPart bodyPart;
 	[Tooltip("All the custom sliced sprite sheets for this body part")]
 	[SerializeField] Skins[] skins;
 
@@ -25,7 +25,10 @@ public class CharacterAnimator : MonoBehaviour
 		animator = GetComponent<Animator>();
 		playerMovement = transform.parent.GetComponent<PlayerMovement>();
 		aiMovement = transform.parent.GetComponent<AIMovement>();
+	}
 
+	void Start()
+	{
 		skinNum = GetSkinNumber();
 
 		InitMovementListeners();
@@ -58,7 +61,7 @@ public class CharacterAnimator : MonoBehaviour
 	// Change the current sprite set by the animator based on the selected skin
 	void ApplySkin()
 	{
-		if (bodyPart == GameEnums.BodyPart.None || spriteRenderer.sprite == null) return;
+		if (spriteRenderer.sprite == null) return;
 
 		string spriteName = spriteRenderer.sprite.name;
 		int skinFrame = int.Parse(spriteName.Split("_")[1]);

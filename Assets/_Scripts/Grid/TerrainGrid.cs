@@ -9,7 +9,7 @@ public class TerrainGrid : MonoBehaviour
 {
 	[Tooltip("The base tilemap above which all the others are placed")]
 	[SerializeField] Tilemap tilemap;
-	[SerializeField] CollisionLayersSO collisionLayers;
+	[SerializeField] PolygonCollider2D gridCollider;
 	
 	Vector2 tilemapPos;
 	Vector2 tilemapSize;
@@ -20,6 +20,7 @@ public class TerrainGrid : MonoBehaviour
 	public Vector2 Size { get { return tilemapSize; } }
 	public Vector2 CellSize { get { return tilemapCellSize; } }
 	public GridCell[,] Grid { get { return grid; } }
+	public PolygonCollider2D GridCollider { get { return gridCollider; } }
 
 	public GridCell GetCell(int x, int y)
 	{
@@ -75,7 +76,7 @@ public class TerrainGrid : MonoBehaviour
 	{
 		Vector2 halfCellSize = tilemapCellSize / 2;
 		Vector2 cellCenterPos = tilemapPos + gridPos + halfCellSize;
-		int obstacleLayers = LayerMask.GetMask(collisionLayers.Obstacle);
+		int obstacleLayers = LayerMask.GetMask(GameConstants.CollisionLayers.Obstacle);
 
 		// Check if the center of a specific tile is walkable
 		Collider2D[] obstacleColliders = Physics2D.OverlapBoxAll(cellCenterPos, halfCellSize, 0, obstacleLayers);

@@ -19,7 +19,7 @@ public class AIMovement : MonoBehaviour
 		pathfinder = GetComponent<Pathfinder>();
 		routePositions = pathfinder.GetPath(transform.position, targetPosition);
 
-		if (routePositions.Count > 0)
+		if (routePositions != null && routePositions.Count > 0)
 		{
 			StartCoroutine(FollowRoute());
 		}

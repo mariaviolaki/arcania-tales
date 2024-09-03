@@ -74,6 +74,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8796861960184604835, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
       insertIndex: -1
       addedObject: {fileID: 919291205547819050}
+    - targetCorrespondingSourceObject: {fileID: 8796861960184604835, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5086643901807473502}
   m_SourcePrefab: {fileID: 100100000, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
 --- !u!1 &1641559771062627976 stripped
 GameObject:
@@ -105,5 +108,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameplaySettings: {fileID: 11400000, guid: 0a3a4d7335dec864fbf5a2605eedc7b7, type: 2}
-  terrainGrid: {fileID: 0}
   targetPosition: {x: 0, y: 0}
+--- !u!114 &5086643901807473502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641559771062627976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f1d2b76e039d4e98f5a1b329fc6b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcData: {fileID: 0}
+  bodySprite: {fileID: 7661092509828755349}
+  hairSprite: {fileID: 8039361506276441701}
+  topSprite: {fileID: 3951574337883935081}
+  bottomSprite: {fileID: 4361843782464306372}
+--- !u!212 &3951574337883935081 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6486741878542587714, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
+  m_PrefabInstance: {fileID: 7841689107661145643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &4361843782464306372 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5790265164388809455, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
+  m_PrefabInstance: {fileID: 7841689107661145643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &7661092509828755349 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 469198713153055166, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
+  m_PrefabInstance: {fileID: 7841689107661145643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8039361506276441701 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 234972233397647438, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
+  m_PrefabInstance: {fileID: 7841689107661145643}
+  m_PrefabAsset: {fileID: 0}

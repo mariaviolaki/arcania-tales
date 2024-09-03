@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4947a77154c5db348baad6cddc038db1, type: 3}
   m_Name: GameplaySettings
   m_EditorClassIdentifier: 
+  sceneTransitionDelay: 1
   playerWalkSpeed: 5
   npcWalkSpeed: 3
   interactDistance: 2

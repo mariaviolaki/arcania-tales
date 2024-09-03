@@ -1,4 +1,4 @@
-public class GameEnums
+public static class GameEnums
 {
 	public enum BodyPart
 	{
@@ -33,5 +33,10 @@ public class GameEnums
 	public enum ItemType
 	{
 		None, Mushroom, Pumpkin
+	}
+
+	public enum Scene
+	{
+		None, Lake, LakeHouse, Forest
 	}
 }

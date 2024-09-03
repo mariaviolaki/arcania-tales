@@ -5,10 +5,22 @@ using UnityEngine;
 
 public class Pathfinder : MonoBehaviour
 {
-	[SerializeField] TerrainGrid grid;
+	TerrainGrid grid;
+
+	void Awake()
+	{
+		ReloadSceneGrid();
+	}
+
+	public void ReloadSceneGrid()
+	{
+		grid = FindObjectOfType<TerrainGrid>();
+	}
 
 	public List<Vector2> GetPath(Vector2 startPos, Vector2 endPos)
 	{
+		if (grid == null) return null;
+
 		Vector2Int startGridPos = GetGridPosFromWorldPos(startPos);
 		Vector2Int endGridPos = GetGridPosFromWorldPos(endPos);
 

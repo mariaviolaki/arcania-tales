@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb76580cef64a4948a4d2bddfbe6e6cc, type: 3}
-  m_Name: CollisionLayers
+  m_Script: {fileID: 11500000, guid: 6d82eaaa86f6f7f479f89b4825ac7299, type: 3}
+  m_Name: Lake
   m_EditorClassIdentifier: 
-  terrain: Terrain
-  player: Player
-  npc: NPC
-  playerBody: Player Body
-  npcBody: NPC Body
-  obstacle: Obstacle
-  collectable: Collectable
+  scene: 1
+  entryPoints:
+  - {fileID: 11400000, guid: 42968b6788b704847b20f11cb881c188, type: 2}
+  - {fileID: 11400000, guid: 26fcd1cc9e561214db3ce1999f1f95c5, type: 2}
