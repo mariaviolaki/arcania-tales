@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -115,10 +115,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9f338afa22ec94a986cad18c402953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameplaySettings: {fileID: 0}
   sceneManager: {fileID: 0}
   transitionImage: {fileID: 5765489688216151722}
   fadeInSpeed: 1
-  fadeOutSpeed: 0.4
 --- !u!1 &4588501822010921898
 GameObject:
   m_ObjectHideFlags: 0

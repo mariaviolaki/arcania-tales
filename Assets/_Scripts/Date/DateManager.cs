@@ -20,7 +20,6 @@ public class DateManager : MonoBehaviour
 	public int GetTotalHours() { return hours; }
 	public int GetTotalDays() { return hours / dateSettings.HoursPerDay; }
 
-
 	public int GetDayHours() { return hours % dateSettings.HoursPerDay; }
 	public int GetWeekDay() { return GetTotalDays() % dateSettings.DaysPerWeek; }
 	public int GetSeasonDay() { return GetTotalDays() % dateSettings.DaysPerSeason; }
@@ -41,6 +40,7 @@ public class DateManager : MonoBehaviour
 		return yearHours / dateSettings.HoursPerDay;
 	}
 
+	public GameTime GetTime() { return new GameTime(GetDayHours(), GetMinutes()); }
 
 	void Awake()
 	{

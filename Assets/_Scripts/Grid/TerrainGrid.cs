@@ -5,28 +5,46 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+public class GridData
+{
+	public GameEnums.Scene Scene;
+	public GridCell[,] Grid;
+	public Vector2 Pos;
+	public Vector2 Size;
+	public Vector2 CellSize;
+}
+
 public class TerrainGrid : MonoBehaviour
 {
 	[Tooltip("The base tilemap above which all the others are placed")]
+	[SerializeField] GameEnums.Scene scene;
 	[SerializeField] Tilemap tilemap;
 	[SerializeField] PolygonCollider2D gridCollider;
+
+	[SerializeField] GameObject testPrefab;
 	
 	Vector2 tilemapPos;
 	Vector2 tilemapSize;
 	Vector2 tilemapCellSize;
 	GridCell[,] grid;
 
+	public GameEnums.Scene Scene { get { return scene; } }
 	public Vector2 Pos { get { return tilemapPos; } }
 	public Vector2 Size { get { return tilemapSize; } }
 	public Vector2 CellSize { get { return tilemapCellSize; } }
 	public GridCell[,] Grid { get { return grid; } }
 	public PolygonCollider2D GridCollider { get { return gridCollider; } }
 
-	public GridCell GetCell(int x, int y)
+	public GridData GetGridData()
 	{
-		if (!IsValidPathCell(x, y)) return null;
-
-		return grid[x, y];
+		return new GridData
+		{
+			Scene = scene,
+			Grid = grid,
+			Pos = tilemapPos,
+			Size = tilemapSize,
+			CellSize = tilemapCellSize
+		};
 	}
 
 	void Awake()
@@ -35,21 +53,12 @@ public class TerrainGrid : MonoBehaviour
 		InitGrid();
 	}
 
-	bool IsValidPathCell(int x, int y)
-	{
-		bool isValidX = x >= 0 && x < grid.GetLength(0);
-		bool isValidY = y >= 0 && y < grid.GetLength(1);
-		if (!isValidX || !isValidY) return false;
-
-		return !grid[x, y].IsBlocked;
-	}
-
 	void CacheGridData()
 	{
 		// Edits to the tilemap don't refresh the bounds automatically
 		tilemap.CompressBounds();
 
-		tilemapPos = new Vector2(tilemap.cellBounds.position.x, tilemap.cellBounds.position.y);
+		tilemapPos = (Vector2)transform.position + new Vector2(tilemap.cellBounds.position.x, tilemap.cellBounds.position.y);
 		tilemapSize = new Vector2(tilemap.cellBounds.size.x, tilemap.cellBounds.size.y);
 		tilemapCellSize = GetComponent<Grid>().cellSize;
 	}

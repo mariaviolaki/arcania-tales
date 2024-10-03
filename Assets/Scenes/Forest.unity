@@ -200,37 +200,6 @@ SortingGroup:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_SortAtRoot: 0
---- !u!1 &232822560
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 232822561}
-  m_Layer: 0
-  m_Name: ----- Environment -----
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &232822561
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232822560}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &237632295
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +881,7 @@ GameObject:
   - component: {fileID: 441845347}
   - component: {fileID: 441845349}
   m_Layer: 0
-  m_Name: Terrain Grid
+  m_Name: Forest Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -938,8 +907,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 441845346}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 34, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -960,8 +929,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20672f84405d1304bb1f544fea4b890f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scene: 2
   tilemap: {fileID: 1227407356}
   gridCollider: {fileID: 1227407357}
+  testPrefab: {fileID: 6151282545082795300, guid: 37fc0f96a1fb4cd488aa09020faa97f0, type: 3}
 --- !u!1 &465171268
 GameObject:
   m_ObjectHideFlags: 0
@@ -3454,7 +3425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4991170950988448098, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 4991170950988448098, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3470,11 +3441,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4991170950988448098, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4991170950988448098, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4991170950988448098, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: m_LocalRotation.z
@@ -17070,8 +17041,8 @@ Tilemap:
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -16, y: -12, z: 0}
-  m_Size: {x: 35, y: 24, z: 1}
+  m_Origin: {x: -17, y: -12, z: 0}
+  m_Size: {x: 36, y: 24, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -18018,7 +17989,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 3327605220324156929}
-  - {fileID: 232822561}
   - {fileID: 441845348}
   - {fileID: 1893817404}
   - {fileID: 104794791}

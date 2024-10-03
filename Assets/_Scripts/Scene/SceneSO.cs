@@ -6,8 +6,8 @@ using UnityEngine;
 public class SceneSO : ScriptableObject
 {
 	[SerializeField] GameEnums.Scene scene;
-	[SerializeField] List<SceneEntrySO> entryPoints;
+	[SerializeField] List<GamePosition> adjacentScenes;
 
 	public GameEnums.Scene Scene { get { return scene; } }
-	public List<SceneEntrySO> EntryPoints { get { return entryPoints; } }
+	public List<GamePosition> AdjacentScenes { get { return adjacentScenes; } }
 }

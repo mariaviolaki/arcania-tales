@@ -15,16 +15,14 @@ public class CharacterAnimator : MonoBehaviour
 
 	SpriteRenderer spriteRenderer;
 	Animator animator;
-	PlayerMovement playerMovement;
-	AIMovement aiMovement;
+	CharacterMovement movement;
 	int skinNum;
 
 	void Awake()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		animator = GetComponent<Animator>();
-		playerMovement = transform.parent.GetComponent<PlayerMovement>();
-		aiMovement = transform.parent.GetComponent<AIMovement>();
+		movement = transform.parent.GetComponent<CharacterMovement>();
 	}
 
 	void Start()
@@ -42,13 +40,10 @@ public class CharacterAnimator : MonoBehaviour
 
 	void InitMovementListeners()
 	{
-		if (playerMovement != null)
+		if (movement != null)
 		{
-			playerMovement.OnMovePlayer += SelectAnimation;
-		}
-		else if (aiMovement != null)
-		{
-			aiMovement.OnMoveAI += SelectAnimation;
+			movement.OnMoveHero += SelectAnimation;
+			movement.OnChangeHeroDirection += SetIdleAnimation;
 		}
 	}
 
@@ -82,13 +77,21 @@ public class CharacterAnimator : MonoBehaviour
 
 	void SelectAnimation(Vector2 moveInput)
 	{
+		// Used for animations while the character is moving
 		animator.SetFloat(nameof(GameEnums.MoveDirection.Horizontal), moveInput.x);
 		animator.SetFloat(nameof(GameEnums.MoveDirection.Vertical), moveInput.y);
 
+		// Save the last move direction to use it when the character stops moving
 		if (moveInput.x != 0 || moveInput.y != 0)
 		{
-			animator.SetFloat(nameof(GameEnums.LastMoveDirection.LastHorizontal), moveInput.x);
-			animator.SetFloat(nameof(GameEnums.LastMoveDirection.LastVertical), moveInput.y);
+			SetIdleAnimation(moveInput);
 		}
+	}
+
+	void SetIdleAnimation(Vector2 direction)
+	{
+		// The last move direction will be used to find the direction for the idle animations
+		animator.SetFloat(nameof(GameEnums.LastMoveDirection.LastHorizontal), direction.x);
+		animator.SetFloat(nameof(GameEnums.LastMoveDirection.LastVertical), direction.y);
 	}
 }

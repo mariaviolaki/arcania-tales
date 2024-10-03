@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SceneTransition : MonoBehaviour
+public class SceneTransitionUI : MonoBehaviour
 {
 	[SerializeField] GameplaySettingsSO gameplaySettings;
 	[SerializeField] GameSceneManager sceneManager;

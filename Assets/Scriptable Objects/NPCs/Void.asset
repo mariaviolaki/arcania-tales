@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e29f58a05fa58f2459ff897fc616e72a, type: 3}
-  m_Name: LakeToVillageEntry
+  m_Script: {fileID: 11500000, guid: 4088d099509d772438f5067138658f68, type: 3}
+  m_Name: Void
   m_EditorClassIdentifier: 
-  scene: 1
-  position: {x: 14.5, y: -2.5}
-  linkedEntry: {fileID: 0}
+  npcName: Void
+  startPosition:
+    Scene: 1
+    Pos: {x: 3.5, y: -4.5}
+  routeSchedule: {fileID: 11400000, guid: 0154977edba584442bc34094172855d4, type: 2}

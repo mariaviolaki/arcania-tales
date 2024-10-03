@@ -3,29 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(GridManager))]
 public class Pathfinder : MonoBehaviour
 {
-	TerrainGrid grid;
+	GridManager gridManager;
 
 	void Awake()
 	{
-		ReloadSceneGrid();
+		gridManager = GetComponent<GridManager>();
 	}
 
-	public void ReloadSceneGrid()
+	public List<Vector2> GetPath(GameEnums.Scene scene, Vector2 startPos, Vector2 endPos)
 	{
-		grid = FindObjectOfType<TerrainGrid>();
-	}
+		if (scene == GameEnums.Scene.None) return null;
 
-	public List<Vector2> GetPath(Vector2 startPos, Vector2 endPos)
-	{
-		if (grid == null) return null;
+		Vector2Int startGridPos = GetGridPosFromWorldPos(scene, startPos);
+		Vector2Int endGridPos = GetGridPosFromWorldPos(scene, endPos);
 
-		Vector2Int startGridPos = GetGridPosFromWorldPos(startPos);
-		Vector2Int endGridPos = GetGridPosFromWorldPos(endPos);
+		GridCell startCell = gridManager.GetGridCell(scene, startGridPos.x, startGridPos.y);
+		GridCell endCell = gridManager.GetGridCell(scene, endGridPos.x, endGridPos.y);
 
-		GridCell startCell = grid.GetCell(startGridPos.x, startGridPos.y);
-		GridCell endCell = grid.GetCell(endGridPos.x, endGridPos.y);
+		if (startCell == null || endCell == null) return null;
 
 		PathNode startNode = new PathNode(startCell, null);
 		startNode.GCost = startNode.Cell.GetDistance(null);
@@ -48,7 +46,7 @@ public class Pathfinder : MonoBehaviour
 				return GetPathToNode(currentNode);
 			}
 
-			foreach (GridCell neighborCell in GetNeighborCells(currentNode, explored))
+			foreach (GridCell neighborCell in GetNeighborCells(scene, currentNode, explored))
 			{
 				ProcessNeighborCell(currentNode, neighborCell, toExplore, endCell);
 			}
@@ -74,7 +72,7 @@ public class Pathfinder : MonoBehaviour
 		return lowestCostNode;
 	}
 
-	List<GridCell> GetNeighborCells(PathNode node, List<PathNode> explored)
+	List<GridCell> GetNeighborCells(GameEnums.Scene scene, PathNode node, List<PathNode> explored)
 	{
 		List<GridCell> neighborCells = new List<GridCell>();
 
@@ -86,7 +84,7 @@ public class Pathfinder : MonoBehaviour
 				if (x == 0 && y == 0) continue;
 
 				// Valid neighbors are only walkable cells that haven't been explored yet
-				GridCell cell = grid.GetCell(node.Cell.GridPos.x + x, node.Cell.GridPos.y + y);
+				GridCell cell = gridManager.GetGridCell(scene, node.Cell.GridPos.x + x, node.Cell.GridPos.y + y);
 				if (cell != null && GetCellInNodeList(cell, explored) == null)
 				{
 					neighborCells.Add(cell);
@@ -144,13 +142,16 @@ public class Pathfinder : MonoBehaviour
 		return null;
 	}
 
-	Vector2Int GetGridPosFromWorldPos(Vector2 pos)
+	Vector2Int GetGridPosFromWorldPos(GameEnums.Scene scene, Vector2 pos)
 	{
-		float xOffset = pos.x - grid.Pos.x;
-		int x = (int)(Mathf.Round(xOffset) / grid.CellSize.x);
+		Vector2 gridPos = gridManager.GetGridPos(scene);
+		Vector2 cellSize = gridManager.GetGridCellSize(scene);
 
-		float yOffset = pos.y - grid.Pos.y;
-		int y = (int)(Mathf.Round(yOffset) / grid.CellSize.y);
+		float xOffset = pos.x - gridPos.x;
+		int x = (int)(Mathf.Floor(xOffset) / cellSize.x);
+
+		float yOffset = pos.y - gridPos.y;
+		int y = (int)(Mathf.Floor(yOffset) / cellSize.y);
 
 		return new Vector2Int(x, y);
 	}

@@ -1,30 +1,27 @@
-using System;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : CharacterMovement
 {
 	[SerializeField] InputHandlerSO inputHandler;
-	[SerializeField] GameplaySettingsSO gameplaySettings;
 	[SerializeField] GameSceneManager sceneManager;
-	
+	[SerializeField] GameplaySettingsSO gameplaySettings;
+
 	Rigidbody2D cRigidbody;
 	Vector2 moveInput;
 	bool isMovementEnabled;
 
-	public Action<Vector2> OnMovePlayer;
-
 	void Awake()
 	{
-		cRigidbody = GetComponent<Rigidbody2D>();
 		inputHandler.OnGameMoveInput += SaveMoveInput;
 		sceneManager.OnBeginChangeScene += PausePlayerMovement;
 		sceneManager.OnEndChangeScene += MoveToSceneEntry;
+		cRigidbody = GetComponent<Rigidbody2D>();
 
 		isMovementEnabled = true;
 	}
 
 	void Update()
-    {
+	{
 		Walk();
 	}
 
@@ -38,24 +35,24 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
-	void SaveMoveInput(Vector2 moveInput)
-	{
-		if (!isMovementEnabled) return;
-
-		this.moveInput = moveInput;
-		OnMovePlayer?.Invoke(moveInput);
-	}
-
 	void Walk()
 	{
 		Vector2 playerVelocity = moveInput * gameplaySettings.PlayerWalkSpeed;
 		cRigidbody.velocity = playerVelocity;
 	}
 
+	void SaveMoveInput(Vector2 moveInput)
+	{
+		if (!isMovementEnabled) return;
+
+		this.moveInput = moveInput;
+		OnMoveHero?.Invoke(moveInput);
+	}
+
 	void ChangeScene(GameObject sceneEntryObject)
 	{
 		SceneEntry sceneEntry = sceneEntryObject.GetComponent<SceneEntry>();
-		if (sceneEntry != null && sceneManager != null &&  sceneEntry.NextScene != GameEnums.Scene.None)
+		if (sceneEntry != null && sceneManager != null && sceneEntry.NextScene != GameEnums.Scene.None)
 		{
 			sceneManager.ChangeScene(sceneEntry.NextScene, sceneEntry.EntryPoint);
 		}			

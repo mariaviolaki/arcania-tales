@@ -9,1018 +9,430 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fb556d8de76d4941a6e75384ac7c078, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bcc5bc10bba49d46bf9ac553815fc70, type: 3}
   m_Name: Void Schedule
   m_EditorClassIdentifier: 
   springSchedule:
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 10
-        Minutes: 30
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 12
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
+    monday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    tuesday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    wednesday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    thursday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    friday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    saturday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    sunday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
   summerSchedule:
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-  autumnSchedule:
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
+    monday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    tuesday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    wednesday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    thursday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    friday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    saturday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    sunday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+  fallSchedule:
+    monday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    tuesday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    wednesday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    thursday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    friday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    saturday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    sunday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
   winterSchedule:
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-  - Monday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Tuesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Wednesday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Thursday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Friday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Saturday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
-    Sunday:
-    - Pos: {x: 8, y: 6}
-      Time:
-        Hours: 11
-        Minutes: 0
-    - Pos: {x: -5.5, y: -1.5}
-      Time:
-        Hours: 13
-        Minutes: 0
+    monday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    tuesday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    wednesday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    thursday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    friday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    saturday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20
+    sunday:
+    - facingDirection: 2
+      targetPosition:
+        Scene: 1
+        Pos: {x: 2.5, y: 2.5}
+      departureTime:
+        hours: 10
+        minutes: 10
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 11
+        minutes: 20

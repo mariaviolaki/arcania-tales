@@ -12,6 +12,8 @@ public class GameSceneManager : MonoBehaviour
 	AsyncOperation asyncUnload;
 	AsyncOperation asyncLoad;
 
+	public Action OnLoadGameScenes;
+	public Action OnUnloadGameScenes;
 	public Action OnBeginChangeScene;
 	public Action<Vector2> OnEndChangeScene;
 
@@ -24,8 +26,46 @@ public class GameSceneManager : MonoBehaviour
 
 	public void ChangeScene(GameEnums.Scene newGameScene, Vector2 entryPoint)
 	{
+		if (newGameScene == GameEnums.Scene.None) return;
+
 		string oldSceneName = Enum.GetName(typeof(GameEnums.Scene), currentScene);
 		StartCoroutine(TransitionToScene(newGameScene, oldSceneName, entryPoint));
+	}
+
+	public IEnumerator LoadGameScenes()
+	{
+		foreach (GameEnums.Scene scene in Enum.GetValues(typeof(GameEnums.Scene)))
+		{
+			if (scene == GameEnums.Scene.None || scene == currentScene) continue;
+
+			string sceneName = Enum.GetName(typeof(GameEnums.Scene), scene);
+			asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+			while (asyncLoad != null)
+			{
+				if (asyncLoad.isDone) asyncLoad = null;
+				yield return null;
+			}
+		}
+
+		OnLoadGameScenes?.Invoke();
+	}
+
+	public IEnumerator UnloadGameScenes()
+	{
+		foreach (GameEnums.Scene scene in Enum.GetValues(typeof(GameEnums.Scene)))
+		{
+			if (scene == GameEnums.Scene.None || scene == currentScene) continue;
+
+			string sceneName = Enum.GetName(typeof(GameEnums.Scene), scene);
+			asyncUnload = SceneManager.UnloadSceneAsync(sceneName);
+			while (asyncUnload != null)
+			{
+				if (asyncUnload.isDone) asyncUnload = null;
+				yield return null;
+			}
+		}
+
+		OnUnloadGameScenes?.Invoke();
 	}
 
 	void InitSceneData()

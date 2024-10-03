@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Lake
   m_EditorClassIdentifier: 
   scene: 1
-  entryPoints:
-  - {fileID: 11400000, guid: 42968b6788b704847b20f11cb881c188, type: 2}
-  - {fileID: 11400000, guid: 26fcd1cc9e561214db3ce1999f1f95c5, type: 2}
+  adjacentScenes:
+  - Scene: 2
+    Pos: {x: 16.5, y: -2.5}
