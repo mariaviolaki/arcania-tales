@@ -46,7 +46,7 @@ public class PlayerMovement : CharacterMovement
 		if (!isMovementEnabled) return;
 
 		this.moveInput = moveInput;
-		OnMoveHero?.Invoke(moveInput);
+		OnMoveCharacter?.Invoke(moveInput);
 	}
 
 	void ChangeScene(GameObject sceneEntryObject)

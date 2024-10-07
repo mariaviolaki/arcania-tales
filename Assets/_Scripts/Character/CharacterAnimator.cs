@@ -42,8 +42,8 @@ public class CharacterAnimator : MonoBehaviour
 	{
 		if (movement != null)
 		{
-			movement.OnMoveHero += SelectAnimation;
-			movement.OnChangeHeroDirection += SetIdleAnimation;
+			movement.OnMoveCharacter += SelectAnimation;
+			movement.OnChangeCharacterDirection += SetIdleAnimation;
 		}
 	}
 

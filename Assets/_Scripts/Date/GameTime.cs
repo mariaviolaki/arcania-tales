@@ -17,28 +17,30 @@ public class GameTime
 		this.minutes = minutes;
 	}
 
-	public override bool Equals(object obj)
+	public static GameTime operator +(GameTime left, GameTime right)
 	{
-		return base.Equals(obj);
-	}
+		int minutesSum = Mathf.Min(left.minutes + right.minutes, 59);
+		int minutesExtra = left.minutes + right.minutes - minutesSum;
 
-	public override int GetHashCode()
-	{
-		return base.GetHashCode();
-	}
+		int hoursExtra = (int)Mathf.Ceil(minutesExtra / 59f);
+		int hoursSum = left.hours + right.hours + hoursExtra;
 
-	public override string ToString()
-	{
-		return base.ToString();
+		return new GameTime(hoursSum, minutesSum);
 	}
 
 	public static bool operator ==(GameTime left, GameTime right)
 	{
+		if (left is null) return right is null;
+		else if (left is null || right is null) return false;
+
 		return left.Hours == right.Hours && left.Minutes == right.Minutes;
 	}
 
 	public static bool operator !=(GameTime left, GameTime right)
 	{
+		if (left is null && right is null) return false;
+		else if (left is null || right is null) return true;
+
 		return left.Hours != right.Hours && left.Minutes != right.Minutes;
 	}
 
@@ -60,5 +62,20 @@ public class GameTime
 	public static bool operator >=(GameTime left, GameTime right)
 	{
 		return left > right || left == right;
+	}
+
+	public override bool Equals(object obj)
+	{
+		return base.Equals(obj);
+	}
+
+	public override int GetHashCode()
+	{
+		return base.GetHashCode();
+	}
+
+	public override string ToString()
+	{
+		return base.ToString();
 	}
 }

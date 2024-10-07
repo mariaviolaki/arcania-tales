@@ -5,6 +5,6 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-	public Action<Vector2> OnMoveHero;
-	public Action<Vector2> OnChangeHeroDirection;
+	public Action<Vector2> OnMoveCharacter;
+	public Action<Vector2> OnChangeCharacterDirection;
 }

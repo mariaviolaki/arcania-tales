@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671fb407d8ea5d14fb17cebeca35eb03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectableLocations: {fileID: 11400000, guid: dbe5e05a675acc24fbcce3ea5dcd1b8c, type: 2}
+  collectableLocations: {fileID: 11400000, guid: 4b5f1aa738c9a8a408bacb9f320623ff, type: 2}
+  sceneManager: {fileID: 0}
   collectablePrefab: {fileID: 9141740884316098877, guid: 7413a341273d1ac4dacc67ecf0f06558, type: 3}
-  container: {fileID: 0}
   inventoryManager: {fileID: 0}
   dateManager: {fileID: 0}

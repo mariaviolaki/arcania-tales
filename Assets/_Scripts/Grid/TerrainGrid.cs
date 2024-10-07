@@ -22,7 +22,7 @@ public class TerrainGrid : MonoBehaviour
 	[SerializeField] PolygonCollider2D gridCollider;
 
 	[SerializeField] GameObject testPrefab;
-	
+
 	Vector2 tilemapPos;
 	Vector2 tilemapSize;
 	Vector2 tilemapCellSize;

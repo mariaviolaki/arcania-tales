@@ -33,7 +33,7 @@ public class NpcMovement : CharacterMovement
 
 	void Start()
 	{
-		OnChangeHeroDirection?.Invoke(Vector2.down);
+		OnChangeCharacterDirection?.Invoke(Vector2.down);
 	}
 
 	void CheckSchedule()
@@ -87,7 +87,7 @@ public class NpcMovement : CharacterMovement
 		}
 
 		// After arriving at the target location, turn to look in the given direction
-		OnChangeHeroDirection?.Invoke(facingDirection);
+		OnChangeCharacterDirection?.Invoke(facingDirection);
 
 		isMoving = false;
 		yield return null;
@@ -113,7 +113,7 @@ public class NpcMovement : CharacterMovement
 			}
 		}
 
-		OnMoveHero?.Invoke(Vector2.zero);
+		OnMoveCharacter?.Invoke(Vector2.zero);
 	}
 
 	void UpdateWorldPosition(GameEnums.Scene newScene, Vector2 newPos, Vector2 direction)
@@ -124,7 +124,7 @@ public class NpcMovement : CharacterMovement
 		if (currentPos.Scene == sceneManager.CurrentScene)
 		{
 			transform.position = newPos;
-			OnMoveHero?.Invoke(direction);
+			OnMoveCharacter?.Invoke(direction);
 		}
 	}
 

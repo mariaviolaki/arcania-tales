@@ -40,7 +40,11 @@ public class DateManager : MonoBehaviour
 		return yearHours / dateSettings.HoursPerDay;
 	}
 
+	// The regular 24-hour cycle within a single day
 	public GameTime GetTime() { return new GameTime(GetDayHours(), GetMinutes()); }
+
+	// The total hours and minutes passed in the game
+	public GameTime GetTotalTime() { return new GameTime(GetTotalHours(), GetMinutes()); }
 
 	void Awake()
 	{

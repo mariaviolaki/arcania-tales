@@ -8,6 +8,7 @@ public class GameSceneManager : MonoBehaviour
 {
 	[SerializeField] GameplaySettingsSO gameplaySettings;
 
+	GameEnums.Scene lastScene;
 	GameEnums.Scene currentScene;
 	AsyncOperation asyncUnload;
 	AsyncOperation asyncLoad;
@@ -18,6 +19,7 @@ public class GameSceneManager : MonoBehaviour
 	public Action<Vector2> OnEndChangeScene;
 
 	public GameEnums.Scene CurrentScene { get { return currentScene; } }
+	public GameEnums.Scene LastScene { get { return lastScene; } }
 
 	void Awake()
     {
@@ -70,6 +72,8 @@ public class GameSceneManager : MonoBehaviour
 
 	void InitSceneData()
 	{
+		lastScene = GameEnums.Scene.None;
+
 		string sceneName = SceneManager.GetActiveScene().name;
 		Enum.TryParse(sceneName, out currentScene);
 	}
@@ -96,6 +100,7 @@ public class GameSceneManager : MonoBehaviour
 			yield return null;
 		}
 
+		lastScene = currentScene;
 		currentScene = newGameScene;
 		OnEndChangeScene?.Invoke(entryPoint);
 	}

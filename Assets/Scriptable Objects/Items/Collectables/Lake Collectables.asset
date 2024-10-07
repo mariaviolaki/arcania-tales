@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7f63fd669d98d64190d1aa1bd76e27b, type: 3}
-  m_Name: CollectableLocations
+  m_Name: Lake Collectables
   m_EditorClassIdentifier: 
+  scene: 1
   collectables:
-  - item: {fileID: 11400000, guid: 0fb676d92a0f938439a1941a402ce751, type: 2}
-    locations:
-    - {x: 1, y: 2}
-    - {x: 3, y: 4}
-    - {x: 6, y: 4}
-  - item: {fileID: 11400000, guid: c32e894baa7962d46aed4d436840618c, type: 2}
-    locations:
-    - {x: 1, y: -2}
-    - {x: 5, y: -2}
+  - Item: {fileID: 11400000, guid: 0fb676d92a0f938439a1941a402ce751, type: 2}
+    Positions:
+    - {x: 1, y: 1}
+    - {x: 4, y: -5}
+  - Item: {fileID: 11400000, guid: c32e894baa7962d46aed4d436840618c, type: 2}
+    Positions:
+    - {x: 10, y: -1}
+    - {x: 12, y: -1}
