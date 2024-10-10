@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4088d099509d772438f5067138658f68, type: 3}
-  m_Name: Void
+  m_Script: {fileID: 11500000, guid: c3ef72c6bdff5bb4a9211a50ade3ad04, type: 3}
+  m_Name: Game Manager
   m_EditorClassIdentifier: 
-  npcName: Void
-  startPosition:
-    Scene: 1
-    Pos: {x: 3.5, y: -4.5}
-  routeSchedule: {fileID: 11400000, guid: 0154977edba584442bc34094172855d4, type: 2}
+  inputHandler: {fileID: 11400000, guid: 8aeabbe195686594cb7deabf3e39ae14, type: 2}

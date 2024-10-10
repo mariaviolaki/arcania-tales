@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,35 +9,26 @@ public class ToolbarUI : SlotContainerUI
 	[SerializeField] Sprite openInventorySprite;
 	[SerializeField] Sprite closeInventorySprite;
 
-	UIManager uiManager;
 	Image inventoryImage;
+	UIManager uiManager;
 
-	void Awake()
+	public GameObject InventoryButton { get { return inventoryButton; } }
+
+	public void SetUIManager(UIManager uiManager) { this.uiManager = uiManager; }
+
+	override protected void Awake()
 	{
+		base.Awake();
 		inventoryImage = inventoryButton.GetComponent<Image>();
-
-		InitSlotListeners();
 	}
 
-	public void InitInventoryToggle(UIManager uiManager)
+	override public void SetActive(bool isActive)
 	{
-		this.uiManager = uiManager;
+		base.SetActive(isActive);
 
-		// When the image is clicked, open or close the inventory
-		EventTrigger eventTrigger = inventoryButton.GetComponent<EventTrigger>();
-		EventTrigger.Entry clickEvent = new EventTrigger.Entry();
-		clickEvent.eventID = EventTriggerType.PointerClick;
-		clickEvent.callback.AddListener((data) => ToggleInventory((PointerEventData)data));
-		eventTrigger.triggers.Add(clickEvent);
-	}
-
-	public void SetOpen(bool isOpen)
-	{
-		inventoryImage.sprite = isOpen ? closeInventorySprite : openInventorySprite;
-	}
-
-	void ToggleInventory(PointerEventData eventData)
-	{
-		uiManager.ToggleInventory();
+		if (inventoryImage != null && uiManager != null)
+		{
+			inventoryImage.sprite = uiManager.CurrentState == GameEnums.UIState.Toolbar ? closeInventorySprite : openInventorySprite;
+		}
 	}
 }

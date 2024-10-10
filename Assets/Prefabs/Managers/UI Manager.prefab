@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySettings: {fileID: 11400000, guid: d538411092537424aa861b298f994ccb, type: 2}
-  inputHandler: {fileID: 11400000, guid: 8aeabbe195686594cb7deabf3e39ae14, type: 2}
+  gameManager: {fileID: 11400000, guid: 2c844db23a78c964ab08f5e4fc061414, type: 2}
   toolbarUI: {fileID: 0}
   inventoryUI: {fileID: 0}
   sharedInventoryItemUI: {fileID: 0}
+  dialogueUI: {fileID: 0}

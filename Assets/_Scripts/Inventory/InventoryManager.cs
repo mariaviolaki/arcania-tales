@@ -98,7 +98,6 @@ public class InventoryManager : MonoBehaviour
 		int slotQuantity = Mathf.Min(inventoryItem.Quantity, inventorySettings.MaxSlotQuantity - existingItem.Quantity);
 		if (slotQuantity <= 0) return false;
 
-		// TODO test if inventoryItem is permanently changed as expected
 		existingItem.Quantity += slotQuantity;
 		int remainingQuantity = inventoryItem.Quantity - slotQuantity;
 		InventoryItem remainingItem = new InventoryItem(inventoryItem.Item, remainingQuantity, inventoryItem.Slot);
@@ -114,7 +113,6 @@ public class InventoryManager : MonoBehaviour
 		InventoryItem existingItem = items[slot];
 		existingItem.Slot = inventoryItem.Slot;
 
-		// TODO test if the two separate items show as expected
 		InventoryItem newItem = new InventoryItem(inventoryItem.Item, inventoryItem.Quantity, slot);
 		items[slot] = newItem;
 

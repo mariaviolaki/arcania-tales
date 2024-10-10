@@ -4,7 +4,8 @@ public class PlayerInteractions : MonoBehaviour
 {
 	[SerializeField] GameplaySettingsSO gameplaySettings;
 	[SerializeField] InputHandlerSO inputHandler;
-	
+	[SerializeField] SelectedItemUI selectedItemUI;
+
 	void Awake()
 	{
 		inputHandler.OnGameSelectInput += ProcessInteractions;
@@ -21,6 +22,9 @@ public class PlayerInteractions : MonoBehaviour
 			// This object is too far away
 			float distanceFromObject = Vector2.Distance(transform.position, target.transform.position);
 			if (distanceFromObject > gameplaySettings.InteractDistance) continue;
+
+			// Don't allow interactions while holding collectables
+			else if (selectedItemUI.Item != null) continue;
 
 			interactable.Interact(transform);
 		}

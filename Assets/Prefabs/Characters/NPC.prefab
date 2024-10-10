@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8796861960184604835, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
       propertyPath: m_Name
-      value: Character
+      value: NPC
       objectReference: {fileID: 0}
     - target: {fileID: 8796861960184604835, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
       propertyPath: m_Layer
@@ -71,6 +71,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8796861960184604835, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8345658377370484539}
+    - targetCorrespondingSourceObject: {fileID: 8796861960184604835, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6461828459383552396}
   m_SourcePrefab: {fileID: 100100000, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
 --- !u!1 &1641559771062627976 stripped
 GameObject:
@@ -96,6 +99,16 @@ MonoBehaviour:
   sceneManager: {fileID: 0}
   dateManager: {fileID: 0}
   pathfinder: {fileID: 0}
-  currentPos:
-    Scene: 0
-    Pos: {x: 0, y: 0}
+--- !u!114 &6461828459383552396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641559771062627976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e747cb2dad44b4ba67365b3414a1be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement: {fileID: 0}

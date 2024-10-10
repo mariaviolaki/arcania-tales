@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 910a4fd100e6a8247914d6b99c2bd05c, type: 3}
-  m_Name: DateSettings
+  m_Name: Date Settings
   m_EditorClassIdentifier: 
   gameSecondsPerSecond: 10
   secondsPerMinute: 60

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4088d099509d772438f5067138658f68, type: 3}
+  m_Name: Void
+  m_EditorClassIdentifier: 
+  npcName: Void
+  startPosition:
+    Scene: 1
+    Pos: {x: 3.5, y: -4.5}
+  routeSchedule: {fileID: 11400000, guid: 0154977edba584442bc34094172855d4, type: 2}
+  happySprite: {fileID: 21300000, guid: 87979f8912c6a934f97d30014bddda45, type: 3}
+  neutralSprite: {fileID: 21300000, guid: a9d4a9245c0c25b43a671716172b72e9, type: 3}
+  angrySprite: {fileID: 21300000, guid: 93bc8236da10add4eabf04ca2a5b1e7b, type: 3}

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96910362653e8d945bb603c2fc957e58, type: 3}
+  m_Name: Void Dialogue
+  m_EditorClassIdentifier: 
+  greetings:
+  - dialogueParts:
+    - text: <i>Hi there~</i>
+      expression: 1
+  - dialogueParts:
+    - text: <i>Are you lost, perhaps...?</i>
+      expression: 1
+    - text: Turn around while you still can.
+      expression: 0
+  repeatGreetings:
+  - dialogueParts:
+    - text: <i>Missed me already?</i>
+      expression: 0
+    - text: You're too obvious.
+      expression: 1
+  - dialogueParts:
+    - text: Get out of my way, will you?
+      expression: 2

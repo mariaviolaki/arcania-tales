@@ -41,7 +41,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5536745978741215577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5414e6a33e65448449feeedbb5bc8c75, type: 3}
+  m_Script: {fileID: 11500000, guid: a17c8a980c68b864d84e37f06b3d213d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dateSettings: {fileID: 11400000, guid: 55ff6309d66a20e488aae9c0073306de, type: 2}
+  gameManager: {fileID: 11400000, guid: 2c844db23a78c964ab08f5e4fc061414, type: 2}

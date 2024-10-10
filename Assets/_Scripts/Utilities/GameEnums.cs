@@ -44,4 +44,14 @@ public static class GameEnums
 	{
 		Up, Down, Left, Right
 	}
+
+	public enum NpcExpression
+	{
+		Neutral, Happy, Angry
+	}
+
+	public enum UIState
+	{
+		None, ItemSelection, Toolbar, Inventory, Dialogue
+	}
 }

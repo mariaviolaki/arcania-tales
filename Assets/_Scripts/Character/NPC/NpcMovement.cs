@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-
 
 public class NpcMovement : CharacterMovement
 {
@@ -18,8 +15,13 @@ public class NpcMovement : CharacterMovement
 	[SerializeField] DateManager dateManager;
 	[SerializeField] Pathfinder pathfinder;
 
+	// Used to update the transform when in the same scene as the player
 	GamePosition currentPos;
+	// The regular facing direction defined only by the route schedule
+	Vector2 scheduleFacingDirection;
+
 	bool isMoving;
+	bool isSchedulePaused;
 
 	void Awake()
 	{
@@ -27,13 +29,31 @@ public class NpcMovement : CharacterMovement
 		dateManager.OnTenMinutesPassed += CheckSchedule;
 
 		currentPos = new GamePosition();
+		scheduleFacingDirection = Vector2.down;
 		isMoving = false;
-		UpdateWorldPosition(npcData.StartPosition.Scene, npcData.StartPosition.Pos, Vector2.down);
+		isSchedulePaused = false;
+		UpdateWorldPosition(npcData.StartPosition.Scene, npcData.StartPosition.Pos, scheduleFacingDirection);
 	}
 
 	void Start()
 	{
-		OnChangeCharacterDirection?.Invoke(Vector2.down);
+		OnChangeCharacterDirection?.Invoke(scheduleFacingDirection);
+	}
+
+	public void SetSchedulePaused(bool isPaused)
+	{
+		SetSchedulePaused(isPaused, scheduleFacingDirection);
+	}
+
+	public void SetSchedulePaused(bool isPaused, Vector2 facingDirection)
+	{
+		isSchedulePaused = isPaused;
+		OnChangeCharacterDirection?.Invoke(facingDirection);
+
+		if (isPaused)
+		{
+			OnMoveCharacter?.Invoke(Vector2.zero);
+		}
 	}
 
 	void CheckSchedule()
@@ -87,6 +107,7 @@ public class NpcMovement : CharacterMovement
 		}
 
 		// After arriving at the target location, turn to look in the given direction
+		scheduleFacingDirection = facingDirection;
 		OnChangeCharacterDirection?.Invoke(facingDirection);
 
 		isMoving = false;
@@ -109,7 +130,7 @@ public class NpcMovement : CharacterMovement
 				Vector2 direction = (routePos - startPos).normalized;
 				UpdateWorldPosition(routeScene, newPos, direction);
 
-				yield return null;
+				yield return new WaitUntil(() => !isSchedulePaused);
 			}
 		}
 
@@ -121,7 +142,7 @@ public class NpcMovement : CharacterMovement
 		currentPos.Scene = newScene;
 		currentPos.Pos = newPos;
 
-		if (currentPos.Scene == sceneManager.CurrentScene)
+		if (currentPos.Scene == sceneManager.CurrentScene && !isSchedulePaused)
 		{
 			transform.position = newPos;
 			OnMoveCharacter?.Invoke(direction);

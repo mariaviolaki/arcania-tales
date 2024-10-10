@@ -1,22 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SharedInventoryItemUI : MonoBehaviour
+public class SelectedItemUI : CanvasUI
 {
 	[SerializeField] InputHandlerSO inputHandler;
 	[SerializeField] Image itemImage;
 	[SerializeField] TMP_Text quantityText;
 
-	InventoryItem sharedItem;
+	InventoryItem selectedItem;
 
-	public InventoryItem Item { get { return sharedItem; } }
+	public Action OnShowSelectedItem;
+	public Action OnReleaseSelectedItem;
 
-	void Awake()
+	public InventoryItem Item { get { return selectedItem; } }
+
+	override protected void Awake()
 	{
-		gameObject.SetActive(false);
+		base.Awake();
 		inputHandler.OnUIMoveInput += MoveItem;
 		inputHandler.OnSelectInput += EnableUIControls;
 	}
@@ -24,19 +28,23 @@ public class SharedInventoryItemUI : MonoBehaviour
 	public void ShowItem(InventoryItem inventoryItem, Vector2 position)
 	{
 		inputHandler.SetUIEnabled(true);
-		gameObject.SetActive(true);
 
-		sharedItem = inventoryItem;
+		selectedItem = inventoryItem;
 		itemImage.sprite = inventoryItem.Item.Image;
 		quantityText.text = inventoryItem.Quantity.ToString();
 		transform.position = position;
+
+		OnShowSelectedItem?.Invoke();
 	}
 
 	public void ReleaseItem()
 	{
+		if (selectedItem == null) return;
+
 		inputHandler.SetUIEnabled(false);
-		sharedItem = null;
-		gameObject.SetActive(false);
+		selectedItem = null;
+
+		OnReleaseSelectedItem?.Invoke();
 	}
 
 	void MoveItem(Vector2 position)
@@ -49,7 +57,10 @@ public class SharedInventoryItemUI : MonoBehaviour
 
 	void EnableUIControls(bool isUISelected)
 	{
-		bool hasUIControls = isUISelected && sharedItem != null;
-		inputHandler.SetUIEnabled(hasUIControls);
+		bool isHoldingItem = isUISelected && selectedItem != null;
+		if (isHoldingItem)
+		{
+			inputHandler.SetUIEnabled(isHoldingItem);
+		}
 	}
 }

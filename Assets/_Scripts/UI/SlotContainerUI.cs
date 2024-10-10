@@ -2,13 +2,19 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlotContainerUI : MonoBehaviour
+public class SlotContainerUI : CanvasUI
 {
 	[SerializeField] InventorySettingsSO inventorySettings;
 	[SerializeField] List<InventorySlot> slots;
 
 	public Action<int, Vector2> OnSelectFullSlot;
 	public Action<int, Vector2> OnSelectEmptySlot;
+
+	override protected void Awake()
+	{
+		base.Awake();
+		InitSlotListeners();
+	}
 
 	protected void InitSlotListeners()
 	{

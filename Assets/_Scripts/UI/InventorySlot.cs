@@ -11,7 +11,6 @@ public class InventorySlot : MonoBehaviour
 
 	public Action<ItemSO, int, int, Vector2> OnSelectSlot;
 
-	SlotContainerUI rootContainer;
 	Image itemImage;
 	TMP_Text quantityText;
 
@@ -20,7 +19,6 @@ public class InventorySlot : MonoBehaviour
 
 	void Awake()
 	{
-		rootContainer = transform.root.GetComponent<SlotContainerUI>();
 		itemImage = imageContainer.GetComponent<Image>();
 		quantityText = textContainer.GetComponent<TMP_Text>();
 

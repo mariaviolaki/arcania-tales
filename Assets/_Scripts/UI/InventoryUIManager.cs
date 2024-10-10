@@ -5,19 +5,19 @@ public class InventoryUIManager
 	InventorySettingsSO inventorySettings;
 	ToolbarUI toolbarUI;
 	InventoryUI inventoryUI;
-	SharedInventoryItemUI sharedInventoryItemUI;
+	SelectedItemUI selectedItemUI;
 
 	InventoryManager inventoryManager;
 	Vector2 lastSelectedPosition;
 
-	public InventoryUIManager(InventorySettingsSO settings, ToolbarUI toolbar, InventoryUI inventory, SharedInventoryItemUI sharedItem)
+	public InventoryUIManager(InventorySettingsSO settings, ToolbarUI toolbar, InventoryUI inventory, SelectedItemUI selectedItem)
 	{
 		this.inventorySettings = settings;
 		this.toolbarUI = toolbar;
 		this.inventoryUI = inventory;
-		this.sharedInventoryItemUI = sharedItem;
+		this.selectedItemUI = selectedItem;
 		inventoryManager = GameObject.FindObjectOfType<InventoryManager>();
-
+		
 		InitListeners();
 	}
 
@@ -73,11 +73,11 @@ public class InventoryUIManager
 	{
 		if (remainingItem.Quantity > 0)
 		{
-			sharedInventoryItemUI.ShowItem(remainingItem, lastSelectedPosition);
+			selectedItemUI.ShowItem(remainingItem, lastSelectedPosition);
 		}
 		else
 		{
-			sharedInventoryItemUI.ReleaseItem();
+			selectedItemUI.ReleaseItem();
 		}
 	}
 
@@ -85,7 +85,7 @@ public class InventoryUIManager
 	{
 		lastSelectedPosition = position;
 
-		if (!inventoryManager.AddItemToSlot(sharedInventoryItemUI.Item, slot))
+		if (!inventoryManager.AddItemToSlot(selectedItemUI.Item, slot))
 		{
 			RemoveInventoryItemFromSlot(slot);
 		}
@@ -93,7 +93,7 @@ public class InventoryUIManager
 
 	void RemoveInventoryItemFromSlot(int slot)
 	{
-		if (sharedInventoryItemUI.Item != null) return;
+		if (selectedItemUI.Item != null) return;
 
 		if (inventoryManager.RemoveItemFromSlot(slot))
 		{

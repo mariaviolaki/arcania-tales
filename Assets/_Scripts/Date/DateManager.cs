@@ -6,6 +6,7 @@ using UnityEngine;
 public class DateManager : MonoBehaviour
 {
 	[SerializeField] DateSettingsSO dateSettings;
+	[SerializeField] GameManagerSO gameManager;
 
 	int minutes;
 	int hours;
@@ -53,7 +54,10 @@ public class DateManager : MonoBehaviour
 
 	void Update()
 	{
-		UpdateTimer();
+		if (gameManager != null && !gameManager.IsPaused)
+		{
+			UpdateTimer();
+		}
 	}
 
 	void InitDateAndTime()
