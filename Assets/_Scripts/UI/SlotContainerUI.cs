@@ -13,15 +13,22 @@ public class SlotContainerUI : CanvasUI
 	override protected void Awake()
 	{
 		base.Awake();
-		InitSlotListeners();
-	}
 
-	protected void InitSlotListeners()
-	{
 		// Subscribe to click events for items in each slot
 		foreach (InventorySlot slot in slots)
 		{
 			slot.OnSelectSlot += AccessSlot;
+		}
+	}
+
+	override protected void OnDestroy()
+	{
+		base.OnDestroy();
+
+		// Subscribe to click events for items in each slot
+		foreach (InventorySlot slot in slots)
+		{
+			slot.OnSelectSlot -= AccessSlot;
 		}
 	}
 

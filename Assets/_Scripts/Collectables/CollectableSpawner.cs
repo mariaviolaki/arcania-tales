@@ -22,6 +22,12 @@ public class CollectableSpawner : MonoBehaviour
 		InitCollectables();
 	}
 
+	void OnDestroy()
+	{
+		sceneManager.OnEndChangeScene -= (Vector2 sceneEntry) => UpdateSceneCollectables();
+		dateManager.OnHourPassed -= RespawnCollectables;
+	}
+
 	void InitCollectables()
 	{
 		sceneCollectables = new Dictionary<GameEnums.Scene, List<Collectable>>();
@@ -98,6 +104,7 @@ public class CollectableSpawner : MonoBehaviour
 
 		foreach (Collectable collectable in sceneCollectables[sceneManager.LastScene])
 		{
+			collectable.Interactable.OnCollectableInteract -= () => SaveCollectableInteraction(collectable.Interactable);
 			Destroy(collectable.Interactable.gameObject);
 			collectable.Interactable = null;
 		}

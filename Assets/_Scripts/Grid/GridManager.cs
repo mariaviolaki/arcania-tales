@@ -17,6 +17,11 @@ public class GridManager : MonoBehaviour
 		StartCoroutine(sceneManager.LoadGameScenes());
 	}
 
+	void OnDestroy()
+	{
+		sceneManager.OnLoadGameScenes -= LoadGridData;
+	}
+
 	public GridCell GetGridCell(GameEnums.Scene scene, int x, int y)
 	{
 		if (scene == GameEnums.Scene.None || grids[scene].Grid == null) return null;

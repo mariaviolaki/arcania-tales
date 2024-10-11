@@ -25,6 +25,13 @@ public class PlayerMovement : CharacterMovement
 		Walk();
 	}
 
+	void OnDestroy()
+	{
+		inputHandler.OnGameMoveInput -= SaveMoveInput;
+		sceneManager.OnBeginChangeScene -= PausePlayerMovement;
+		sceneManager.OnEndChangeScene -= MoveToSceneEntry;
+	}
+
 	void OnCollisionEnter2D(Collision2D collision)
 	{
 		int collisionLayer = collision.gameObject.layer;

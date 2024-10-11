@@ -25,6 +25,13 @@ public class SelectedItemUI : CanvasUI
 		inputHandler.OnSelectInput += EnableUIControls;
 	}
 
+	override protected void OnDestroy()
+	{
+		base.OnDestroy();
+		inputHandler.OnUIMoveInput -= MoveItem;
+		inputHandler.OnSelectInput -= EnableUIControls;
+	}
+
 	public void ShowItem(InventoryItem inventoryItem, Vector2 position)
 	{
 		inputHandler.SetUIEnabled(true);

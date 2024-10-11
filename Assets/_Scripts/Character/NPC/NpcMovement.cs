@@ -40,6 +40,12 @@ public class NpcMovement : CharacterMovement
 		OnChangeCharacterDirection?.Invoke(scheduleFacingDirection);
 	}
 
+	void OnDestroy()
+	{
+		sceneManager.OnEndChangeScene -= (Vector2 playerPos) => UpdateNpcVisibility();
+		dateManager.OnTenMinutesPassed -= CheckSchedule;
+	}
+
 	public void SetSchedulePaused(bool isPaused)
 	{
 		SetSchedulePaused(isPaused, scheduleFacingDirection);

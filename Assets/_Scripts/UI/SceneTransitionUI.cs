@@ -21,6 +21,12 @@ public class SceneTransitionUI : MonoBehaviour
 		imageColor = transitionImage.color;
     }
 
+	void OnDestroy()
+	{
+		sceneManager.OnBeginChangeScene -= FadeOut;
+		sceneManager.OnEndChangeScene -= FadeIn;
+	}
+
 	public void FadeOut()
 	{
 		StopFadeTransition();		

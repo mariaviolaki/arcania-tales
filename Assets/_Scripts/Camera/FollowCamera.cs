@@ -1,27 +1,34 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(CinemachineVirtualCamera))]
+[RequireComponent(typeof(CinemachineConfiner))]
 public class FollowCamera : MonoBehaviour
 {
+	[SerializeField] GameSceneManager sceneManager;
+	[SerializeField] PlayerMovement playerMovement;
+
+	CinemachineVirtualCamera virtualCamera;
+	CinemachineConfiner cameraConfiner;
+
 	void Start()
 	{
-		CinemachineVirtualCamera virtualCamera = GetComponent<CinemachineVirtualCamera>();
-		PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
-		GameSceneManager sceneManager = FindObjectOfType<GameSceneManager>();
+		virtualCamera = GetComponent<CinemachineVirtualCamera>();
+		cameraConfiner = GetComponent<CinemachineConfiner>();
 
 		sceneManager.OnEndChangeScene += UpdateBounds;
+		UpdateBounds(Vector2.zero);
+	}
 
-		if (virtualCamera != null && playerMovement != null)
-		{
-			UpdateBounds(Vector2.zero);
-		}
+	void OnDestroy()
+	{
+		sceneManager.OnEndChangeScene -= UpdateBounds;
 	}
 
 	void UpdateBounds(Vector2 sceneEntryPoint)
 	{
-		GetComponent<CinemachineConfiner>().m_BoundingShape2D = FindObjectOfType<TerrainGrid>().GridCollider;
+		cameraConfiner.m_BoundingShape2D = FindObjectOfType<TerrainGrid>().GridCollider;
 	}
 }

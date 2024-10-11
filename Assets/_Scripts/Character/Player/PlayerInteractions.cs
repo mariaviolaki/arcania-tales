@@ -11,6 +11,11 @@ public class PlayerInteractions : MonoBehaviour
 		inputHandler.OnGameSelectInput += ProcessInteractions;
 	}
 
+	void OnDestroy()
+	{
+		inputHandler.OnGameSelectInput -= ProcessInteractions;
+	}
+
 	void ProcessInteractions(RaycastHit2D[] targets)
 	{
 		foreach (RaycastHit2D target in targets)

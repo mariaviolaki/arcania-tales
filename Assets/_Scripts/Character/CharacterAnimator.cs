@@ -38,6 +38,15 @@ public class CharacterAnimator : MonoBehaviour
 		ApplySkin();
 	}
 
+	void OnDestroy()
+	{
+		if (movement != null)
+		{
+			movement.OnMoveCharacter -= SelectAnimation;
+			movement.OnChangeCharacterDirection -= SetIdleAnimation;
+		}
+	}
+
 	void InitMovementListeners()
 	{
 		if (movement != null)

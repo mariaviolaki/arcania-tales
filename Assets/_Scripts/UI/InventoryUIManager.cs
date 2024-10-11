@@ -21,6 +21,15 @@ public class InventoryUIManager
 		InitListeners();
 	}
 
+	~InventoryUIManager()
+	{
+		inventoryManager.OnUpdateInventoryUI -= UpdateInventoryUI;
+		toolbarUI.OnSelectFullSlot -= AddInventoryItemToSlot;
+		inventoryUI.OnSelectFullSlot -= AddInventoryItemToSlot;
+		toolbarUI.OnSelectEmptySlot -= AddInventoryItemToSlot;
+		inventoryUI.OnSelectEmptySlot -= AddInventoryItemToSlot;
+	}
+
 	void InitListeners()
 	{
 		// Update the UI whenever something is changed in the inventory

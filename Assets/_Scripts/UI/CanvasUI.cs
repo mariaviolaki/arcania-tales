@@ -15,6 +15,10 @@ public class CanvasUI : MonoBehaviour
 		SetActive(false);
 	}
 
+	virtual protected void OnDestroy()
+	{
+	}
+
 	virtual public void SetActive(bool isActive)
 	{
 		if (this.isActive != isActive)

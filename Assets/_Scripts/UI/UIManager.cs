@@ -33,6 +33,15 @@ public class UIManager: MonoBehaviour
 		ChangeUIState(GameEnums.UIState.Toolbar);
 	}
 
+	void OnDestroy()
+	{
+		dialogueUI.OnOpenDialogueUI -= () => ChangeUIState(GameEnums.UIState.Dialogue);
+		dialogueUI.OnCloseDialogueUI -= () => ChangeUIState(GameEnums.UIState.Toolbar);
+
+		selectedItemUI.OnShowSelectedItem -= () => ChangeUIState(GameEnums.UIState.ItemSelection);
+		selectedItemUI.OnReleaseSelectedItem -= () => ChangeUIState(GameEnums.UIState.None);
+	}
+
 	void InitListeners()
 	{
 		// Setup the toolbar button to open or close the inventory

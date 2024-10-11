@@ -26,6 +26,12 @@ public class NpcInteractions : MonoBehaviour, IInteractable
 		dialogueUI.OnContinueDialogue += ContinueDialogue;
 	}
 
+	void OnDestroy()
+	{
+		dateManager.OnHourPassed -= ClearDailyInteraction;
+		dialogueUI.OnContinueDialogue -= ContinueDialogue;
+	}
+
 	public void Interact(Transform player)
 	{
 		// Pause the current movement schedule and face the player

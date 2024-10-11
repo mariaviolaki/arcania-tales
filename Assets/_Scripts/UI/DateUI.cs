@@ -24,6 +24,14 @@ public class DateUI : MonoBehaviour
 		UpdateDate();
 	}
 
+	void OnDestroy()
+	{
+		if (dateManager == null) return;
+
+		dateManager.OnTenMinutesPassed -= UpdateTime;
+		dateManager.OnHourPassed -= UpdateDate;
+	}
+
 	void UpdateTime()
 	{
 		if (dateManager == null) return;
