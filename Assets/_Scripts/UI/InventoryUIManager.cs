@@ -1,33 +1,33 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class InventoryUIManager
+public class InventoryUIManager : MonoBehaviour
 {
-	InventorySettingsSO inventorySettings;
-	ToolbarUI toolbarUI;
-	InventoryUI inventoryUI;
-	SelectedItemUI selectedItemUI;
+	[SerializeField] InventorySettingsSO inventorySettings;
+	[SerializeField] InventoryManager inventoryManager;
 
-	InventoryManager inventoryManager;
+	[SerializeField] ToolbarUI toolbarUI;
+	[SerializeField] InventoryUI inventoryUI;
+	[SerializeField] StorageUI storageUI;
+	[SerializeField] SelectedItemUI selectedItemUI;
+
 	Vector2 lastSelectedPosition;
 
-	public InventoryUIManager(InventorySettingsSO settings, ToolbarUI toolbar, InventoryUI inventory, SelectedItemUI selectedItem)
+	void Start()
 	{
-		this.inventorySettings = settings;
-		this.toolbarUI = toolbar;
-		this.inventoryUI = inventory;
-		this.selectedItemUI = selectedItem;
-		inventoryManager = GameObject.FindObjectOfType<InventoryManager>();
-		
 		InitListeners();
 	}
 
-	~InventoryUIManager()
+	void OnDestroy()
 	{
 		inventoryManager.OnUpdateInventoryUI -= UpdateInventoryUI;
+
 		toolbarUI.OnSelectFullSlot -= AddInventoryItemToSlot;
-		inventoryUI.OnSelectFullSlot -= AddInventoryItemToSlot;
 		toolbarUI.OnSelectEmptySlot -= AddInventoryItemToSlot;
+		inventoryUI.OnSelectFullSlot -= AddInventoryItemToSlot;
 		inventoryUI.OnSelectEmptySlot -= AddInventoryItemToSlot;
+		storageUI.OnSelectFullStorageSlot -= AddItemToSlot;
+		storageUI.OnSelectEmptyStorageSlot -= AddItemToSlot;
 	}
 
 	void InitListeners()
@@ -37,16 +37,18 @@ public class InventoryUIManager
 
 		// Subscribe to events triggered inside the containers
 		toolbarUI.OnSelectFullSlot += AddInventoryItemToSlot;
-		inventoryUI.OnSelectFullSlot += AddInventoryItemToSlot;
 		toolbarUI.OnSelectEmptySlot += AddInventoryItemToSlot;
+		inventoryUI.OnSelectFullSlot += AddInventoryItemToSlot;
 		inventoryUI.OnSelectEmptySlot += AddInventoryItemToSlot;
+		storageUI.OnSelectFullStorageSlot += AddItemToSlot;
+		storageUI.OnSelectEmptyStorageSlot += AddItemToSlot;
 	}
 
-	void UpdateInventoryUI(InventoryItem newItem, InventoryItem remainingItem)
+	void UpdateInventoryUI(InventoryItem newItem, InventoryItem remainingItem, StorageChest chest)
 	{
 		if (newItem != null)
 		{
-			FillSlot(newItem);
+			FillSlot(newItem, chest);
 		}
 		if (remainingItem != null)
 		{
@@ -54,27 +56,35 @@ public class InventoryUIManager
 		}
 	}
 
-	void FillSlot(InventoryItem inventoryItem)
+	void FillSlot(InventoryItem inventoryItem, StorageChest chest)
 	{
-		if (inventoryItem.Slot < inventorySettings.ToolSlots)
+		if (chest != null)
 		{
-			toolbarUI.FillSlot(inventoryItem);
+			storageUI.FillSlot(inventoryItem, inventoryItem.Slot);
 		}
-		else
+		else if (inventoryItem.Slot < inventorySettings.ToolSlots)
 		{
-			inventoryUI.FillSlot(inventoryItem);
+			toolbarUI.FillSlot(inventoryItem, inventoryItem.Slot);
+		}
+		else // The inventory slots are handled as the toolbar's continuation
+		{
+			inventoryUI.FillSlot(inventoryItem, inventoryItem.Slot - inventorySettings.ToolSlots);
 		}
 	}
 
-	void EmptySlot(int slot)
+	void EmptySlot(int slot, StorageChest chest)
 	{
-		if (slot < inventorySettings.ToolSlots)
+		if (chest != null)
+		{
+			storageUI.EmptySlot(slot);
+		}
+		else if (slot < inventorySettings.ToolSlots)
 		{
 			toolbarUI.EmptySlot(slot);
 		}
-		else
+		else // The inventory slots are handled as the toolbar's continuation
 		{
-			inventoryUI.EmptySlot(slot);
+			inventoryUI.EmptySlot(slot - inventorySettings.ToolSlots);
 		}
 	}
 
@@ -92,21 +102,26 @@ public class InventoryUIManager
 
 	void AddInventoryItemToSlot(int slot, Vector2 position)
 	{
+		AddItemToSlot(slot, position);
+	}
+
+	void AddItemToSlot(int slot, Vector2 position, StorageChest chest = null)
+	{
 		lastSelectedPosition = position;
 
-		if (!inventoryManager.AddItemToSlot(selectedItemUI.Item, slot))
+		if (!inventoryManager.AddItemToSlot(selectedItemUI.Item, slot, chest))
 		{
-			RemoveInventoryItemFromSlot(slot);
+			RemoveInventoryItemFromSlot(slot, chest);
 		}
 	}
 
-	void RemoveInventoryItemFromSlot(int slot)
+	void RemoveInventoryItemFromSlot(int slot, StorageChest chest = null)
 	{
 		if (selectedItemUI.Item != null) return;
 
-		if (inventoryManager.RemoveItemFromSlot(slot))
+		if (inventoryManager.RemoveItemFromSlot(slot, chest))
 		{
-			EmptySlot(slot);
+			EmptySlot(slot, chest);
 		}
 	}
 }

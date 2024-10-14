@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Inventory Settings
   m_EditorClassIdentifier: 
   toolSlots: 10
-  inventorySlots: 30
+  inventorySlots: 20
+  storageSlots: 30
   maxSlotQuantity: 99

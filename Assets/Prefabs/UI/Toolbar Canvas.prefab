@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca77737c6b0c1aa4cb164b99ef656aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: d538411092537424aa861b298f994ccb, type: 2}
+  inventorySettings: {fileID: 11400000, guid: d538411092537424aa861b298f994ccb, type: 2}
   slots:
   - {fileID: 8053734982434994205}
   - {fileID: 6272094587500055218}
@@ -129,8 +129,9 @@ MonoBehaviour:
   - {fileID: 9010758454505737013}
   - {fileID: 8891559395468772513}
   inventoryButton: {fileID: 2812931790022375210}
-  openInventorySprite: {fileID: 668745747, guid: 002bf63832b082a4c91b294c99ffea27, type: 3}
-  closeInventorySprite: {fileID: 1578844044, guid: 002bf63832b082a4c91b294c99ffea27, type: 3}
+  toolbarSprite: {fileID: 1578844044, guid: 002bf63832b082a4c91b294c99ffea27, type: 3}
+  inventorySprite: {fileID: 668745747, guid: 002bf63832b082a4c91b294c99ffea27, type: 3}
+  storageSprite: {fileID: -159403758, guid: 59dfd9c657d2dbf4bbef3dc3e2b2b085, type: 3}
 --- !u!1 &2812931790022375210
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +232,7 @@ GameObject:
   - component: {fileID: 1445693724730244994}
   - component: {fileID: 4988620702927784860}
   - component: {fileID: 2321862426037530809}
-  - component: {fileID: 4453148973692274731}
+  - component: {fileID: 7127704428513330729}
   m_Layer: 5
   m_Name: Slot Container
   m_TagString: Untagged
@@ -289,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5058824, g: 0.70980394, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -306,7 +307,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.15
---- !u!114 &4453148973692274731
+--- !u!114 &7127704428513330729
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,23 +316,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6326652696751239141}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 32
-    m_Right: 32
-    m_Top: 32
-    m_Bottom: 24
-  m_ChildAlignment: 0
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 95, y: 95}
+  m_Spacing: {x: 14, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1001 &2670346675199305564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -762,6 +761,10 @@ PrefabInstance:
     - target: {fileID: 4270946045422765328, guid: c979ee4e1093bd045813ef36bfb7b175, type: 3}
       propertyPath: m_Name
       value: Inventory Slot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5999925456928087590, guid: c979ee4e1093bd045813ef36bfb7b175, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

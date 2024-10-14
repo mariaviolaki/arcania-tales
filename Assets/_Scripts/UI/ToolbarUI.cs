@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class ToolbarUI : SlotContainerUI
 {
 	[SerializeField] GameObject inventoryButton;
-	[SerializeField] Sprite openInventorySprite;
-	[SerializeField] Sprite closeInventorySprite;
+	[SerializeField] Sprite toolbarSprite;
+	[SerializeField] Sprite inventorySprite;
+	[SerializeField] Sprite storageSprite;
 
 	Image inventoryImage;
 	UIManager uiManager;
@@ -28,7 +29,18 @@ public class ToolbarUI : SlotContainerUI
 
 		if (inventoryImage != null && uiManager != null)
 		{
-			inventoryImage.sprite = uiManager.CurrentState == GameEnums.UIState.Toolbar ? closeInventorySprite : openInventorySprite;
+			if (uiManager.CurrentState == GameEnums.UIState.Toolbar)
+			{
+				inventoryImage.sprite = toolbarSprite;
+			}
+			else if (uiManager.CurrentState == GameEnums.UIState.Inventory)
+			{
+				inventoryImage.sprite = inventorySprite;
+			}
+			else if(uiManager.CurrentState == GameEnums.UIState.Storage)
+			{
+				inventoryImage.sprite = storageSprite;
+			}
 		}
 	}
 }

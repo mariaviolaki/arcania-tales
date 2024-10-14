@@ -66,7 +66,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: <b>Lorem</b> <i>ipsum</i> <size=25>dolor</size> <b><i>sit amet</i></b>,
-    <color=#ffffff>consectetur</color> adipiscing elit.
+    <color=#000000>consectetur</color> adipiscing elit.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2a3eca7ff7c5ea74ba2dc4b0dae1f93b, type: 2}
   m_sharedMaterial: {fileID: 610269709320343724, guid: 2a3eca7ff7c5ea74ba2dc4b0dae1f93b, type: 2}
@@ -75,8 +75,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

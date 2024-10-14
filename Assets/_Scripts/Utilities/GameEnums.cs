@@ -52,6 +52,6 @@ public static class GameEnums
 
 	public enum UIState
 	{
-		None, ItemSelection, Toolbar, Inventory, Dialogue
+		None, ItemSelection, Toolbar, Inventory, Storage, Dialogue
 	}
 }

@@ -1,19 +1,23 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIManager: MonoBehaviour
+public class UIManager : MonoBehaviour
 {
 	[SerializeField] InventorySettingsSO inventorySettings;
 	[SerializeField] GameManagerSO gameManager;
 	[SerializeField] ToolbarUI toolbarUI;
 	[SerializeField] InventoryUI inventoryUI;
+	[SerializeField] StorageUI storageUI;
 	[SerializeField] SelectedItemUI selectedItemUI;
 	[SerializeField] DialogueUI dialogueUI;
 
-	InventoryUIManager inventoryUIManager;
 	GameEnums.UIState previousState;
 	GameEnums.UIState currentState;
 
+	public Action OnCloseStorage;
+
+	public StorageUI StorageUI { get { return storageUI; } }
 	public GameEnums.UIState CurrentState { get { return currentState; } }
 	public GameEnums.UIState PreviousState { get { return previousState; } }
 
@@ -25,7 +29,6 @@ public class UIManager: MonoBehaviour
 
 	void Start()
 	{
-		inventoryUIManager = new InventoryUIManager(inventorySettings, toolbarUI, inventoryUI, selectedItemUI);
 		toolbarUI.SetUIManager(this);
 
 		InitListeners();
@@ -68,9 +71,14 @@ public class UIManager: MonoBehaviour
 		{
 			ChangeUIState(GameEnums.UIState.Toolbar);
 		}
+		else if (currentState == GameEnums.UIState.Storage)
+		{
+			ChangeUIState(GameEnums.UIState.Toolbar);
+			OnCloseStorage?.Invoke();
+		}
 	}
 
-	void ChangeUIState(GameEnums.UIState newState)
+	public void ChangeUIState(GameEnums.UIState newState)
 	{
 		if (newState == currentState) return;
 
@@ -91,6 +99,7 @@ public class UIManager: MonoBehaviour
 		{
 			toolbarUI.SetActive(true);
 			inventoryUI.SetActive(false);
+			storageUI.SetActive(false);
 			selectedItemUI.SetActive(false);
 			dialogueUI.SetActive(false);
 		}
@@ -98,6 +107,15 @@ public class UIManager: MonoBehaviour
 		{
 			toolbarUI.SetActive(true);
 			inventoryUI.SetActive(true);
+			storageUI.SetActive(false);
+			selectedItemUI.SetActive(false);
+			dialogueUI.SetActive(false);
+		}
+		else if (newState == GameEnums.UIState.Storage)
+		{
+			toolbarUI.SetActive(true);
+			inventoryUI.SetActive(true);
+			storageUI.SetActive(true);
 			selectedItemUI.SetActive(false);
 			dialogueUI.SetActive(false);
 		}
@@ -105,6 +123,7 @@ public class UIManager: MonoBehaviour
 		{
 			toolbarUI.SetActive(false);
 			inventoryUI.SetActive(false);
+			storageUI.SetActive(false);
 			selectedItemUI.SetActive(false);
 			dialogueUI.SetActive(true);
 		}

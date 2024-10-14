@@ -1,31 +1,13 @@
 public class InventoryItem
 {
-	ItemSO item;
-	int quantity;
-	int slot;
+	public ItemSO Item;
+	public int Quantity;
+	public int Slot;
 
 	public InventoryItem(ItemSO item, int quantity, int slot)
 	{
-		this.item = item;
-		this.quantity = quantity;
-		this.slot = slot;
-	}
-
-	public ItemSO Item
-	{
-		get { return item; }
-		set { item = value; }
-	}
-
-	public int Quantity
-	{
-		get { return quantity; }
-		set { quantity = value; }
-	}
-
-	public int Slot
-	{
-		get { return slot; }
-		set { slot = value; }
+		this.Item = item;
+		this.Quantity = quantity;
+		this.Slot = slot;
 	}
 }

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: ModernDOS8x16 SDF Inventory
   m_EditorClassIdentifier: 
-  hashCode: 1680757649
+  hashCode: -51353381
   material: {fileID: 610269709320343724}
-  materialHashCode: 1569659793
+  materialHashCode: 164680475
   m_Version: 1.1.0
   m_SourceFontFileGUID: b729a64bf24bb1942a9fc05e0de13d6d
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: b729a64bf24bb1942a9fc05e0de13d6d, type: 3}
@@ -2629,7 +2629,7 @@ Material:
     - _ColorMask: 15
     - _CullMode: 0
     - _Diffuse: 0.5
-    - _FaceDilate: 0.5
+    - _FaceDilate: 1
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
     - _GlowInner: 0.05
@@ -2643,12 +2643,12 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.25
+    - _OutlineWidth: 0.5
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 0.8333333
-    - _ScaleRatioB: 0.26041666
-    - _ScaleRatioC: 0.26041666
+    - _ScaleRatioA: 0.49382716
+    - _ScaleRatioB: 0
+    - _ScaleRatioC: 0
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0

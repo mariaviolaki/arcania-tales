@@ -32,18 +32,39 @@ public class SlotContainerUI : CanvasUI
 		}
 	}
 
-	public void FillSlot(InventoryItem inventoryItem)
+	public void FillSlot(InventoryItem inventoryItem, int containerSlot)
 	{
 		if (inventoryItem.Quantity <= 0) return;
 
-		int childSlot = GetChildSlot(inventoryItem.Slot);
-		slots[childSlot].Fill(inventoryItem.Item, inventoryItem.Quantity);
+		slots[containerSlot].Fill(inventoryItem.Item, inventoryItem.Quantity);
 	}
 
-	public void EmptySlot(int slot)
+	public void EmptySlot(int containerSlot)
 	{
-		int childSlot = GetChildSlot(slot);
-		slots[childSlot].Empty();
+		slots[containerSlot].Empty();
+	}
+
+	virtual protected void SelectFullSlot(ItemSO item, int quantity, int slot, Vector2 position)
+	{
+		if (this.GetType() != typeof(StorageChest))
+		{
+			OnSelectFullSlot?.Invoke(GetInventoryManagerSlot(slot), position);
+		}
+	}
+
+	virtual protected void SelectEmptySlot(int slot, Vector2 position)
+	{
+		if (this.GetType() != typeof(StorageChest))
+		{
+			OnSelectEmptySlot?.Invoke(GetInventoryManagerSlot(slot), position);
+		}
+	}
+
+	protected int GetInventoryManagerSlot(int slot)
+	{
+		if (GetType() == typeof(ToolbarUI)) return slot;
+
+		return slot + inventorySettings.ToolSlots;
 	}
 
 	void AccessSlot(ItemSO item, int quantity, int slotIndex, Vector2 position)
@@ -56,35 +77,5 @@ public class SlotContainerUI : CanvasUI
 		{
 			SelectEmptySlot(slotIndex, position);
 		}
-	}
-
-	void SelectFullSlot(ItemSO item, int quantity, int slot, Vector2 position)
-	{
-		OnSelectFullSlot?.Invoke(GetInventoryManagerSlot(slot), position);
-	}
-
-	void SelectEmptySlot(int slot, Vector2 position)
-	{
-		OnSelectEmptySlot?.Invoke(GetInventoryManagerSlot(slot), position);
-	}
-
-	/*
-		The total slots are not separated into groups in the Inventory Manager
-		But visually, items are stored in different containers: Toolbar, Inventory, and Storage
-		Because the Toolbar is always present, Inventory and Storage slots come after
-	*/
-
-	int GetChildSlot(int slot)
-	{
-		if (GetType() == typeof(ToolbarUI)) return slot;
-
-		return slot - inventorySettings.ToolSlots;
-	}
-
-	int GetInventoryManagerSlot(int slot)
-	{
-		if (GetType() == typeof(ToolbarUI)) return slot;
-
-		return slot + inventorySettings.ToolSlots;
 	}
 }
