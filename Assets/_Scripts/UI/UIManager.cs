@@ -15,8 +15,6 @@ public class UIManager : MonoBehaviour
 	GameEnums.UIState previousState;
 	GameEnums.UIState currentState;
 
-	public Action OnCloseStorage;
-
 	public StorageUI StorageUI { get { return storageUI; } }
 	public GameEnums.UIState CurrentState { get { return currentState; } }
 	public GameEnums.UIState PreviousState { get { return previousState; } }
@@ -73,12 +71,18 @@ public class UIManager : MonoBehaviour
 		}
 		else if (currentState == GameEnums.UIState.Storage)
 		{
+			storageUI.SetCurrentStorage(null);
 			ChangeUIState(GameEnums.UIState.Toolbar);
-			OnCloseStorage?.Invoke();
 		}
 	}
 
-	public void ChangeUIState(GameEnums.UIState newState)
+	public void OpenStorage(StorageChest storageChest)
+	{
+		storageUI.SetCurrentStorage(storageChest);
+		ChangeUIState(GameEnums.UIState.Storage);
+	}
+
+	void ChangeUIState(GameEnums.UIState newState)
 	{
 		if (newState == currentState) return;
 

@@ -3,19 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CinemachineVirtualCamera))]
 [RequireComponent(typeof(CinemachineConfiner))]
 public class FollowCamera : MonoBehaviour
 {
 	[SerializeField] GameSceneManager sceneManager;
 	[SerializeField] PlayerMovement playerMovement;
 
-	CinemachineVirtualCamera virtualCamera;
 	CinemachineConfiner cameraConfiner;
 
 	void Start()
 	{
-		virtualCamera = GetComponent<CinemachineVirtualCamera>();
 		cameraConfiner = GetComponent<CinemachineConfiner>();
 
 		sceneManager.OnEndChangeScene += UpdateBounds;

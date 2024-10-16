@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426e66edeb2375d49a8972504326cabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventorySettings: {fileID: 11400000, guid: d538411092537424aa861b298f994ccb, type: 2}
+  settings: {fileID: 11400000, guid: d538411092537424aa861b298f994ccb, type: 2}
+  sceneManager: {fileID: 0}

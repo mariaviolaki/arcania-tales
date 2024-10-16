@@ -19,7 +19,7 @@ public class StorageData
 
 public class InventoryManager : MonoBehaviour
 {
-	[SerializeField] InventorySettingsSO inventorySettings;
+	[SerializeField] InventorySettingsSO settings;
 	[SerializeField] GameSceneManager sceneManager;
 
 	List<InventoryItem> items;
@@ -29,57 +29,44 @@ public class InventoryManager : MonoBehaviour
 
 	void Awake()
 	{
-		int maxCapacity = inventorySettings.ToolSlots + inventorySettings.InventorySlots;
+		// The storage slots are stored separately for each scene
+		sceneStorages = new Dictionary<GameEnums.Scene, List<StorageData>>();
+
+		// The items contain all the toolbar and inventory slots
+		int maxCapacity = settings.ToolSlots + settings.InventorySlots;
 		items = new List<InventoryItem>(Enumerable.Repeat((InventoryItem)null, maxCapacity));
 	}
 
 	void Start()
 	{
-		sceneManager.OnEndChangeScene += (Vector2 playerPos) => LoadSceneStorages();
+		sceneManager.OnEndChangeScene += (Vector2 playerPos) => UpdateSceneStorages();
+
+		ReloadSceneChests();
 	}
 
 	void OnDestroy()
 	{
-		sceneManager.OnEndChangeScene -= (Vector2 playerPos) => LoadSceneStorages();
+		sceneManager.OnEndChangeScene -= (Vector2 playerPos) => UpdateSceneStorages();
 	}
 
-	void LoadSceneStorages()
+	void UpdateSceneStorages()
 	{
-		StorageChest[] storageChests = FindObjectsOfType<StorageChest>();
+		DeleteSceneChests();
+		ReloadSceneChests();
+	}
 
-		if (sceneStorages[sceneManager.CurrentScene] == null)
-		{
-			sceneStorages[sceneManager.CurrentScene] = new List<StorageData>();
-		}
-
-		foreach (StorageChest storageChest in storageChests)
-		{
-			bool isNewStorage = true;
-			Vector2 sceneStoragePos = (Vector2)storageChest.transform.position;
-
-			foreach (StorageData storageInventoryData in sceneStorages[sceneManager.CurrentScene])
-			{
-				if (sceneStoragePos != storageInventoryData.Pos) continue;
-
-				isNewStorage = false;
-				storageInventoryData.Chest = storageChest;
-				// add listener
-			}
-
-			if (isNewStorage)
-			{
-				StorageData storageInventoryData = new StorageData(storageChest, sceneStoragePos, new List<InventoryItem>());
-				sceneStorages[sceneManager.CurrentScene].Add(storageInventoryData);
-			}
-		}
+	public List<InventoryItem> GetStorageItems(StorageChest chest)
+	{
+		StorageData storageData = sceneStorages[sceneManager.CurrentScene].Find((storage) => storage.Chest == chest);
+		return storageData.Items;
 	}
 
 	// Automatically add an item to the inventory without choosing its slot
-	public bool AddItem(ItemSO item, int quantity = 1)
+	public bool AutoAddItem(ItemSO item, int quantity = 1)
 	{
 		int firstAvailableSlot = int.MaxValue;
 
-		for (int i = 0; i < inventorySettings.ToolSlots + inventorySettings.InventorySlots; i++)
+		for (int i = 0; i < settings.ToolSlots + settings.InventorySlots; i++)
 		{
 			InventoryItem inventoryItem = items[i];
 
@@ -92,7 +79,7 @@ public class InventoryManager : MonoBehaviour
 			else if (inventoryItem != null)
 			{
 				bool isSameItemSlot = inventoryItem.Item.Name == item.Name;
-				bool isFreeSpaceSlot = inventoryItem.Quantity < inventorySettings.MaxSlotQuantity;
+				bool isFreeSpaceSlot = inventoryItem.Quantity < settings.MaxSlotQuantity;
 
 				if (isSameItemSlot && isFreeSpaceSlot)
 				{
@@ -107,18 +94,20 @@ public class InventoryManager : MonoBehaviour
 	// Manually rearrange the inventory by forcing an item into a specific slot
 	public bool AddItemToSlot(InventoryItem inventoryItem, int slot, StorageChest chest = null)
 	{
-		int maxCapacity = inventorySettings.ToolSlots + inventorySettings.InventorySlots;
-		if (inventoryItem == null || inventoryItem.Quantity <= 0 || slot < 0 || slot >= maxCapacity) return false;
+		if (inventoryItem == null || inventoryItem.Quantity <= 0 || slot < 0) return false;
 
 		// Find a specific scene storage if the player selected one
 		List<InventoryItem> container = chest == null ? items : GetSceneStorageItems(chest);
 		if (container == null) return false;
 
-		if (items[slot] == null)
+		int maxCapacity = chest == null ? (settings.ToolSlots + settings.InventorySlots) : settings.StorageSlots;
+		if (slot >= maxCapacity) return false;
+
+		if (container[slot] == null)
 		{
 			return AddNewItem(container, inventoryItem, slot, chest);
 		}
-		else if (items[slot].Item.Name == inventoryItem.Item.Name)
+		else if (container[slot].Item.Name == inventoryItem.Item.Name)
 		{
 			return StackItem(container, inventoryItem, slot, chest);
 		}
@@ -146,7 +135,7 @@ public class InventoryManager : MonoBehaviour
 	bool AddNewItem(List<InventoryItem> container, InventoryItem inventoryItem, int slot, StorageChest chest)
 	{
 		// Ensure that the new item will not exceed the max slot quantity
-		int slotQuantity = Mathf.Min(inventoryItem.Quantity, inventorySettings.MaxSlotQuantity);
+		int slotQuantity = Mathf.Min(inventoryItem.Quantity, settings.MaxSlotQuantity);
 		int remainingQuantity = inventoryItem.Quantity - slotQuantity;
 
 		InventoryItem newItem = new InventoryItem(inventoryItem.Item, slotQuantity, slot);
@@ -161,7 +150,7 @@ public class InventoryManager : MonoBehaviour
 	{
 		// Check if this slot is already full
 		InventoryItem existingItem = container[slot];
-		int slotQuantity = Mathf.Min(inventoryItem.Quantity, inventorySettings.MaxSlotQuantity - existingItem.Quantity);
+		int slotQuantity = Mathf.Min(inventoryItem.Quantity, settings.MaxSlotQuantity - existingItem.Quantity);
 		if (slotQuantity <= 0) return false;
 
 		existingItem.Quantity += slotQuantity;
@@ -174,7 +163,7 @@ public class InventoryManager : MonoBehaviour
 
 	bool SwapItems(List<InventoryItem> container, InventoryItem inventoryItem, int slot, StorageChest chest)
 	{
-		if (inventoryItem.Quantity > inventorySettings.MaxSlotQuantity) return false;
+		if (inventoryItem.Quantity > settings.MaxSlotQuantity) return false;
 
 		InventoryItem existingItem = container[slot];
 		existingItem.Slot = inventoryItem.Slot;
@@ -184,6 +173,61 @@ public class InventoryManager : MonoBehaviour
 
 		OnUpdateInventoryUI?.Invoke(newItem, existingItem, chest);
 		return true;
+	}
+
+	void DeleteSceneChests()
+	{
+		if (sceneManager.LastScene == GameEnums.Scene.None) return;
+
+		foreach (StorageData storageData in sceneStorages[sceneManager.LastScene])
+		{
+			storageData.Chest = null;
+		}
+	}
+
+	void ReloadSceneChests()
+	{
+		StorageChest[] storageChests = FindObjectsOfType<StorageChest>();
+
+		if (!sceneStorages.ContainsKey(sceneManager.CurrentScene))
+		{
+			sceneStorages.Add(sceneManager.CurrentScene, new List<StorageData>());
+		}
+
+		foreach (StorageChest storageChest in storageChests)
+		{
+			Vector2 sceneStoragePos = (Vector2)storageChest.transform.position;
+			bool isNewStorage = UpdateSceneChests(sceneStoragePos, storageChest);
+			if (isNewStorage)
+			{
+				CreateNewStorage(sceneStoragePos, storageChest);
+			}
+		}
+	}
+
+	bool UpdateSceneChests(Vector2 sceneStoragePos, StorageChest storageChest)
+	{
+		bool isNewStorage = true;
+
+		// Update the storage chest references for old chests
+		foreach (StorageData storageInventoryData in sceneStorages[sceneManager.CurrentScene])
+		{
+			if (sceneStoragePos != storageInventoryData.Pos) continue;
+
+			isNewStorage = false;
+			storageInventoryData.Chest = storageChest;
+			break;
+		}
+
+		return isNewStorage;
+	}
+
+	void CreateNewStorage(Vector2 sceneStoragePos, StorageChest storageChest)
+	{
+		// This storage is being created for the first time - this is a new scene
+		List<InventoryItem> storageItems = new List<InventoryItem>(Enumerable.Repeat((InventoryItem)null, settings.StorageSlots));
+		StorageData storageInventoryData = new StorageData(storageChest, sceneStoragePos, storageItems);
+		sceneStorages[sceneManager.CurrentScene].Add(storageInventoryData);
 	}
 
 	List<InventoryItem> GetSceneStorageItems(StorageChest chest)

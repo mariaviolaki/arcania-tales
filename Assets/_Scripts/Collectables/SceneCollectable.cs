@@ -22,7 +22,7 @@ public class SceneCollectable : MonoBehaviour, IInteractable
 
 	void IInteractable.Interact(Transform player)
 	{
-		bool isCollected = inventoryManager.AddItem(item);
+		bool isCollected = inventoryManager.AutoAddItem(item);
 		if (isCollected)
 		{
 			gameObject.SetActive(false);

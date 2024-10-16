@@ -52,7 +52,7 @@ public class InventoryUIManager : MonoBehaviour
 		}
 		if (remainingItem != null)
 		{
-			SaveSharedInventoryItem(remainingItem);
+			SaveSharedInventoryItem(remainingItem, chest);
 		}
 	}
 
@@ -88,7 +88,7 @@ public class InventoryUIManager : MonoBehaviour
 		}
 	}
 
-	void SaveSharedInventoryItem(InventoryItem remainingItem)
+	void SaveSharedInventoryItem(InventoryItem remainingItem, StorageChest chest)
 	{
 		if (remainingItem.Quantity > 0)
 		{

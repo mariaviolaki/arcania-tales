@@ -15,6 +15,10 @@ public class CanvasUI : MonoBehaviour
 		SetActive(false);
 	}
 
+	virtual protected void Start()
+	{
+	}
+
 	virtual protected void OnDestroy()
 	{
 	}

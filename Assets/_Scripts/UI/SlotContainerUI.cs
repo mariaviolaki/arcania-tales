@@ -5,19 +5,32 @@ using UnityEngine;
 public class SlotContainerUI : CanvasUI
 {
 	[SerializeField] InventorySettingsSO inventorySettings;
-	[SerializeField] List<InventorySlot> slots;
+	[SerializeField] Transform slotContainer;
+
+	List<InventorySlot> slots;
 
 	public Action<int, Vector2> OnSelectFullSlot;
 	public Action<int, Vector2> OnSelectEmptySlot;
+
+	protected List<InventorySlot> Slots { get { return slots; } }
 
 	override protected void Awake()
 	{
 		base.Awake();
 
-		// Subscribe to click events for items in each slot
-		foreach (InventorySlot slot in slots)
+		slots = new List<InventorySlot>();
+	}
+
+	override protected void Start()
+	{
+		base.Start();
+
+		foreach (Transform slotTransform in slotContainer)
 		{
+			// Cache each slot in the container and subscribe to click events for items
+			InventorySlot slot = slotTransform.GetComponent<InventorySlot>();
 			slot.OnSelectSlot += AccessSlot;
+			slots.Add(slot);
 		}
 	}
 
@@ -62,9 +75,13 @@ public class SlotContainerUI : CanvasUI
 
 	protected int GetInventoryManagerSlot(int slot)
 	{
-		if (GetType() == typeof(ToolbarUI)) return slot;
+		if (GetType() == typeof(InventoryUI))
+		{
+			// The inventory slots are handled as the toolbar's continuation
+			return slot + inventorySettings.ToolSlots;
+		}
 
-		return slot + inventorySettings.ToolSlots;
+		return slot;
 	}
 
 	void AccessSlot(ItemSO item, int quantity, int slotIndex, Vector2 position)
