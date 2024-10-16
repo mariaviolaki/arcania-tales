@@ -12,6 +12,7 @@ public class GameplaySettingsSO : ScriptableObject
 	[SerializeField] float magnetForce;
 	[SerializeField] float magnetDistance;
 	[SerializeField] float dialogueEndDelay;
+	[SerializeField] int startGold;
 
 	public float MaxSceneRoute { get { return maxSceneRoute; } }
 	public float SceneTransitionDelay { get { return sceneTransitionDelay; } }
@@ -21,4 +22,5 @@ public class GameplaySettingsSO : ScriptableObject
 	public float MagnetForce { get { return magnetForce; } }
 	public float MagnetDistance { get { return magnetDistance; } }
 	public float DialogueEndDelay { get { return dialogueEndDelay; } }
+	public int StartGold { get { return startGold; } }
 }
