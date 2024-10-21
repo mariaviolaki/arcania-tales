@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2717218771512206017}
-  - component: {fileID: 1238217216498612443}
+  - component: {fileID: 4924152694627892074}
   m_Layer: 7
   m_Name: Flashlight
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 6963024126992994608}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1238217216498612443
+--- !u!114 &4924152694627892074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4376873693995711192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a2e78707e4e2041af0a4e45afe19b0, type: 3}
+  m_Script: {fileID: 11500000, guid: db60191b054154d4d9e2f343159110c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lightContainer: {fileID: 7661650166619948974}

@@ -5,47 +5,47 @@ using UnityEngine;
 
 public class DayCycleLight : MonoBehaviour
 {
-	[SerializeField] GameObject lightContainer;
+	[SerializeField] protected GameObject lightContainer;
 	[SerializeField] GameTime switchOnTime;
 	[SerializeField] GameTime switchOffTime;
 
-	DateManager dateManager;
-	bool isSwitchedOn;
+	protected DateManager dateManager;
+	protected  bool isSwitchedOn;
 
-	void Start()
+	virtual protected void Start()
     {
 		dateManager = FindObjectOfType<DateManager>();
 		if (dateManager == null) return;
 
 		isSwitchedOn = lightContainer.activeSelf;
-		CheckDayCycleLight();
+		CheckHourlyLight();
 
-		dateManager.OnHourPassed += CheckDayCycleLight;
+		dateManager.OnHourPassed += CheckHourlyLight;
 	}
 
-	void OnDestroy()
+	virtual protected void OnDestroy()
 	{
 		if (dateManager == null) return;
 
-		dateManager.OnHourPassed -= CheckDayCycleLight;
+		dateManager.OnHourPassed -= CheckHourlyLight;
 	}
 
-	void CheckDayCycleLight()
+	protected void CheckHourlyLight()
 	{
 		GameTime gameTime = dateManager.GetTime();
 		if ((gameTime >= switchOnTime || gameTime < switchOffTime) && !isSwitchedOn)
 		{
 			// Switch on during nighttime
-			ToggleFlashlight(true);
+			ToggleLight(true);
 		}
 		else if (gameTime >= switchOffTime && gameTime < switchOnTime && isSwitchedOn)
 		{
 			// Switch off during daytime
-			ToggleFlashlight(false);
+			ToggleLight(false);
 		}
 	}
 
-	void ToggleFlashlight(bool isSwitchedOn)
+	protected void ToggleLight(bool isSwitchedOn)
 	{
 		// Keep track of the current state to avoid unnecessary calls to unity
 		this.isSwitchedOn = isSwitchedOn;

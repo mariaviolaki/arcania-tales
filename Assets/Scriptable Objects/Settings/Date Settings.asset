@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910a4fd100e6a8247914d6b99c2bd05c, type: 3}
   m_Name: Date Settings
   m_EditorClassIdentifier: 
-  gameSecondsPerSecond: 2
+  gameSecondsPerSecond: 10
   secondsPerMinute: 60
   minutesPerHour: 60
   hoursPerDay: 24
@@ -21,5 +21,5 @@ MonoBehaviour:
   startYear: 1
   startSeason: 1
   startDay: 1
-  startHour: 20
+  startHour: 10
   startMinute: 0

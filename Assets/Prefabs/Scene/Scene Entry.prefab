@@ -90,5 +90,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af74068297343d42a21e07b95155d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneMap: {fileID: 11400000, guid: 0a6af75b746b40b4aba71787a5f97365, type: 2}
   nextScene: 0
-  entryPoint: {x: 0, y: 0}

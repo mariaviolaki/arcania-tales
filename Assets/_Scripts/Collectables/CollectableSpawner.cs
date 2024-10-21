@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -69,6 +70,9 @@ public class CollectableSpawner : MonoBehaviour
 	// Every few in-game minutes, check if it's time for the scene collectables to respawn
 	void RespawnCollectables()
 	{
+		// Some scenes don't have collectables
+		if (!GameUtils.IsOutdoorScene(sceneManager.CurrentScene)) return;
+
 		foreach (Collectable collectable in sceneCollectables[sceneManager.CurrentScene])
 		{
 			if (collectable.Interactable == null || collectable.Interactable.isActiveAndEnabled) continue;
@@ -100,7 +104,8 @@ public class CollectableSpawner : MonoBehaviour
 
 	void DestroySceneCollectables()
 	{
-		if (sceneManager.LastScene == GameEnums.Scene.None) return;
+		// Some scenes don't have collectables - or this is the first scene change
+		if (!GameUtils.IsOutdoorScene(sceneManager.LastScene)) return;
 
 		foreach (Collectable collectable in sceneCollectables[sceneManager.LastScene])
 		{
@@ -113,6 +118,9 @@ public class CollectableSpawner : MonoBehaviour
 	// Instantiate new items when changing scenes and save their new scene references
 	void RecreateCollectables()
 	{
+		// Some scenes don't have collectables
+		if (!GameUtils.IsOutdoorScene(sceneManager.CurrentScene)) return;
+
 		foreach (Collectable collectable in sceneCollectables[sceneManager.CurrentScene])
 		{
 			SceneCollectable interactable = CreateCollectable(collectable.Item, collectable.Position, collectable.InteractionTime);

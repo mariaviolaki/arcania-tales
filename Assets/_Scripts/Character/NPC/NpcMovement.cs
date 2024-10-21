@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CapsuleCollider2D))]
 public class NpcMovement : CharacterMovement
 {
 	[Header("Character Params")]
@@ -20,23 +21,29 @@ public class NpcMovement : CharacterMovement
 	// The regular facing direction defined only by the route schedule
 	Vector2 scheduleFacingDirection;
 
+	CapsuleCollider2D mainCollider;
+	bool isInSameScene;
 	bool isMoving;
 	bool isSchedulePaused;
 
 	void Awake()
 	{
-		sceneManager.OnEndChangeScene += (Vector2 playerPos) => UpdateNpcVisibility();
-		dateManager.OnTenMinutesPassed += CheckSchedule;
-
+		mainCollider = GetComponent<CapsuleCollider2D>();
 		currentPos = new GamePosition();
 		scheduleFacingDirection = Vector2.down;
 		isMoving = false;
 		isSchedulePaused = false;
+
 		UpdateWorldPosition(npcData.StartPosition.Scene, npcData.StartPosition.Pos, scheduleFacingDirection);
 	}
 
 	void Start()
 	{
+		isInSameScene = currentPos.Scene == sceneManager.CurrentScene;
+
+		sceneManager.OnEndChangeScene += (Vector2 playerPos) => UpdateNpcVisibility();
+		dateManager.OnTenMinutesPassed += CheckSchedule;
+
 		OnChangeCharacterDirection?.Invoke(scheduleFacingDirection);
 	}
 
@@ -148,18 +155,48 @@ public class NpcMovement : CharacterMovement
 		currentPos.Scene = newScene;
 		currentPos.Pos = newPos;
 
-		if (currentPos.Scene == sceneManager.CurrentScene && !isSchedulePaused)
+		bool isVisible = UpdateNpcVisibility();
+		if (isVisible)
 		{
-			transform.position = newPos;
 			OnMoveCharacter?.Invoke(direction);
 		}
 	}
 
-	void UpdateNpcVisibility()
+	bool UpdateNpcVisibility()
 	{
-		if (currentPos.Scene == sceneManager.CurrentScene)
+		if (isSchedulePaused) return false;
+
+		// Only update the transform if the npc is in the same scene as the player
+		bool isInNewScene = currentPos.Scene == sceneManager.CurrentScene;
+		if (isInNewScene)
 		{
 			transform.position = currentPos.Pos;
+		}
+
+		// Don't enable/disable any NPC components if not necessary
+		if (isInSameScene != isInNewScene)
+		{
+			isInSameScene = isInNewScene;
+
+			// Only reveal the npc if they are present in the current scene
+			SetVisible(isInNewScene);
+
+			if (isInNewScene)
+			{
+				// Turn in the correct direction because the animator was disabled
+				OnChangeCharacterDirection?.Invoke(scheduleFacingDirection);
+			}
+		}
+
+		return isInNewScene;
+	}
+
+	void SetVisible(bool isVisible)
+	{
+		mainCollider.enabled = isVisible;
+		foreach (Transform bodyPart in transform)
+		{
+			bodyPart.gameObject.SetActive(isVisible);
 		}
 	}
 }

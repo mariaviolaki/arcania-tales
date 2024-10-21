@@ -19,6 +19,12 @@ public class SceneMapSO : ScriptableObject
 		}		
 	}
 
+	public Vector2 GetEntryPos(GameEnums.Scene currentScene, GameEnums.Scene nextScene)
+	{
+		GamePosition entryPos = map[nextScene].Find(gamePos => gamePos.Scene == currentScene);
+		return entryPos.Pos;
+	}
+
 	// The list of scenes to be crossed by a character to get to a certain scene
 	public List<GamePosition> GetSceneRoute(GamePosition startPos, GamePosition endPos)
 	{

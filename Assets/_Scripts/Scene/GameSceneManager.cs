@@ -13,6 +13,8 @@ public class GameSceneManager : MonoBehaviour
 	AsyncOperation asyncUnload;
 	AsyncOperation asyncLoad;
 
+	bool isChangingScene;
+
 	public Action OnLoadGameScenes;
 	public Action OnUnloadGameScenes;
 	public Action OnBeginChangeScene;
@@ -23,13 +25,15 @@ public class GameSceneManager : MonoBehaviour
 
 	void Awake()
     {
+		isChangingScene = false;
 		InitSceneData();
 	}
 
 	public void ChangeScene(GameEnums.Scene newGameScene, Vector2 entryPoint)
 	{
-		if (newGameScene == GameEnums.Scene.None) return;
+		if (newGameScene == GameEnums.Scene.None || isChangingScene) return;
 
+		isChangingScene = true;
 		string oldSceneName = Enum.GetName(typeof(GameEnums.Scene), currentScene);
 		StartCoroutine(TransitionToScene(newGameScene, oldSceneName, entryPoint));
 	}
@@ -102,6 +106,7 @@ public class GameSceneManager : MonoBehaviour
 
 		lastScene = currentScene;
 		currentScene = newGameScene;
+		isChangingScene = false;
 		OnEndChangeScene?.Invoke(entryPoint);
 	}
 }

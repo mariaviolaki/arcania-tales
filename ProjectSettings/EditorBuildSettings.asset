@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Forest.unity
     guid: 764a3bd329d9ee6498d89855f7ccd80a
+  - enabled: 1
+    path: Assets/Scenes/LakeHouse.unity
+    guid: 8c2c09f13ab21ac4a9f91a78e360876b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a0119b762a548ca4486a8cd0422ddbcc, type: 2}

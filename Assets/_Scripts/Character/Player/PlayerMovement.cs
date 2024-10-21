@@ -36,10 +36,19 @@ public class PlayerMovement : CharacterMovement
 	{
 		int collisionLayer = collision.gameObject.layer;
 		bool isSceneEntry = collisionLayer == LayerMask.NameToLayer(GameConstants.CollisionLayers.SceneEntry);
-		if (isSceneEntry)
+		if (isSceneEntry && collision.gameObject != null)
 		{
-			ChangeScene(collision.gameObject);
+			SceneEntry sceneEntry = collision.gameObject.GetComponent<SceneEntry>();
+			ChangeScene(sceneEntry);
 		}
+	}
+
+	public void ChangeScene(SceneEntry sceneEntry)
+	{
+		if (sceneEntry == null || sceneManager == null || sceneEntry.NextScene == GameEnums.Scene.None) return;
+
+		Vector2 entryPos = sceneEntry.GetEntryPoint(sceneManager.CurrentScene);
+		sceneManager.ChangeScene(sceneEntry.NextScene, entryPos);
 	}
 
 	void Walk()
@@ -54,15 +63,6 @@ public class PlayerMovement : CharacterMovement
 
 		this.moveInput = moveInput;
 		OnMoveCharacter?.Invoke(moveInput);
-	}
-
-	void ChangeScene(GameObject sceneEntryObject)
-	{
-		SceneEntry sceneEntry = sceneEntryObject.GetComponent<SceneEntry>();
-		if (sceneEntry != null && sceneManager != null && sceneEntry.NextScene != GameEnums.Scene.None)
-		{
-			sceneManager.ChangeScene(sceneEntry.NextScene, sceneEntry.EntryPoint);
-		}			
 	}
 
 	void PausePlayerMovement()

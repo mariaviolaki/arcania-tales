@@ -21,8 +21,6 @@ public class TerrainGrid : MonoBehaviour
 	[SerializeField] Tilemap tilemap;
 	[SerializeField] PolygonCollider2D gridCollider;
 
-	[SerializeField] GameObject testPrefab;
-
 	Vector2 tilemapPos;
 	Vector2 tilemapSize;
 	Vector2 tilemapCellSize;
@@ -73,7 +71,7 @@ public class TerrainGrid : MonoBehaviour
 			{
 				Vector2Int gridPos = new Vector2Int(x, y);
 				Vector2 worldPos = tilemapPos + gridPos + (tilemapCellSize / 2);
-				bool isBlocked = isTileBlocked(gridPos);
+				bool isBlocked = IsTileBlocked(gridPos);
 
 				GridCell cell = new GridCell(gridPos, worldPos, isBlocked);
 				grid[x, y] = cell;
@@ -81,7 +79,7 @@ public class TerrainGrid : MonoBehaviour
 		}
 	}
 
-	bool isTileBlocked(Vector2 gridPos)
+	bool IsTileBlocked(Vector2 gridPos)
 	{
 		Vector2 halfCellSize = tilemapCellSize / 2;
 		Vector2 cellCenterPos = tilemapPos + gridPos + halfCellSize;

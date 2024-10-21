@@ -23,11 +23,18 @@ MonoBehaviour:
         minutes: 10
     - facingDirection: 1
       targetPosition:
-        Scene: 2
-        Pos: {x: 35.5, y: 6.5}
+        Scene: 3
+        Pos: {x: -10.5, y: 23.5}
       departureTime:
         hours: 11
         minutes: 20
+    - facingDirection: 1
+      targetPosition:
+        Scene: 2
+        Pos: {x: 35.5, y: 6.5}
+      departureTime:
+        hours: 15
+        minutes: 0
     tuesday:
     - facingDirection: 2
       targetPosition:

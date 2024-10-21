@@ -946,6 +946,10 @@ PrefabInstance:
       propertyPath: dateManager
       value: 
       objectReference: {fileID: 3946970190942283665}
+    - target: {fileID: 7528017617012738643, guid: 32d08a19297a6bc48b6935776fe6c5bd, type: 3}
+      propertyPath: sceneManager
+      value: 
+      objectReference: {fileID: 363357097991022074}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

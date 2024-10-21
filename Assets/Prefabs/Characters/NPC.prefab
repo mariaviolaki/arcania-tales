@@ -99,6 +99,15 @@ MonoBehaviour:
   sceneManager: {fileID: 0}
   dateManager: {fileID: 0}
   pathfinder: {fileID: 0}
+  bodyPartSprites:
+  - {fileID: 7661092509828755349}
+  - {fileID: 4361843782464306372}
+  - {fileID: 3951574337883935081}
+  - {fileID: 8039361506276441701}
+  currentPos:
+    Scene: 0
+    Pos: {x: 0, y: 0}
+  scheduleFacingDirection: {x: 0, y: 0}
 --- !u!114 &6461828459383552396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,4 +120,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e747cb2dad44b4ba67365b3414a1be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 0}
+  settings: {fileID: 0}
+  npcInfo: {fileID: 0}
+  npcDialogue: {fileID: 0}
+  dateManager: {fileID: 0}
+  dialogueUI: {fileID: 0}
+--- !u!212 &3951574337883935081 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6486741878542587714, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
+  m_PrefabInstance: {fileID: 7841689107661145643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &4361843782464306372 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5790265164388809455, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
+  m_PrefabInstance: {fileID: 7841689107661145643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &7661092509828755349 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 469198713153055166, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
+  m_PrefabInstance: {fileID: 7841689107661145643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8039361506276441701 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 234972233397647438, guid: 522819d0ab641c740bc0677adb1d8050, type: 3}
+  m_PrefabInstance: {fileID: 7841689107661145643}
+  m_PrefabAsset: {fileID: 0}

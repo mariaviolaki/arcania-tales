@@ -37,7 +37,7 @@ public static class GameEnums
 
 	public enum Scene
 	{
-		None, Lake, Forest
+		None, Lake, Forest, LakeHouse
 	}
 
 	public enum Direction
