@@ -13,9 +13,9 @@ TagManager:
   - UI
   - Terrain
   - Player
-  - Character
+  - NPC
   - Player Body
-  - Character Body
+  - NPC Body
   - Obstacle
   - Collectable
   - Scene Entry

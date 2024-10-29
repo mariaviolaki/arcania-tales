@@ -14,7 +14,7 @@ public class SelectedItemUI : CanvasUI
 	InventoryItem selectedItem;
 
 	public Action OnShowSelectedItem;
-	public Action OnReleaseSelectedItem;
+	public Action OnReleaseItem;
 
 	public InventoryItem Item { get { return selectedItem; } }
 
@@ -51,7 +51,23 @@ public class SelectedItemUI : CanvasUI
 		inputHandler.SetUIEnabled(false);
 		selectedItem = null;
 
-		OnReleaseSelectedItem?.Invoke();
+		OnReleaseItem?.Invoke();
+	}
+
+	public void ReduceQuantity(int amount = 1)
+	{
+		if (selectedItem == null) return;
+
+		selectedItem.Quantity -= amount;
+
+		if (selectedItem.Quantity == 0)
+		{
+			ReleaseItem();
+		}
+		else
+		{
+			quantityText.text = selectedItem.Quantity.ToString();
+		}
 	}
 
 	void MoveItem(Vector2 position)

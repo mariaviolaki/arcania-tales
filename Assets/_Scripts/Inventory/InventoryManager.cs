@@ -19,6 +19,11 @@ public class StorageData
 
 public class InventoryManager : MonoBehaviour
 {
+	enum SlotState
+	{
+		None, Available, Stack
+	}
+
 	[SerializeField] InventorySettingsSO settings;
 	[SerializeField] GameSceneManager sceneManager;
 
@@ -26,6 +31,9 @@ public class InventoryManager : MonoBehaviour
 	Dictionary<GameEnums.Scene, List<StorageData>> sceneStorages;
 
 	public Action<InventoryItem, InventoryItem, StorageChest> OnUpdateInventoryUI;
+	public Action OnInventoryFull;
+
+	public List<InventoryItem> Items { get { return items; } }
 
 	void Awake()
 	{
@@ -62,33 +70,74 @@ public class InventoryManager : MonoBehaviour
 	}
 
 	// Automatically add an item to the inventory without choosing its slot
-	public bool AutoAddItem(ItemSO item, int quantity = 1)
+	public bool AutoAddItem(ItemSO item)
 	{
 		int firstAvailableSlot = int.MaxValue;
 
-		for (int i = 0; i < settings.ToolSlots + settings.InventorySlots; i++)
+		for (int slot = 0; slot < settings.ToolSlots + settings.InventorySlots; slot++)
 		{
-			InventoryItem inventoryItem = items[i];
-
-			// Save the first free slot in case this item cannot be stacked
-			if (inventoryItem == null && i < firstAvailableSlot)
+			SlotState slotState = GetAutoSlotState(firstAvailableSlot, slot, item);
+			if (slotState == SlotState.Available)
 			{
-				firstAvailableSlot = i;
+				firstAvailableSlot = slot;
 			}
-			// Attempt to stack the item in the first available slot
-			else if (inventoryItem != null)
+			else if (slotState == SlotState.Stack)
 			{
-				bool isSameItemSlot = inventoryItem.Item.Name == item.Name;
-				bool isFreeSpaceSlot = inventoryItem.Quantity < settings.MaxSlotQuantity;
-
-				if (isSameItemSlot && isFreeSpaceSlot)
-				{
-					return StackItem(items, new InventoryItem(item, quantity, -1), i, null);
-				}
+				return StackItem(items, new InventoryItem(item, 1, -1), slot, null, false);
 			}
 		}
 
-		return AddNewItem(items, new InventoryItem(item, quantity, -1), firstAvailableSlot, null);
+		return AddNewItem(items, new InventoryItem(item, 1, -1), firstAvailableSlot, null, false);
+	}
+
+	// Automatically add multiple items to the inventory without choosing their slots
+	public bool AutoAddItems(ItemSO item, int quantity)
+	{
+		int startQuantity = quantity;
+
+		while (quantity > 0)
+		{
+			int firstAvailableSlot = int.MaxValue;
+			bool isStacked = false;
+
+			for (int slot = 0; slot < settings.ToolSlots + settings.InventorySlots; slot++)
+			{
+				SlotState slotState = GetAutoSlotState(firstAvailableSlot, slot, item);
+				if (slotState == SlotState.Available)
+				{
+					firstAvailableSlot = slot;
+				}
+				else if (slotState == SlotState.Stack)
+				{
+					InventoryItem inventoryItem = items[slot];
+					int slotQuantity = Math.Min(quantity, settings.MaxSlotQuantity - inventoryItem.Quantity);
+					isStacked = StackItem(items, new InventoryItem(item, slotQuantity, -1), slot, null, false);
+					quantity -= isStacked ? slotQuantity : 0;
+					break;
+				}
+			}
+
+			// Add the item to the first available slot only if it couldn't be stacked into another
+			if (!isStacked)
+			{
+				// All the slots are full and cannot be stacked
+				if (firstAvailableSlot == int.MaxValue) break;
+
+				int slotQuantity = Math.Min(quantity, settings.MaxSlotQuantity);
+				bool isAdded = AddNewItem(items, new InventoryItem(item, slotQuantity, -1), firstAvailableSlot, null, false);
+				quantity -= isAdded ? slotQuantity : 0;
+			}
+		}
+
+		if (quantity > 0)
+		{
+			// Remove any already added items if there is no space for the rest
+			AutoRemoveItem(item, startQuantity - quantity);
+			OnInventoryFull?.Invoke();
+			return false;
+		}
+
+		return true;
 	}
 
 	// Manually rearrange the inventory by forcing an item into a specific slot
@@ -105,11 +154,11 @@ public class InventoryManager : MonoBehaviour
 
 		if (container[slot] == null)
 		{
-			return AddNewItem(container, inventoryItem, slot, chest);
+			return AddNewItem(container, inventoryItem, slot, chest, true);
 		}
 		else if (container[slot].Item.Name == inventoryItem.Item.Name)
 		{
-			return StackItem(container, inventoryItem, slot, chest);
+			return StackItem(container, inventoryItem, slot, chest, true);
 		}
 		else
 		{
@@ -132,11 +181,50 @@ public class InventoryManager : MonoBehaviour
 		return true;
 	}
 
-	bool AddNewItem(List<InventoryItem> container, InventoryItem inventoryItem, int slot, StorageChest chest)
+	// Automatically removes a type of item from any slots that contain it
+	bool AutoRemoveItem(ItemSO item, int quantity)
+	{
+		// Remove items from the last slots first
+		for (int slot = items.Count - 1; slot >= 0; slot--)
+		{
+			// Only process the slots that contain the item specified 
+			InventoryItem slotItem = items[slot];
+			if (slotItem == null || slotItem.Item.Name != item.Name) continue;
+
+			int quantityRemoved = Mathf.Clamp(quantity, 1, slotItem.Quantity);
+			quantity -= quantityRemoved;
+
+			InventoryItem inventoryItem;
+
+			// Delete the item entry entirely if the new quantity is 0
+			if (quantityRemoved == slotItem.Quantity)
+			{
+				items[slot] = null;
+				inventoryItem = new InventoryItem(null, 0, slot);
+			}
+			else
+			{
+				items[slot].Quantity -= quantityRemoved;
+				inventoryItem = new InventoryItem(item, items[slot].Quantity, slot);
+			}
+			
+			// Update the UI after removing the item
+			OnUpdateInventoryUI?.Invoke(inventoryItem, null, null);
+
+			// The requested items were removed, return early
+			if (quantity == 0) return true;
+		}
+
+		return false;
+	}
+
+	bool AddNewItem(List<InventoryItem> container, InventoryItem inventoryItem, int slot, StorageChest chest, bool isRemainingAllowed)
 	{
 		// Ensure that the new item will not exceed the max slot quantity
 		int slotQuantity = Mathf.Min(inventoryItem.Quantity, settings.MaxSlotQuantity);
 		int remainingQuantity = inventoryItem.Quantity - slotQuantity;
+
+		if (!isRemainingAllowed && remainingQuantity > 0) return false;
 
 		InventoryItem newItem = new InventoryItem(inventoryItem.Item, slotQuantity, slot);
 		InventoryItem remainingItem = new InventoryItem(inventoryItem.Item, remainingQuantity, inventoryItem.Slot);
@@ -146,16 +234,18 @@ public class InventoryManager : MonoBehaviour
 		return true;
 	}
 
-	bool StackItem(List<InventoryItem> container, InventoryItem inventoryItem, int slot, StorageChest chest)
+	bool StackItem(List<InventoryItem> container, InventoryItem inventoryItem, int slot, StorageChest chest, bool isRemainingAllowed)
 	{
 		// Check if this slot is already full
 		InventoryItem existingItem = container[slot];
 		int slotQuantity = Mathf.Min(inventoryItem.Quantity, settings.MaxSlotQuantity - existingItem.Quantity);
 		if (slotQuantity <= 0) return false;
 
-		existingItem.Quantity += slotQuantity;
 		int remainingQuantity = inventoryItem.Quantity - slotQuantity;
-		InventoryItem remainingItem = new InventoryItem(inventoryItem.Item, remainingQuantity, inventoryItem.Slot);
+		if (!isRemainingAllowed && remainingQuantity > 0) return false;
+
+		existingItem.Quantity += slotQuantity;
+		InventoryItem remainingItem = !isRemainingAllowed ? null : new InventoryItem(inventoryItem.Item, remainingQuantity, inventoryItem.Slot);
 
 		OnUpdateInventoryUI?.Invoke(existingItem, remainingItem, chest);
 		return true;
@@ -234,5 +324,21 @@ public class InventoryManager : MonoBehaviour
 	{
 		StorageData storageData = sceneStorages[sceneManager.CurrentScene].Find((storage) => storage.Chest == chest);
 		return storageData.Items;
+	}
+
+	SlotState GetAutoSlotState(int firstAvailableSlot, int slot, ItemSO targetItem)
+	{
+		InventoryItem inventoryItem = items[slot];
+
+		// Save the first free slot in case this item cannot be stacked
+		if (inventoryItem == null && slot < firstAvailableSlot) return SlotState.Available;
+		else if (inventoryItem == null) return SlotState.None;
+
+		// Attempt to stack the item in the first available slot with the same item
+		bool isSameItemSlot = inventoryItem.Item.Name == targetItem.Name;
+		bool isFreeSpaceSlot = inventoryItem.Quantity < settings.MaxSlotQuantity;
+
+		if (isSameItemSlot && isFreeSpaceSlot) return SlotState.Stack;
+		else return SlotState.None;
 	}
 }

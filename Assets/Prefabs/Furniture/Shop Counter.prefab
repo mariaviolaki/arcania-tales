@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6342996045074565774}
   - component: {fileID: 6530644104525497620}
+  - component: {fileID: 259262119693144639}
   m_Layer: 11
-  m_Name: Counter
+  m_Name: Shop Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,6 +79,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.8353357, y: 1.1466293}
   m_EdgeRadius: 0
+--- !u!114 &259262119693144639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2770916782966513192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0d204b4bbebac45a4ae22b7a8774f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 0a3a4d7335dec864fbf5a2605eedc7b7, type: 2}
+  shop: {fileID: 0}
+  spriteRenderer: {fileID: 5364761130767216088}
 --- !u!1 &4224238227159079790
 GameObject:
   m_ObjectHideFlags: 0

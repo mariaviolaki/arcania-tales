@@ -2,21 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NpcDialogue", menuName = "Scriptable Objects/Npc Dialogue")]
+[CreateAssetMenu(fileName = "NPC Dialogue", menuName = "Scriptable Objects/NPC Dialogue")]
 public class NpcDialogueSO : ScriptableObject
 {
 	[SerializeField] List<DialogueSequence> greetings;
 	[SerializeField] List<DialogueSequence> repeatGreetings;
+	[SerializeField] List<DialogueSequence> shopGreetings;
+	[SerializeField] List<DialogueSequence> shopPurchaseThanks;
+	[SerializeField] List<DialogueSequence> shopSaleThanks;
+	[SerializeField] List<DialogueSequence> shopInventoryWarnings;
+	[SerializeField] List<DialogueSequence> shopSaleWarnings;
 
-	public DialogueSequence GetGreeting()
-	{
-		int dialogueIndex = Random.Range(0, greetings.Count);
-		return greetings[dialogueIndex];
-	}
+	public DialogueSequence GetGreeting() { return GetDialogueSequence(greetings); }
+	public DialogueSequence GetRepeatGreeting() { return GetDialogueSequence(repeatGreetings); }
+	public DialogueSequence GetShopGreeting() { return GetDialogueSequence(shopGreetings); }
+	public DialogueSequence GetShopPurchaseThanks() { return GetDialogueSequence(shopPurchaseThanks); }
+	public DialogueSequence GetShopSaleThanks() { return GetDialogueSequence(shopSaleThanks); }
+	public DialogueSequence GetShopInventoryWarning() { return GetDialogueSequence(shopInventoryWarnings); }
+	public DialogueSequence GetShopSaleWarning() { return GetDialogueSequence(shopSaleWarnings); }
 
-	public DialogueSequence GetRepeatGreeting()
+	DialogueSequence GetDialogueSequence(List<DialogueSequence> dialogueSequenceList)
 	{
-		int dialogueIndex = Random.Range(0, repeatGreetings.Count);
-		return repeatGreetings[dialogueIndex];
+		if (dialogueSequenceList.Count == 0) return null;
+
+		int dialogueIndex = Random.Range(0, dialogueSequenceList.Count);
+		return dialogueSequenceList[dialogueIndex];
 	}
 }

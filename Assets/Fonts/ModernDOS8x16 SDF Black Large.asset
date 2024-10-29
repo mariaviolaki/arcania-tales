@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: ModernDOS8x16 SDF NPC
+  m_Name: ModernDOS8x16 SDF Black Large
   m_EditorClassIdentifier: 
-  hashCode: -1286641364
+  hashCode: -37941077
   material: {fileID: 610269709320343724}
-  materialHashCode: -1618732404
+  materialHashCode: -1698218069
   m_Version: 1.1.0
   m_SourceFontFileGUID: b729a64bf24bb1942a9fc05e0de13d6d
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: b729a64bf24bb1942a9fc05e0de13d6d, type: 3}
@@ -2629,13 +2629,13 @@ Material:
     - _ColorMask: 15
     - _CullMode: 0
     - _Diffuse: 0.5
-    - _FaceDilate: 0.5
+    - _FaceDilate: 0.6
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
     - _GlowInner: 0.05
     - _GlowOffset: 0
-    - _GlowOuter: 1
-    - _GlowPower: 0
+    - _GlowOuter: 0.05
+    - _GlowPower: 0.75
     - _GradientScale: 6
     - _LightAngle: 3.1416
     - _MaskSoftnessX: 0
@@ -2643,12 +2643,12 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.6
+    - _OutlineWidth: 0.35
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 0.64724916
-    - _ScaleRatioB: 0.26041666
-    - _ScaleRatioC: 0.26041666
+    - _ScaleRatioA: 0.7326007
+    - _ScaleRatioB: 0.17708333
+    - _ScaleRatioC: 0.17708333
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -2661,10 +2661,10 @@ Material:
     - _StencilWriteMask: 255
     - _TextureHeight: 512
     - _TextureWidth: 512
-    - _UnderlayDilate: 1
+    - _UnderlayDilate: 0
     - _UnderlayOffsetX: 0
     - _UnderlayOffsetY: 0
-    - _UnderlaySoftness: 0
+    - _UnderlaySoftness: 0.9
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
     - _WeightBold: 0.75
@@ -2672,14 +2672,14 @@ Material:
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
-    - _FaceColor: {r: 0.7132075, g: 0.04171587, b: 0.04171587, a: 1}
-    - _GlowColor: {r: 0, g: 0, b: 0, a: 0.5}
+    - _FaceColor: {r: 0.016807375, g: 0.016807375, b: 0.017641952, a: 1}
+    - _GlowColor: {r: 0, g: 1, b: 0, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0.8037735, g: 0.8037735, b: 0.8037735, a: 1}
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
-    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+    - _UnderlayColor: {r: 630.346, g: 630.346, b: 630.346, a: 0.5}
   m_BuildTextureStacks: []
 --- !u!28 &8829112904708149625
 Texture2D:

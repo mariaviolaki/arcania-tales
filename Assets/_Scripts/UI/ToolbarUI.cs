@@ -43,4 +43,14 @@ public class ToolbarUI : SlotContainerUI
 			}
 		}
 	}
+
+	protected override int GetStartSlot()
+	{
+		return 0;
+	}
+
+	protected override int GetEndSlot()
+	{
+		return inventorySettings.ToolSlots - 1;
+	}
 }

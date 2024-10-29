@@ -17,12 +17,8 @@ MonoBehaviour:
   playerWalkSpeed: 5
   characterWalkSpeed: 2
   interactDistance: 2
+  shopInteractDistance: 2.5
   magnetForce: 5
   magnetDistance: 0.1
   dialogueEndDelay: 1
-  flashlightOnTime:
-    hours: 20
-    minutes: 0
-  flashlightOffTime:
-    hours: 6
-    minutes: 0
+  startGold: 500

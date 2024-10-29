@@ -58,9 +58,9 @@ public class NpcInteractions : MonoBehaviour, IInteractable
 
 		hasInteractedToday = true;
 		DialoguePart dialoguePart = currentDialogue.DialogueParts[dialogueIndex];
-		Sprite sprite = GetDialogueSprite(dialoguePart);
+		Sprite sprite = dialoguePart.GetSprite(npcInfo);
 
-		dialogueUI.StartNpcDialogue(npcInfo.name, dialoguePart.Text, sprite);
+		dialogueUI.StartNpcDialogue(npcInfo.name, dialoguePart.Text, dialoguePart.GetSprite(npcInfo));
 	}
 
 	void ContinueDialogue()
@@ -76,7 +76,7 @@ public class NpcInteractions : MonoBehaviour, IInteractable
 		}
 
 		DialoguePart dialoguePart = currentDialogue.DialogueParts[dialogueIndex];
-		Sprite sprite = GetDialogueSprite(dialoguePart);
+		Sprite sprite = dialoguePart.GetSprite(npcInfo);
 
 		dialogueUI.ContinueNpcDialogue(npcInfo.name, dialoguePart.Text, sprite);
 	}
@@ -96,13 +96,5 @@ public class NpcInteractions : MonoBehaviour, IInteractable
 		{
 			hasInteractedToday = false;
 		}
-	}
-
-	Sprite GetDialogueSprite(DialoguePart dialoguePart)
-	{
-		string expressionName = Enum.GetName(typeof(GameEnums.NpcExpression), dialoguePart.Expression);
-		Sprite sprite = (Sprite)npcInfo.GetType().GetProperty(expressionName + "Sprite").GetValue(npcInfo);
-
-		return sprite;
 	}
 }

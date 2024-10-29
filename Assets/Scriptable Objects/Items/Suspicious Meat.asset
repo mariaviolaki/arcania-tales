@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dfcc4b93246a5a4789fa4ea60012bba, type: 3}
+  m_Name: Suspicious Meat
+  m_EditorClassIdentifier: 
+  itemName: Suspicious Meat
+  description: Stays fresh longer than it seems.
+  cost: 3
+  image: {fileID: -292019719, guid: f9734f44eca7c2e4c8e632a5edfa3bf7, type: 3}
+  respawnTime:
+    hours: 99
+    minutes: 0

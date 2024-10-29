@@ -48,7 +48,8 @@ public class InventoryUIManager : MonoBehaviour
 	{
 		if (newItem != null)
 		{
-			FillSlot(newItem, chest);
+			if (newItem.Item == null) EmptySlot(newItem.Slot, chest);
+			else FillSlot(newItem, chest);
 		}
 		if (remainingItem != null)
 		{

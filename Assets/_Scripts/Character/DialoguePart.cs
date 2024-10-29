@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,4 +19,12 @@ public class DialoguePart
 
 	public string Text { get { return text; } }
 	public GameEnums.NpcExpression Expression { get { return expression; } }
+
+	public Sprite GetSprite(NpcSO npcInfo)
+	{
+		string expressionName = Enum.GetName(typeof(GameEnums.NpcExpression), expression);
+		Sprite sprite = (Sprite)npcInfo.GetType().GetProperty(expressionName + "Sprite").GetValue(npcInfo);
+
+		return sprite;
+	}
 }

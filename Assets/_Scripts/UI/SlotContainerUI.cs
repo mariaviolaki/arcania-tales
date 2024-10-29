@@ -2,23 +2,27 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlotContainerUI : CanvasUI
+public abstract class SlotContainerUI : CanvasUI
 {
-	[SerializeField] InventorySettingsSO inventorySettings;
-	[SerializeField] Transform slotContainer;
+	[SerializeField] protected InventorySettingsSO inventorySettings;
+	[SerializeField] protected InventoryManager inventoryManager;
+	[SerializeField] protected Transform slotContainer;
 
-	List<InventorySlot> slots;
+	List<SlotUI> slots;
 
 	public Action<int, Vector2> OnSelectFullSlot;
 	public Action<int, Vector2> OnSelectEmptySlot;
 
-	protected List<InventorySlot> Slots { get { return slots; } }
+	protected List<SlotUI> Slots { get { return slots; } }
+
+	abstract protected int GetStartSlot();
+	abstract protected int GetEndSlot();
 
 	override protected void Awake()
 	{
 		base.Awake();
 
-		slots = new List<InventorySlot>();
+		slots = new List<SlotUI>();
 	}
 
 	override protected void Start()
@@ -28,7 +32,7 @@ public class SlotContainerUI : CanvasUI
 		foreach (Transform slotTransform in slotContainer)
 		{
 			// Cache each slot in the container and subscribe to click events for items
-			InventorySlot slot = slotTransform.GetComponent<InventorySlot>();
+			SlotUI slot = slotTransform.GetComponent<SlotUI>();
 			slot.OnSelectSlot += AccessSlot;
 			slots.Add(slot);
 		}
@@ -39,7 +43,7 @@ public class SlotContainerUI : CanvasUI
 		base.OnDestroy();
 
 		// Subscribe to click events for items in each slot
-		foreach (InventorySlot slot in slots)
+		foreach (SlotUI slot in slots)
 		{
 			slot.OnSelectSlot -= AccessSlot;
 		}
@@ -59,29 +63,33 @@ public class SlotContainerUI : CanvasUI
 
 	virtual protected void SelectFullSlot(ItemSO item, int quantity, int slot, Vector2 position)
 	{
-		if (this.GetType() != typeof(StorageChest))
-		{
-			OnSelectFullSlot?.Invoke(GetInventoryManagerSlot(slot), position);
-		}
+		OnSelectFullSlot?.Invoke(GetStartSlot() + slot, position);
 	}
 
 	virtual protected void SelectEmptySlot(int slot, Vector2 position)
 	{
-		if (this.GetType() != typeof(StorageChest))
-		{
-			OnSelectEmptySlot?.Invoke(GetInventoryManagerSlot(slot), position);
-		}
-	}
+		OnSelectEmptySlot?.Invoke(GetStartSlot() + slot, position);
+	}	
 
-	protected int GetInventoryManagerSlot(int slot)
+	void RefreshSlots()
 	{
-		if (GetType() == typeof(InventoryUI))
-		{
-			// The inventory slots are handled as the toolbar's continuation
-			return slot + inventorySettings.ToolSlots;
-		}
+		if (GetType() == typeof(StorageUI)) return;
 
-		return slot;
+		List<InventoryItem> inventoryItems = inventoryManager.Items;
+		int inventoryManagerStartSlot = GetStartSlot();
+
+		for (int childSlot = 0; childSlot < slots.Count; childSlot++)
+		{
+			InventoryItem inventoryItem = inventoryItems[inventoryManagerStartSlot + childSlot];
+			if (inventoryItem == null)
+			{
+				slots[childSlot].Empty();
+			}
+			else
+			{
+				slots[childSlot].Fill(inventoryItem.Item, inventoryItem.Quantity);
+			}
+		}
 	}
 
 	void AccessSlot(ItemSO item, int quantity, int slotIndex, Vector2 position)

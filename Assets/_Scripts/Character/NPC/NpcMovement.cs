@@ -6,7 +6,7 @@ using UnityEngine;
 public class NpcMovement : CharacterMovement
 {
 	[Header("Character Params")]
-	[SerializeField] NpcSO npcData;
+	[SerializeField] NpcSO npcInfo;
 	[SerializeField] NpcScheduleSO npcSchedule;
 
 	[Header("Gameplay Params")]
@@ -26,6 +26,8 @@ public class NpcMovement : CharacterMovement
 	bool isMoving;
 	bool isSchedulePaused;
 
+	public NpcSO NpcInfo { get { return npcInfo; } }
+
 	void Awake()
 	{
 		mainCollider = GetComponent<CapsuleCollider2D>();
@@ -34,7 +36,7 @@ public class NpcMovement : CharacterMovement
 		isMoving = false;
 		isSchedulePaused = false;
 
-		UpdateWorldPosition(npcData.StartPosition.Scene, npcData.StartPosition.Pos, scheduleFacingDirection);
+		UpdateWorldPosition(npcInfo.StartPosition.Scene, npcInfo.StartPosition.Pos, scheduleFacingDirection);
 	}
 
 	void Start()

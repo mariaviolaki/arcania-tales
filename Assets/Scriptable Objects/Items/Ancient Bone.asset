@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dfcc4b93246a5a4789fa4ea60012bba, type: 3}
-  m_Name: Mushroom
+  m_Name: Ancient Bone
   m_EditorClassIdentifier: 
-  itemName: Mushroom
-  description: May or may not poison you.
-  image: {fileID: 21300000, guid: 326c2d9c38fa6c9449df1462f728d2b6, type: 3}
+  itemName: Ancient Bone
+  description: What creature does this belong to...?
+  cost: 10
+  image: {fileID: 390780996, guid: cde078f7906d3d94bb8f955fca8ca0f4, type: 3}
   respawnTime:
-    hours: 1
+    hours: 999
     minutes: 0

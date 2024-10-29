@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class StorageUI : SlotContainerUI
 {
-	[SerializeField] InventoryManager inventoryManager;
-
 	StorageChest currentStorage;
 
 	public Action<int, Vector2, StorageChest> OnSelectFullStorageSlot;
@@ -33,7 +31,7 @@ public class StorageUI : SlotContainerUI
 		List<InventoryItem> items = inventoryManager.GetStorageItems(currentStorage);
 
 		int index = 0;
-		foreach (InventorySlot slot in Slots)
+		foreach (SlotUI slot in Slots)
 		{
 			InventoryItem inventoryItem = items[index++];
 
@@ -51,11 +49,21 @@ public class StorageUI : SlotContainerUI
 
 	override protected void SelectFullSlot(ItemSO item, int quantity, int slot, Vector2 position)
 	{
-		OnSelectFullStorageSlot?.Invoke(GetInventoryManagerSlot(slot), position, currentStorage);
+		OnSelectFullStorageSlot?.Invoke(GetStartSlot() + slot, position, currentStorage);
 	}
 
 	override protected void SelectEmptySlot(int slot, Vector2 position)
 	{
-		OnSelectEmptyStorageSlot?.Invoke(GetInventoryManagerSlot(slot), position, currentStorage);
+		OnSelectEmptyStorageSlot?.Invoke(GetStartSlot() + slot, position, currentStorage);
+	}
+
+	protected override int GetStartSlot()
+	{
+		return 0;
+	}
+
+	protected override int GetEndSlot()
+	{
+		return inventorySettings.StorageSlots - 1;
 	}
 }

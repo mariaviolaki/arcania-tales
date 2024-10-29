@@ -30,3 +30,31 @@ MonoBehaviour:
   - dialogueParts:
     - text: Get out of my way, will you?
       expression: 2
+  shopGreetings:
+  - dialogueParts:
+    - text: <i>Look who's here...</i>
+      expression: 1
+  - dialogueParts:
+    - text: By all means, take your time~
+      expression: 1
+  shopPurchaseThanks:
+  - dialogueParts:
+    - text: Do come back again.
+      expression: 0
+    - text: Good luck. You're gonna need it.
+      expression: 1
+  shopSaleThanks:
+  - dialogueParts:
+    - text: ...Oh. How <i>useful</i>.
+      expression: 2
+  - dialogueParts:
+    - text: Out of money, are you?
+      expression: 1
+  shopInventoryWarnings:
+  - dialogueParts:
+    - text: Hold your horses. You can't carry that now, can you?
+      expression: 0
+  shopSaleWarnings:
+  - dialogueParts:
+    - text: Trying to sell me air?
+      expression: 1

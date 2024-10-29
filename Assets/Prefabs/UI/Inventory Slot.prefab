@@ -62,14 +62,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.97735846, g: 0.97735846, b: 0.97735846, a: 1}
+  m_Color: {r: 0.61901736, g: 0.85660374, b: 0.82516056, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 98580450fa4380a47b7ec3b07dfb4e17, type: 3}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 2.5
+  m_PixelsPerUnitMultiplier: 0.4
 --- !u!114 &359490093557118633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,11 +88,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4270946045422765328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d086485a0d6397148889d4f9c53ad36a, type: 3}
+  m_Script: {fileID: 11500000, guid: 96e631721bf9ea945b90e634cdf83fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   imageContainer: {fileID: 6862896356824094561}
-  textContainer: {fileID: 5999925456928087590}
+  amountTextContainer: {fileID: 5999925456928087590}
 --- !u!114 &4566545015485725284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,8 +140,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.4999986, y: 0}
-  m_SizeDelta: {x: -29.000013, y: -24}
+  m_AnchoredPosition: {x: 0, y: -2}
+  m_SizeDelta: {x: -24, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6331991725687769032
 CanvasRenderer:
@@ -173,8 +173,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 999
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f007b1c127afdb348a4508a5583fd4ad, type: 2}
-  m_sharedMaterial: {fileID: 610269709320343724, guid: f007b1c127afdb348a4508a5583fd4ad, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2be097e01ab93ea408ae37c573c2b0fe, type: 2}
+  m_sharedMaterial: {fileID: 610269709320343724, guid: 2be097e01ab93ea408ae37c573c2b0fe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -198,8 +198,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 1235356641333788125}
   - component: {fileID: 6785015278773422025}
   m_Layer: 5
-  m_Name: Inventory item
+  m_Name: Item Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

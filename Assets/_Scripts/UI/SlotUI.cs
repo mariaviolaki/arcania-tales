@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour
+[RequireComponent(typeof(EventTrigger))]
+public class SlotUI : MonoBehaviour
 {
 	[SerializeField] GameObject imageContainer;
-	[SerializeField] GameObject textContainer;
+	[SerializeField] GameObject amountTextContainer;
 
 	public Action<ItemSO, int, int, Vector2> OnSelectSlot;
 
@@ -20,7 +21,7 @@ public class InventorySlot : MonoBehaviour
 	void Awake()
 	{
 		itemImage = imageContainer.GetComponent<Image>();
-		quantityText = textContainer.GetComponent<TMP_Text>();
+		quantityText = amountTextContainer.GetComponent<TMP_Text>();
 
 		InitListeners();
 	}
@@ -34,7 +35,7 @@ public class InventorySlot : MonoBehaviour
 		quantityText.text = quantity.ToString();
 
 		imageContainer.SetActive(true);
-		textContainer.SetActive(true);
+		amountTextContainer.SetActive(true);
 	}
 
 	public void Empty()
@@ -46,7 +47,7 @@ public class InventorySlot : MonoBehaviour
 		quantityText.text = "";
 
 		imageContainer.SetActive(false);
-		textContainer.SetActive(false);
+		amountTextContainer.SetActive(false);
 	}
 
 	void SelectSlot(PointerEventData eventData)
