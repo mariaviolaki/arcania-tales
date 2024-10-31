@@ -23,13 +23,13 @@ public class NpcInteractions : MonoBehaviour, IInteractable
 		hasInteractedToday = false;
 
 		dateManager.OnHourPassed += ClearDailyInteraction;
-		dialogueUI.OnContinueDialogue += ContinueDialogue;
+		dialogueUI.OnContinueDialogueUI += ContinueDialogue;
 	}
 
 	void OnDestroy()
 	{
 		dateManager.OnHourPassed -= ClearDailyInteraction;
-		dialogueUI.OnContinueDialogue -= ContinueDialogue;
+		dialogueUI.OnContinueDialogueUI -= ContinueDialogue;
 	}
 
 	public void Interact(Transform player)
@@ -60,7 +60,7 @@ public class NpcInteractions : MonoBehaviour, IInteractable
 		DialoguePart dialoguePart = currentDialogue.DialogueParts[dialogueIndex];
 		Sprite sprite = dialoguePart.GetSprite(npcInfo);
 
-		dialogueUI.StartNpcDialogue(npcInfo.name, dialoguePart.Text, dialoguePart.GetSprite(npcInfo));
+		dialogueUI.StartNpcDialogue(npcInfo.name, dialoguePart.Text, sprite);
 	}
 
 	void ContinueDialogue()
@@ -84,10 +84,15 @@ public class NpcInteractions : MonoBehaviour, IInteractable
 	IEnumerator EndDialogue()
 	{
 		dialogueUI.EndNpcDialogue();
+		currentDialogue = null;
 
 		yield return new WaitForSeconds(settings.DialogueEndDelay);
-		
-		movement.SetSchedulePaused(false);
+
+		// Perform a last check in case the player has quickly initiated a new dialogue
+		if (currentDialogue == null)
+		{
+			movement.SetSchedulePaused(false);
+		}
 	}
 
 	void ClearDailyInteraction()

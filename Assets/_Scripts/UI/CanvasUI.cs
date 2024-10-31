@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanvasUI : MonoBehaviour
+public abstract class CanvasUI : MonoBehaviour
 {
 	bool isActive;
 

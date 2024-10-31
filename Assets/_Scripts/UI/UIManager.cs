@@ -11,8 +11,9 @@ public class UIManager : MonoBehaviour
 	[SerializeField] InventoryUI inventoryUI;
 	[SerializeField] StorageUI storageUI;
 	[SerializeField] SelectedItemUI selectedItemUI;
-	[SerializeField] DialogueUI dialogueUI;
 	[SerializeField] ShopUI shopUI;
+	[SerializeField] DialogueUI dialogueUI;
+	[SerializeField] HintUI hintUI;
 
 	GameEnums.UIState previousState;
 	GameEnums.UIState currentState;
@@ -25,8 +26,9 @@ public class UIManager : MonoBehaviour
 	public InventoryUI Inventory { get { return inventoryUI; } }
 	public StorageUI Storage { get { return storageUI; } }
 	public SelectedItemUI SelectedItem { get { return selectedItemUI; } }
-	public DialogueUI Dialogue { get { return dialogueUI; } }
 	public ShopUI Shop { get { return shopUI; } }
+	public DialogueUI Dialogue { get { return dialogueUI; } }
+	public HintUI Hint { get { return hintUI; } }
 
 	void Awake()
 	{
@@ -47,11 +49,14 @@ public class UIManager : MonoBehaviour
 	{
 		shopUI.OnCloseShopUI -= () => ChangeUIState(GameEnums.UIState.Toolbar);
 
+		selectedItemUI.OnShowSelectedItem -= () => ChangeUIState(GameEnums.UIState.ItemSelection);
+		selectedItemUI.OnReleaseItem -= () => ChangeUIState(GameEnums.UIState.None);
+
 		dialogueUI.OnOpenDialogueUI -= () => ChangeUIState(GameEnums.UIState.Dialogue);
 		dialogueUI.OnCloseDialogueUI -= () => ChangeUIState(GameEnums.UIState.Toolbar);
 
-		selectedItemUI.OnShowSelectedItem -= () => ChangeUIState(GameEnums.UIState.ItemSelection);
-		selectedItemUI.OnReleaseItem -= () => ChangeUIState(GameEnums.UIState.None);
+		hintUI.OnOpenHintUI -= () => ChangeUIState(GameEnums.UIState.Hint);
+		hintUI.OnCloseHintUI -= () => ChangeUIState(GameEnums.UIState.Toolbar);
 	}
 
 	void InitListeners()
@@ -65,11 +70,14 @@ public class UIManager : MonoBehaviour
 
 		shopUI.OnCloseShopUI += () => ChangeUIState(GameEnums.UIState.Toolbar);
 
+		selectedItemUI.OnShowSelectedItem += () => ChangeUIState(GameEnums.UIState.ItemSelection);
+		selectedItemUI.OnReleaseItem += () => ChangeUIState(GameEnums.UIState.None); // revert to the previous state
+
 		dialogueUI.OnOpenDialogueUI += () => ChangeUIState(GameEnums.UIState.Dialogue);
 		dialogueUI.OnCloseDialogueUI += () => ChangeUIState(GameEnums.UIState.Toolbar);
 
-		selectedItemUI.OnShowSelectedItem += () => ChangeUIState(GameEnums.UIState.ItemSelection);
-		selectedItemUI.OnReleaseItem += () => ChangeUIState(GameEnums.UIState.None); // revert to the previous state
+		hintUI.OnOpenHintUI += () => ChangeUIState(GameEnums.UIState.Hint);
+		hintUI.OnCloseHintUI += () => ChangeUIState(GameEnums.UIState.Toolbar);
 	}
 
 	void ToggleInventory(PointerEventData eventData)
@@ -127,6 +135,7 @@ public class UIManager : MonoBehaviour
 			selectedItemUI.SetActive(false);
 			dialogueUI.SetActive(false);
 			shopUI.SetActive(false);
+			hintUI.SetActive(false);
 		}
 		else if (newState == GameEnums.UIState.Inventory)
 		{
@@ -136,6 +145,7 @@ public class UIManager : MonoBehaviour
 			selectedItemUI.SetActive(false);
 			dialogueUI.SetActive(false);
 			shopUI.SetActive(false);
+			hintUI.SetActive(false);
 		}
 		else if (newState == GameEnums.UIState.Storage)
 		{
@@ -145,6 +155,7 @@ public class UIManager : MonoBehaviour
 			selectedItemUI.SetActive(false);
 			dialogueUI.SetActive(false);
 			shopUI.SetActive(false);
+			hintUI.SetActive(false);
 		}
 		else if (newState == GameEnums.UIState.Dialogue)
 		{
@@ -154,6 +165,7 @@ public class UIManager : MonoBehaviour
 			selectedItemUI.SetActive(false);
 			dialogueUI.SetActive(true);
 			shopUI.SetActive(false);
+			hintUI.SetActive(false);
 		}
 		else if (newState == GameEnums.UIState.Shop)
 		{
@@ -163,6 +175,17 @@ public class UIManager : MonoBehaviour
 			selectedItemUI.SetActive(false);
 			dialogueUI.SetActive(false);
 			shopUI.SetActive(true);
+			hintUI.SetActive(false);
+		}
+		else if (newState == GameEnums.UIState.Hint)
+		{
+			toolbarUI.SetActive(false);
+			inventoryUI.SetActive(false);
+			storageUI.SetActive(false);
+			selectedItemUI.SetActive(false);
+			dialogueUI.SetActive(false);
+			shopUI.SetActive(false);
+			hintUI.SetActive(true);
 		}
 	}
 

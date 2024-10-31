@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Terrain Sprite Atlas
+  m_Name: Sprite Atlas
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -5163,5 +5163,5 @@ SpriteAtlas:
   - TilesetWallSimple_8
   - TilesetWallSimple_9
   m_RenderDataMap: {}
-  m_Tag: Terrain Sprite Atlas
+  m_Tag: Sprite Atlas
   m_IsVariant: 0

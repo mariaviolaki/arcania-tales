@@ -39,10 +39,17 @@ public class ShopCounter : MonoBehaviour, IInteractable
 
 	public void Interact(Transform player)
 	{
+		if (uiManager == null) return;
+
 		// Don't open the shop if its owner is not nearby
 		NpcMovement ownerMovement = GetOwnerMovement();
 
-		if (uiManager != null && ownerMovement != null)
+		if (ownerMovement == null)
+		{
+			string hintText = "The shop owner doesn't seem to be here. Please come back later.";
+			uiManager.Hint.ShowHint(hintText);
+		}
+		else
 		{
 			// Pause the current movement schedule and face the player
 			this.ownerMovement = ownerMovement;

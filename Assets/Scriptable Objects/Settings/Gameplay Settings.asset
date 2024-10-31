@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSceneRoute: 5
   sceneTransitionDelay: 1
-  playerWalkSpeed: 5
+  playerWalkSpeed: 4
   characterWalkSpeed: 2
   interactDistance: 2
   shopInteractDistance: 2.5

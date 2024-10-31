@@ -6,22 +6,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DialogueUI : CanvasUI
+public class DialogueUI : BaseDialogueUI
 {
 	[SerializeField] Image npcImage;
 	[SerializeField] TMP_Text npcNameField;
-	[SerializeField] TMP_Text dialogueField;
-	[SerializeField] GameObject dialogueArea;
 
 	public Action OnOpenDialogueUI;
-	public Action OnContinueDialogue;
+	public Action OnContinueDialogueUI;
 	public Action OnCloseDialogueUI;
-
-	override protected void Awake()
-	{
-		base.Awake();
-		InitDialogueArea();
-	}
 
 	public void StartNpcDialogue(string npcName, string npcDialogue, Sprite npcSprite)
 	{
@@ -42,18 +34,8 @@ public class DialogueUI : CanvasUI
 		OnCloseDialogueUI?.Invoke();
 	}
 
-	void InitDialogueArea()
+	override protected void ContinueDialogueUI()
 	{
-		// Click anywhere in the game screen to progress the dialogue
-		EventTrigger eventTrigger = dialogueArea.GetComponent<EventTrigger>();
-		EventTrigger.Entry clickEvent = new EventTrigger.Entry();
-		clickEvent.eventID = EventTriggerType.PointerClick;
-		clickEvent.callback.AddListener((data) => ContinueDialogueUI((PointerEventData)data));
-		eventTrigger.triggers.Add(clickEvent);
-	}
-
-	void ContinueDialogueUI(PointerEventData eventData)
-	{
-		OnContinueDialogue?.Invoke();
+		OnContinueDialogueUI?.Invoke();
 	}
 }

@@ -967,7 +967,6 @@ MonoBehaviour:
   scene: 2
   tilemap: {fileID: 1227407356}
   gridCollider: {fileID: 1227407357}
-  testPrefab: {fileID: 6151282545082795300, guid: 37fc0f96a1fb4cd488aa09020faa97f0, type: 3}
 --- !u!1 &465171268
 GameObject:
   m_ObjectHideFlags: 0
@@ -3649,11 +3648,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3028490864330544038, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: m_Size.y
-      value: 0.09148222
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3028490864330544038, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: m_Offset.y
-      value: 0.7979523
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3586161246339576461, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: nextScene
@@ -3673,7 +3672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4991170950988448098, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4991170950988448098, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: m_LocalPosition.y

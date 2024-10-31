@@ -20,8 +20,8 @@ public class Pathfinder : MonoBehaviour
 		Vector2Int startGridPos = GetGridPosFromWorldPos(scene, startPos);
 		Vector2Int endGridPos = GetGridPosFromWorldPos(scene, endPos);
 
-		GridCell startCell = gridManager.GetGridCell(scene, startGridPos.x, startGridPos.y);
-		GridCell endCell = gridManager.GetGridCell(scene, endGridPos.x, endGridPos.y);
+		GridCell startCell = gridManager.GetGridCell(scene, startGridPos.x, startGridPos.y, true);
+		GridCell endCell = gridManager.GetGridCell(scene, endGridPos.x, endGridPos.y, true);
 
 		if (startCell == null || endCell == null) return null;
 
@@ -38,15 +38,15 @@ public class Pathfinder : MonoBehaviour
 		{
 			currentNode = GetLowestCostNode(toExplore);
 
+			if (currentNode.Cell == endCell)
+			{
+				return GetPathToNode(currentNode, startPos, endPos);
+			}
+
 			explored.Add(currentNode);
 			toExplore.Remove(currentNode);
 
-			if (currentNode.Cell == endCell)
-			{
-				return GetPathToNode(currentNode);
-			}
-
-			foreach (GridCell neighborCell in GetNeighborCells(scene, currentNode, explored))
+			foreach (GridCell neighborCell in GetNeighborCells(scene, currentNode, explored, endCell))
 			{
 				ProcessNeighborCell(currentNode, neighborCell, toExplore, endCell);
 			}
@@ -72,7 +72,7 @@ public class Pathfinder : MonoBehaviour
 		return lowestCostNode;
 	}
 
-	List<GridCell> GetNeighborCells(GameEnums.Scene scene, PathNode node, List<PathNode> explored)
+	List<GridCell> GetNeighborCells(GameEnums.Scene scene, PathNode node, List<PathNode> explored, GridCell endCell)
 	{
 		List<GridCell> neighborCells = new List<GridCell>();
 
@@ -83,8 +83,12 @@ public class Pathfinder : MonoBehaviour
 				// Don't process the current node again
 				if (x == 0 && y == 0) continue;
 
+				int cellX = node.Cell.GridPos.x + x;
+				int cellY = node.Cell.GridPos.y + y;
+				bool isEndCell = cellX == endCell.GridPos.x && cellY == endCell.GridPos.y;
+
 				// Valid neighbors are only walkable cells that haven't been explored yet
-				GridCell cell = gridManager.GetGridCell(scene, node.Cell.GridPos.x + x, node.Cell.GridPos.y + y);
+				GridCell cell = gridManager.GetGridCell(scene, cellX, cellY, isEndCell);
 				if (cell != null && GetCellInNodeList(cell, explored) == null)
 				{
 					neighborCells.Add(cell);
@@ -100,13 +104,7 @@ public class Pathfinder : MonoBehaviour
 		float newGCost = currentNode.GCost + currentNode.Cell.GetDistance(neighborCell);
 		PathNode toExploreNode = GetCellInNodeList(neighborCell, toExplore);
 
-		if (toExploreNode != null)
-		{
-			// Check if the neighbor node can obtain a lower g cost through the current node
-			toExploreNode.Previous = currentNode;
-			toExploreNode.GCost = newGCost;
-		}
-		else
+		if (toExploreNode == null)
 		{
 			// Create a new node because this neighbor isn't being explored currently
 			PathNode neighborNode = new PathNode(neighborCell, currentNode);
@@ -115,17 +113,35 @@ public class Pathfinder : MonoBehaviour
 
 			toExplore.Add(neighborNode);
 		}
+		else if (newGCost < toExploreNode.GCost)
+		{
+			// Update this neighbor with the lower g cost through the current node
+			toExploreNode.Previous = currentNode;
+			toExploreNode.GCost = newGCost;
+		}
 	}
 
-	List<Vector2> GetPathToNode(PathNode endNode)
+	List<Vector2> GetPathToNode(PathNode endNode, Vector2 startPos, Vector2 endPos)
 	{
 		List<Vector2> path = new List<Vector2>();
-		PathNode currentNode = endNode;
 
+		if (endNode.Cell.WorldPos != endPos)
+		{
+			// The end pos given might differ from its equivalent on the grid
+			path.Add(endPos);
+		}
+
+		PathNode currentNode = endNode;
 		while (currentNode != null)
 		{
 			path.Add(currentNode.Cell.WorldPos);
 			currentNode = currentNode.Previous;
+		}
+
+		if (path[path.Count - 1] != startPos)
+		{
+			// The start pos given might differ from its equivalent on the grid
+			path.Add(startPos);
 		}
 
 		path.Reverse();

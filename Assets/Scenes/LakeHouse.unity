@@ -6624,11 +6624,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3028490864330544038, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: m_Size.y
-      value: 0.12547684
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3028490864330544038, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: m_Offset.y
-      value: -0.16207504
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3586161246339576461, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: nextScene

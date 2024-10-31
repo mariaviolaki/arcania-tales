@@ -9549,11 +9549,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3028490864330544038, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: m_Size.y
-      value: 0.09148222
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3028490864330544038, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: m_Offset.y
-      value: 0.8149866
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3586161246339576461, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: nextScene
@@ -9573,7 +9573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4991170950988448098, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4991170950988448098, guid: 225ecdeb7731e93489179b1ebe869157, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18970,7 +18970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 784502332262735218, guid: 38661005da077cb41a31b6147809458d, type: 3}
       propertyPath: m_Offset.y
-      value: 0.8503134
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: 1234226493699914841, guid: 38661005da077cb41a31b6147809458d, type: 3}
       propertyPath: nextScene
@@ -18986,7 +18986,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7322979827993415606, guid: 38661005da077cb41a31b6147809458d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7322979827993415606, guid: 38661005da077cb41a31b6147809458d, type: 3}
       propertyPath: m_LocalPosition.z

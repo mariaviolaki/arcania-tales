@@ -10,6 +10,7 @@ public class NpcMovement : CharacterMovement
 	[SerializeField] NpcScheduleSO npcSchedule;
 
 	[Header("Gameplay Params")]
+	[SerializeField] GameManagerSO gameManager;
 	[SerializeField] GameplaySettingsSO gameplaySettings;
 	[SerializeField] SceneMapSO sceneMap;
 	[SerializeField] GameSceneManager sceneManager;
@@ -43,6 +44,8 @@ public class NpcMovement : CharacterMovement
 	{
 		isInSameScene = currentPos.Scene == sceneManager.CurrentScene;
 
+		gameManager.OnPause += () => SetSchedulePaused(true);
+		gameManager.OnResume += () => SetSchedulePaused(false);
 		sceneManager.OnEndChangeScene += (Vector2 playerPos) => UpdateNpcVisibility();
 		dateManager.OnTenMinutesPassed += CheckSchedule;
 
@@ -51,6 +54,8 @@ public class NpcMovement : CharacterMovement
 
 	void OnDestroy()
 	{
+		gameManager.OnPause -= () => SetSchedulePaused(true);
+		gameManager.OnResume -= () => SetSchedulePaused(false);
 		sceneManager.OnEndChangeScene -= (Vector2 playerPos) => UpdateNpcVisibility();
 		dateManager.OnTenMinutesPassed -= CheckSchedule;
 	}
@@ -62,6 +67,8 @@ public class NpcMovement : CharacterMovement
 
 	public void SetSchedulePaused(bool isPaused, Vector2 facingDirection)
 	{
+		if (isPaused == isSchedulePaused) return;
+
 		isSchedulePaused = isPaused;
 		OnChangeCharacterDirection?.Invoke(facingDirection);
 
@@ -115,7 +122,9 @@ public class NpcMovement : CharacterMovement
 			if (pathScene == GameEnums.Scene.None) break;
 
 			// Attempt to follow a valid path between the two points in the same scene
-			List<Vector2> routePositions = pathfinder.GetPath(pathScene, scenePositions[i - 1].Pos, scenePositions[i].Pos);
+			Vector2 startPos = scenePositions[i - 1].Pos;
+			Vector2 endPos = scenePositions[i].Pos;
+			List<Vector2> routePositions = pathfinder.GetPath(pathScene, startPos, endPos);
 			if (routePositions == null || routePositions.Count == 0) break;
 
 			yield return StartCoroutine(FollowRoute(pathScene, routePositions));
@@ -132,6 +141,12 @@ public class NpcMovement : CharacterMovement
 	// Move between two points in the same scene
 	IEnumerator FollowRoute(GameEnums.Scene routeScene, List<Vector2> routePositions)
 	{
+		// Instantly move the NPC at the start of the path
+		currentPos.Pos = routePositions[0];
+		Vector2 startDirection = (routePositions[1] - currentPos.Pos).normalized;
+		UpdateWorldPosition(routeScene, currentPos.Pos, startDirection);
+		yield return new WaitUntil(() => !isSchedulePaused);
+
 		foreach (Vector2 routePos in routePositions)
 		{
 			Vector2 startPos = currentPos.Pos;

@@ -22,10 +22,10 @@ public class GridManager : MonoBehaviour
 		sceneManager.OnLoadGameScenes -= LoadGridData;
 	}
 
-	public GridCell GetGridCell(GameEnums.Scene scene, int x, int y)
+	public GridCell GetGridCell(GameEnums.Scene scene, int x, int y, bool isPathEdge)
 	{
 		if (scene == GameEnums.Scene.None || grids[scene].Grid == null) return null;
-		if (!IsValidPathCell(scene, x, y)) return null;
+		if (!IsValidPathCell(scene, x, y, isPathEdge)) return null;
 
 		return grids[scene].Grid[x, y];
 	}
@@ -54,12 +54,13 @@ public class GridManager : MonoBehaviour
 		StartCoroutine(sceneManager.UnloadGameScenes());
 	}
 
-	bool IsValidPathCell(GameEnums.Scene scene, int x, int y)
+	bool IsValidPathCell(GameEnums.Scene scene, int x, int y, bool isPathEdge)
 	{
 		bool isValidX = x >= 0 && x < grids[scene].Grid.GetLength(0);
 		bool isValidY = y >= 0 && y < grids[scene].Grid.GetLength(1);
 		if (!isValidX || !isValidY) return false;
 
-		return !grids[scene].Grid[x, y].IsBlocked;
+		bool isBlocked = grids[scene].Grid[x, y].IsBlocked;
+		return !isBlocked || isPathEdge;
 	}
 }

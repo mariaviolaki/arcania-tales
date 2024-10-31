@@ -15,6 +15,6 @@ MonoBehaviour:
   scene: 1
   adjacentScenes:
   - Scene: 2
-    Pos: {x: 15.5, y: -2.5}
+    Pos: {x: 16, y: -2.5}
   - Scene: 3
-    Pos: {x: 6.5, y: -1}
+    Pos: {x: 6.5, y: 0}

@@ -41,6 +41,7 @@ MonoBehaviour:
   - dialogueParts:
     - text: Do come back again.
       expression: 0
+  - dialogueParts:
     - text: Good luck. You're gonna need it.
       expression: 1
   shopSaleThanks:
